@@ -1,0 +1,388 @@
+\documentclass[onecolumn,a4paper,10pt]{report}
+%\documentclass[12pt,a4paper,twoside]{book} %twoside distingue página par de ímpar
+\usepackage[utf8]{inputenc}
+\usepackage[portuges]{babel} %para separar sílabas em Português, etc...
+\usepackage[usenames,dvipsnames]{color} % para letras e caixas coloridas
+\usepackage{latexsym} %para fazer $\Box$ no \LaTeX2$\epsilon$
+\usepackage{makeidx} % índice remissivo
+\usepackage{amstext} %texto em equações: $... \text{} ...$
+\usepackage{theorem}
+\usepackage{tabularx} %tabelas ocupando toda a página
+\usepackage[all]{xy}
+\usepackage{a4wide} %correta formatação da página em A4
+\usepackage{indentfirst} %adiciona espaços no primeiro parágrafo
+
+\usepackage{graphics,amssymb,amsfonts,amsmath}
+\usepackage{tikz}
+\usepackage{enumerate,hyperref}
+\usepackage{palatino}
+\usepackage{ragged2e}
+\usepackage{minted}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}                   
+\usepackage{xcolor}
+\usepackage{textcomp} % para usar \textdegree
+\usepackage{setspace}
+\usetikzlibrary{shadows}
+
+\newminted{java}{bgcolor=cyan!10}
+
+\definecolor{cinza}{gray}{.8}
+\definecolor{branco}{gray}{1}
+\definecolor{preto}{gray}{0}
+\definecolor{verdemusgo}{rgb}{.3,.7,.5}
+\definecolor{vinho}{cmyk}{0,1,1,.5}
+%\setcounter{secnumdepth}{1}
+%\renewcommand{\thesection}{\textcolor{preto}{\arabic{section}}}
+%\renewcommand{\thepage}{\textcolor{preto}{\color{preto}{{\scriptsize}}}}
+{\theorembodyfont{\upshape}
+\newtheorem{Dem}{Demonstração}[chapter]}
+\newtheorem{Ex}{Exemplo}[chapter]
+\newtheorem{Exer}{Exercício}
+\newtheorem{Lista}{Lista de exercícios}
+\newtheorem{Def}{Definição}[chapter]
+
+\newtheorem{Pro}{Proposição}[chapter]
+\newtheorem{Ax}{Axioma}[chapter]
+\newtheorem{Teo}{Teorema}[chapter]
+\newtheorem{Cor}{Corolário}[chapter]
+\newtheorem{Cas}{Caso}[subsection]
+\newtheorem{lema}{Lema}[chapter]
+\newtheorem{que}{Questão}[chapter]
+\newcommand{\dem}{\noindent{\bf Demonstração:}}
+\newcommand{\sol}{\noindent{\it Solução.}}
+\newcommand{\nota}{\noindent{\bf Notação:}}
+\newcommand{\ex}{\noindent{\bf Exemplos}}
+\newcommand{\Obs}{\noindent{\bf Observação:}}
+\newcommand{\fim}{\hfill $\blacksquare$}
+\newcommand{\ig}{\,\, = \,\,}
+\newcommand{\+}{\, + \,}
+\newcommand{\m}{\, - \,}
+\newcommand{\I}{\mbox{$I\kern-0.40emI$}}
+\newcommand{\Z}{\mbox{Z$\kern-0.40em$Z}}
+\newcommand{\Q}{\mbox{I$\kern-0.60em$Q}}
+\newcommand{\C}{\mbox{I$\kern-0.60em$C}}
+\newcommand{\N}{\mbox{I$\kern-0.40em$N}}
+\newcommand{\R}{\mbox{I$\kern-0.40em$R}}
+\newcommand{\Ro}{\rm{I\!R\!}}
+\newcommand{\disp}{\displaystyle}
+\newcommand{\<}{\hspace*{-0.4cm}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ov}{\overline}
+\newcommand{\aj}{\vspace*{-0.2cm}}
+\newcommand{\pt}{\hspace{-1mm}\times\hspace{-1mm}}
+\newcommand{\cm}{\mbox{cm}}
+\newcommand{\np}{\mbox{$\in \kern-0.80em/$}}
+\newcommand{\tg} {\mbox{tg\,}}
+\newcommand{\ptm}{\hspace{-0.4mm}\cdot\hspace{-0.4mm}}
+\newcommand{\arc}{\stackrel{\;\;\frown}}
+\newcommand{\rad}{\;\mbox{rad}}
+\newcommand{\esp}{\;\;\;\;}
+\newcommand{\sen}{\mbox{sen\,}}
+\newcommand{\grau}{^{\mbox{{\scriptsize o}}}}
+\newcommand{\real} {\mbox{$I\kern-0.60emR$}}
+\newcommand{\vetor}{\stackrel{\color{vinho}\vector(1,0){15}}}
+\newcommand{\arctg}{\mbox{arctg\,}}
+\newcommand{\arcsen}{\mbox{arcsen\,}}
+\newcommand{\ordinal}{^{\underline{\scriptsize\mbox{\rmo}}}}
+\newcommand{\segundo}{$2^{\underline{o}}$ }
+\newcommand{\primeiro}{$1^{\underline{o}}$ }
+\newcommand{\nee}{\mbox{$\;=\kern-0.90em/\;$}}
+
+\setlength{\parskip}{0.0cm} %espaco entre parágrafos
+\setlength{\oddsidemargin}{-1cm} %margem esquerda das páginas
+%\setlength{\unitlength}{3cm} %tamanho da figura criada
+\linespread{1.5} %distância entre linhas
+\setlength{\textheight}{25cm} %distância entre a primeira e última linha do texto(comprimento do texto)
+\setlength{\textwidth}{18cm} %indica a largura do texto
+\topmargin=-2cm %margem superior entre topo da página e o cabeçalho
+%\headsep=0.5cm %distãncia entre o cabeçalho e o corpo do texto
+%\setlength{\footskip}{27pt} %distãncia da última linha ao número da página
+%\evensidemargin=-0.2in %margem esquerda das páginas pares
+%\marginparwidth=1.7in %tamanho das notas de margem
+%\marginparsep=0.2in %distância entre a margem direita e as notas de margem
+%\topmargin=0cm
+%\stackrel{\frown}{AB}
+
+\begin{document}
+\singlespacing
+
+\begin{center}
+Pontifícia Universidade Católica do Rio Grande do Sul (PUCRS)\\
+Escola Politécnica\\
+Disciplina: Fundamentos de Programação - Professor: Roland Teodorowitsch\\
+24 de agosto de 2022
+\end{center}
+
+\begin{center}
+\textbf{Lista de Exercícios - Unidade 2: Tipos de Dados Fundamentais}
+\end{center}
+
+\begin{enumerate}[1.]
+
+%----------------------------------------------------------------------
+\item Qual o valor de \texttt{misterio} após a sequência de comandos a seguir?\\
+\begin{javacode}
+int misterio = 1;
+misterio = 1 - 2 * misterio;
+misterio = misterio + 1;
+\end{javacode}
+{\tiny Fonte: Horstmann (2013, p. 68)}
+
+%----------------------------------------------------------------------
+\item O que está errado com a sequência de comandos a seguir?\\
+\begin{javacode}
+int misterio = 1;
+misterio = misterio + 1;
+int misterio = 1 - 2 * misterio;
+\end{javacode}
+{\tiny Fonte: Horstmann (2013, p. 68)}
+
+%----------------------------------------------------------------------
+\item Escreva as expressões matemáticas a seguir em Java.
+\begin{center}
+\begin{tabular}{p{5cm}p{5cm}}
+$\displaystyle s = s_0 + v_0t+\frac{1}{2}gt^2 $ & $\displaystyle G = 4\pi^2\frac{a^3}{p^2(m_1+m_2)} $ \\
+~ & ~\\
+$\displaystyle \mathit{FV} = \mathit{PV} \cdot \left( 1 + \frac{\mathit{INT}}{100} \right)^{\mathit{YRS}} $ & $\displaystyle c = \sqrt{a^2+b^2-2ab\cos{\lambda}} $ \\
+\end{tabular}
+\end{center}
+{\tiny Fonte: Horstmann (2013, p. 68)}
+
+%----------------------------------------------------------------------
+\item Converta as seguintes atribuições em Java para expressões matemáticas.
+\begin{enumerate}[a)]
+\item \texttt{dm = m * (Math.sqrt(1 + v / c) / Math.sqrt(1 - v / c) - 1);}
+\item \texttt{volume = Math.PI * r * r * h;}
+\item \texttt{volume = 4 * Math.PI * Math.pow(r, 3) / 3;}
+\item \texttt{z = Math.sqrt(x * x + y * y);}
+\end{enumerate}
+{\tiny Fonte: Horstmann (2013, p. 68)}
+
+%----------------------------------------------------------------------
+\item Quais são os valores das seguintes expressões? Em cada linha, assuma que\\
+\texttt{double x = 2.5;\\
+double y = -1.5;\\
+int m = 18;\\
+int n = 4;}
+\begin{enumerate}[a)]
+\item \texttt{x + n * y - (x + n) * y}
+\item \texttt{m / n + m \% n}
+\item \texttt{5 * x - n / 5}
+\item \texttt{1 - (1 - (1 - (1 - (1 - n))))}
+\item \texttt{Math.sqrt(Math.sqrt(n))}
+\end{enumerate}
+{\tiny Fonte: Horstmann (2013, p. 68-69)}
+
+%----------------------------------------------------------------------
+\item Quais são os valores das expressões a seguir, assumindo que \texttt{n} seja $17$ e \texttt{m} seja $18$?
+\begin{enumerate}[a)]
+\item \texttt{n / 10 + n \% 10}
+\item \texttt{n \% 2 + m \% 2}
+\item \texttt{(m + n) / 2}
+\item \texttt{(m + n) / 2.0}
+\item \texttt{(int) (0.5 * (m + n))}
+\item \texttt{(int) Math.round(0.5 * (m + n))}
+\end{enumerate}
+{\tiny Fonte: Horstmann (2013, p. 69)}
+
+%----------------------------------------------------------------------
+\item Quais são os valores das seguintes expressões? Em cada linha, assuma que\\
+\texttt{String s = "Hello";\\
+String t = "World";}
+\begin{enumerate}[a)]
+\item \texttt{s.length() + t.length()}
+\item \texttt{s.substring(1, 2)}
+\item \texttt{s.substring(s.length() / 2, s.length())}
+\item \texttt{s + t}
+\item \texttt{t + s}
+\end{enumerate}
+{\tiny Fonte: Horstmann (2013, p. 69)}
+
+%----------------------------------------------------------------------
+\item Encontre pelo menos cinco erros de compilação no seguinte programa.\\
+\begin{javacode}
+public class HasErrors
+{
+   public static void main();
+   {
+      System.out.print(Please enter two numbers:)
+      x = in.readDouble;
+      y = in.readDouble;
+      System.out.printline("The sum is " + x + y);
+   }
+}
+\end{javacode}
+{\tiny Fonte: Horstmann (2013, p. 69)}
+
+%----------------------------------------------------------------------
+\item Encontre três erros de execução no seguinte programa.\\
+\begin{javacode}
+public class HasErrors
+{
+   public static void main(String[] args)
+   {
+      int x = 0;
+      int y = 0;
+      Scanner in = new Scanner("System.in");
+      System.out.print("Please enter an integer:");
+      x = in.readInt();
+      System.out.print("Please enter another integer: ");
+      x = in.readInt();
+      System.out.println("The sum is " + x + y);
+   }
+}
+\end{javacode}
+{\tiny Fonte: Horstmann (2013, p. 69)}
+
+%----------------------------------------------------------------------
+\item Explique as diferenças em Java entre \texttt{2}, \texttt{2.0}, \texttt{'2'}, \texttt{"2"} e \texttt{"2.0"}.\\
+{\tiny Fonte: Horstmann (2013, p. 70)}
+
+%----------------------------------------------------------------------
+\item Dados 3 valores reais positivos (por exemplo, \texttt{a}, \texttt{b}, \texttt{c}), escreva um programa em Java para ler estes valores, calcular e exibir as médias aritmética, harmônica, geométrica e ponderada (respectivamente, com pesos $1$, $2$ e $3$) destes números. Lembre-se que as fórmulas das médias são respectivamente:
+\begin{center}
+\begin{tabular}{p{4cm}p{5cm}}
+$\displaystyle m_A = \frac{a+b+c}{3} $ & $\displaystyle m_H = \frac{3}{\frac{1}{a}+\frac{1}{b}+\frac{1}{c}} $ \\
+~ & ~\\
+$\displaystyle m_G = \sqrt[3]{a \times b \times c} $ & $\displaystyle m_P = \frac{1 \times a + 2 \times b + 3 \times c}{1+2+3} $ \\
+\end{tabular}
+\end{center}
+{\tiny Adaptado de: Orth (2001, p. 17)}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que lê uma medida em metros e então converte esta medida para milhas, pés e polegadas.\\
+{\tiny Adaptado de: Horstmann (2013, p. 72)}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que lê o valor de um raio e então mostra:
+\begin{itemize}
+	\item A área e a circunferência de um círculo com este raio
+	\item O volume e a superfície de uma esfera com este raio
+\end{itemize}
+{\tiny Adaptado de: Horstmann (2013, p. 72)}
+
+%----------------------------------------------------------------------
+\item Construa um programa em Java para calcular as raízes de uma equação do 2\textdegree grau ($ax^2+bx+c$), sendo que os valores \texttt{a}, \texttt{b} e \texttt{c} são fornecidos pelo usuário (considere que a equação possui duas raízes reais e que \texttt{a} é diferente de zero).\\
+{\tiny Adaptado de: Forbellone e Eberspächer (2005, p. 33)}
+
+%----------------------------------------------------------------------
+\item Construa um programa em Java que leia as duas raízes reais de uma equação do segundo grau e apresente os coeficientes \texttt{a}, \texttt{b} e \texttt{c} ($ax^2+bx+c$) desta equação .\\
+{\tiny Autor: Roland Teodorowitsch}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que solicite do usuário: o valor do odômetro (quilometragem do carro) no abastecimento anterior (em Km), o valor do odômetro no abastecimento atual (em Km), o valor do combustível (em R\$/litro) e a quantidade de combustível abastecida (em litros). A seguir calcule e mostre: o rendimento do carro (em Km/litro) e o custo por quilômetro (R\$/Km). Considere que em todos os abastecimentos o tanque foi completado.\\
+{\tiny Autor: Roland Teodorowitsch}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que solicita do usuário uma letra de dispositivo (\texttt{C}), um caminho (\texttt{\textbackslash Windows\textbackslash System}), o nome do arquivo (\texttt{Readme}) e a extensão (\texttt{txt}). E então imprima o nome completo do arquivo:\\ \texttt{C:\textbackslash Windows\textbackslash System\textbackslash Readme.txt}.\\Considere apenas nomes de arquivos para o sistema operacional Windows.\\
+{\tiny Adaptado de: Horstmann (2013, p. 73)}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que leia 3 números inteiros correspondendo, respectivamente, a dia, mês e ano, imprimindo esta data como uma cadeia de caracteres no formanto \texttt{DD/MM/AAAA} (por exemplo, como: 16/03/2016).\\
+{\tiny Autor: Roland Teodorowitsch}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que leia uma cadeia de caracteres com uma data formato \texttt{DD/MM/AAAA}, extraindo desta data os 3 valores inteiros correspondentes a dia, mês e ano, e imprimindo-os como valores inteiros. Use o método \texttt{substring} para obter as partes da cadeia de caracteres e o método \texttt{parseInt} da classe \texttt{Integer} para conversão para valores inteiros.
+\begin{itemize}
+\item Desafio: reescreva este programa sem usar nenhum outro método além de \texttt{charAt}.
+\end{itemize}
+{\tiny Autor: Roland Teodorowitsch}
+
+%----------------------------------------------------------------------
+\item De acordo com a lei da força de Coulomb, uma força elétrica entre duas partículas carregadas com cargas de $Q_1$ e $Q_2$ Coulombs, que estão afastadas por uma distância de $r$ metros, é $F = \frac{Q_1Q_2}{4\pi \varepsilon r^2}$ Newtons, onde $\varepsilon = 8.854 \times 10^{-12}$ Farads/metro. Escreva um programa em Java que calcula a força elétrica entre um par de partículas carregadas, baseado nos valores de $Q_1$, $Q_2$ e $r$ fornecidos pelo usuário, exibindo este valor.\\
+{\tiny Adaptado de: Horstmann (2013, p. 78)}
+
+%----------------------------------------------------------------------
+\item Escrever um programa em Java que lê o número de um funcionário, seu número de horas trabalhadas, o valor que recebe por hora, o número de filhos com idade menor do que 14 anos e o valor do salário família (pago por filho com menos de 14 anos). Calcular o salário total deste funcionário e escrever o seu número e o seu salário total.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}
+
+%----------------------------------------------------------------------
+\item Escrever um programa em Java que lê 3 valores reais \texttt{a}, \texttt{b} e \texttt{c}, calculando e exibindo:\\
+A área do triângulo que tem \texttt{a} por base e \texttt{b} por altura;\\
+A área do círculo de raio \texttt{c};\\
+A área do trapézio que tem \texttt{a} e \texttt{b} por bases e \texttt{c} por altura\\
+A área do quadrado de lado \texttt{b};\\
+A área do retângulo de lados \texttt{a} e \texttt{b};\\
+A área da superfície de um cubo que tem \texttt{c} por aresta.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}
+
+%----------------------------------------------------------------------
+\item Escrever um programa em Java que lê \texttt{p}, \texttt{u} e \texttt{r}, respectivamente, o primeiro termo de uma progressão aritmética, o último termo da progressão e a sua razão. Determinar e escrever a soma dos termos desta progressão.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}
+
+%----------------------------------------------------------------------
+\item Escrever um programa em Java que lê o número de peças do tipo 1, o valor de cada peça do tipo 1, o número de peças do tipo 2, o valor de cada peça do tipo 2 e o percentual de IPI (Imposto sobre Produtos Industrializados) a ser acrescentado. Calcular e escrever o valor total a ser pago por esta compra.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}
+
+%----------------------------------------------------------------------
+\item Um avião em linha reta, a uma altitude \texttt{a}, passa sobre um ponto \texttt{p} situado no solo, num instante \texttt{t=0}. Se a velocidade é \texttt{v}, calcular a distância \texttt{d} do avião ao ponto \texttt{p} após 30 segundos. Escrever um programa em Java que lê \texttt{v} e \texttt{a}, e calcula e escreve a distância do avião ao ponto \texttt{p} após 30 segundos.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}
+
+%----------------------------------------------------------------------
+\item Uma farmácia paga o seu funcionário a cada sexta-feira e deseja deixar pronto o envelope de pagamento. Escrever um programa em Java que lê o valor do salário do funcionário em reais e calcula qual o menor número possível de notas de $100$, $50$, $10$, $5$ e $1$, em que o valor lido pode ser decomposto. Escrever o valor lido e o número de notas de cada tipo que compõe o envelope de pagamento.\\
+{\tiny Adaptado de: Orth (2001, p. 26)}
+
+%----------------------------------------------------------------------
+\item Escrever um programa em Java que lê o número de um vendedor, o seu salário fixo, o total de vendas efetuadas por ele e o percentual que ganha sobre o total de suas vendas. Calcular o salário total do vendedor e escrever o número e o salário do vendedor.\\
+{\tiny Adaptado de: Orth (2001, p. 26)}
+
+%----------------------------------------------------------------------
+\item Escrever um programa em Java que lê 3 valores \texttt{a}, \texttt{b} e \texttt{c}, que são os lados de um triângulo e calcula e escreve a área deste triângulo. Lembre-se que, se \texttt{s} é o semiperímetro do triângulo (metade do perímetro), a área será calculada da seguinte forma: $A = \sqrt{s(s-a)(s-b)(s-c)}$.\\
+{\tiny Adaptado de: Orth (2001, p. 26)}
+
+%----------------------------------------------------------------------
+\item O custo de um carro novo ao consumidor é a soma do custo de fábrica com a percentagem do distribuidor e o percentual de impostos (aplicados ao custo de fábrica). Escrever um programa em Java que lê o custo de fábrica, o percentual do distribuidor e o percentual dos impostos, e calcula e escreve o valor a ser pago pelo consumidor por este carro.\\
+{\tiny Adaptado de: Orth (2001, p. 26)}
+
+%----------------------------------------------------------------------
+\item Escrever um programa em Java que lê as coordenadas de dois pontos no plano cartesiano, calcula e escreve a distância entre estes dois pontos, sabendo-se que a fórmula da distância entre dois pontos $P_1(x_1,y_1)$ e $P_2(x_2,y_2)$ é $d = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$.\\
+{\tiny Adaptado de: Orth (2001, p. 26)}
+
+%----------------------------------------------------------------------
+\item Escrever um programa em Java que lê 3 valores \texttt{a}, \texttt{b} e \texttt{c}, e os escreve. Encontre, a seguir, o maior dos 3 valores e o escreva com a mensagem "eh o maior!".
+\[ Maior = \frac{a+b+|a-b|}{2} \]
+{\tiny Adaptado de: Orth (2001, p. 26)}
+
+%----------------------------------------------------------------------
+\item O Domingo de Páscoa é o primeiro domingo após a primeira lua cheia da primavera. Para calcular esta data, você pode usar o seguinte algoritmo, inventado por Carl Friedrich Gauss em 1800:
+\begin{enumerate}[a)]
+	\item Faça \texttt{y} ser o ano (tal como $1800$ ou $2001$).
+	\item Divida \texttt{y} por $19$ e guarde o resto da divisão em \texttt{a}. Ignore o quociente.
+	\item Divida \texttt{y} por $100$ e guarde o quociente em \texttt{b} e o resto em \texttt{c}.
+	\item Divida \texttt{b} por $4$ e guarde o quociente em \texttt{d} e o resto em \texttt{e}.
+	\item Divida \texttt{8 * b + 13} por $25$ e guarde o quociente em \texttt{g}. Ignore o resto.
+	\item Divida \texttt{19 * a + b - d - g + 15} por $30$ e guarde o resto da divisão em \texttt{h}. Ignore o quociente.
+	\item Divida \texttt{c} por $4$ e guarde o quociente em \texttt{j} e o resto em \texttt{k}.
+	\item Divida \texttt{a + 11 * h} por $319$ e guarde o quociente em \texttt{m}. Ignore o resto.
+	\item Divida \texttt{2 * e + 2 * j - k - h + m + 32} por $7$ e guarde o resto da divisão em \texttt{r}. Ignore o quociente.
+	\item Divida \texttt{h - m + r + 90} por $25$ e guarde o quociente em \texttt{n}. Ignore o resto.
+	\item Divida \texttt{h - m + r + n + 19} por $32$ e guarde o resto da divisão em \texttt{p}. Ignore o quociente.
+\end{enumerate}
+Então a Páscoa cairá no dia \texttt{p} do mês \texttt{n}. Por exemplo, se \texttt{y} for $2001$:
+\begin{center}
+\begin{tabular}{lll}
+\texttt{a = 6}         & \texttt{h = 18}       & \texttt{n = 4} \\
+\texttt{b = 20, c = 1} ~ & \texttt{j = 0, k = 1} ~ & \texttt{p = 15} \\
+\texttt{d = 5, e = 0}  & \texttt{m = 0}        & ~ \\
+\texttt{g = 6}         & \texttt{r = 6}        & ~ \\
+\end{tabular}
+\end{center}
+Portanto, em 2001, o Domingo de Páscoa cairá no dia 15 de abril. Escreva um programa em Java que solicita o ano ao usuário e imprime o dia e o mês do domingo de Páscoa neste ano.\\
+{\tiny Adaptado de: Horstmann (2013, p. 74-75)}
+
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\noindent{\textbf{REFERÊNCIAS}}
+
+\noindent{FORBELLONE, André Luiz Villar; EBERSPÄCHER, Henri Frederico. \textbf{Lógica de programação}: a construção de algoritmos e estruturas de dados. 3. ed. São Paulo: Prentice Hall, 2005. 218 p.}
+
+\noindent{HORSTMANN, C. \textbf{Java for Everyone – Late Objetct}. 2. ed. Hoboken: Wiley, 2013. xxxiv, 589 p.}
+
+\noindent{ORTH, Afonso Inácio. \textbf{Algoritmos e Programação com Resumo das Linguagens PASCAL e C}. Porto Alegre: AIO, 2001. 176 p.}
+
+\end{document}
+

@@ -1,0 +1,1122 @@
+\documentclass[onecolumn,a4paper,10pt]{report}
+%\documentclass[12pt,a4paper,twoside]{book} %twoside distingue página par de ímpar
+\usepackage[utf8]{inputenc}
+\usepackage[portuges]{babel} %para separar sílabas em Português, etc...
+\usepackage[usenames,dvipsnames]{color} % para letras e caixas coloridas
+\usepackage{latexsym} %para fazer $\Box$ no \LaTeX2$\epsilon$
+\usepackage{makeidx} % índice remissivo
+\usepackage{amstext} %texto em equações: $... \text{} ...$
+\usepackage{theorem}
+\usepackage{tabularx} %tabelas ocupando toda a página
+\usepackage[all]{xy}
+\usepackage{a4wide} %correta formatação da página em A4
+\usepackage{indentfirst} %adiciona espaços no primeiro parágrafo
+
+\usepackage{graphics,amssymb,amsfonts,amsmath}
+\usepackage{tikz}
+\usepackage{enumerate,hyperref}
+\usepackage{palatino}
+\usepackage{ragged2e}
+\usepackage{minted}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}                   
+\usepackage{xcolor}
+\usepackage{textcomp} % para usar \textdegree
+\usepackage{setspace}
+\usetikzlibrary{shadows}
+
+\newminted{java}{bgcolor=cyan!10}
+
+\definecolor{cinza}{gray}{.8}
+\definecolor{branco}{gray}{1}
+\definecolor{preto}{gray}{0}
+\definecolor{verdemusgo}{rgb}{.3,.7,.5}
+\definecolor{vinho}{cmyk}{0,1,1,.5}
+%\setcounter{secnumdepth}{1}
+%\renewcommand{\thesection}{\textcolor{preto}{\arabic{section}}}
+%\renewcommand{\thepage}{\textcolor{preto}{\color{preto}{{\scriptsize}}}}
+{\theorembodyfont{\upshape}
+\newtheorem{Dem}{Demonstração}[chapter]}
+\newtheorem{Ex}{Exemplo}[chapter]
+\newtheorem{Exer}{Exercício}
+\newtheorem{Lista}{Lista de exercícios}
+\newtheorem{Def}{Definição}[chapter]
+
+\newtheorem{Pro}{Proposição}[chapter]
+\newtheorem{Ax}{Axioma}[chapter]
+\newtheorem{Teo}{Teorema}[chapter]
+\newtheorem{Cor}{Corolário}[chapter]
+\newtheorem{Cas}{Caso}[subsection]
+\newtheorem{lema}{Lema}[chapter]
+\newtheorem{que}{Questão}[chapter]
+\newcommand{\dem}{\noindent{\bf Demonstração:}}
+\newcommand{\sol}{\noindent{\it Solução.}}
+\newcommand{\nota}{\noindent{\bf Notação:}}
+\newcommand{\ex}{\noindent{\bf Exemplos}}
+\newcommand{\Obs}{\noindent{\bf Observação:}}
+\newcommand{\fim}{\hfill $\blacksquare$}
+\newcommand{\ig}{\,\, = \,\,}
+\newcommand{\+}{\, + \,}
+\newcommand{\m}{\, - \,}
+\newcommand{\I}{\mbox{$I\kern-0.40emI$}}
+\newcommand{\Z}{\mbox{Z$\kern-0.40em$Z}}
+\newcommand{\Q}{\mbox{I$\kern-0.60em$Q}}
+\newcommand{\C}{\mbox{I$\kern-0.60em$C}}
+\newcommand{\N}{\mbox{I$\kern-0.40em$N}}
+\newcommand{\R}{\mbox{I$\kern-0.40em$R}}
+\newcommand{\Ro}{\rm{I\!R\!}}
+\newcommand{\disp}{\displaystyle}
+\newcommand{\<}{\hspace*{-0.4cm}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ov}{\overline}
+\newcommand{\aj}{\vspace*{-0.2cm}}
+\newcommand{\pt}{\hspace{-1mm}\times\hspace{-1mm}}
+\newcommand{\cm}{\mbox{cm}}
+\newcommand{\np}{\mbox{$\in \kern-0.80em/$}}
+\newcommand{\tg} {\mbox{tg\,}}
+\newcommand{\ptm}{\hspace{-0.4mm}\cdot\hspace{-0.4mm}}
+\newcommand{\arc}{\stackrel{\;\;\frown}}
+\newcommand{\rad}{\;\mbox{rad}}
+\newcommand{\esp}{\;\;\;\;}
+\newcommand{\sen}{\mbox{sen\,}}
+\newcommand{\grau}{^{\mbox{{\scriptsize o}}}}
+\newcommand{\real} {\mbox{$I\kern-0.60emR$}}
+\newcommand{\vetor}{\stackrel{\color{vinho}\vector(1,0){15}}}
+\newcommand{\arctg}{\mbox{arctg\,}}
+\newcommand{\arcsen}{\mbox{arcsen\,}}
+\newcommand{\ordinal}{^{\underline{\scriptsize\mbox{\rmo}}}}
+\newcommand{\segundo}{$2^{\underline{o}}$ }
+\newcommand{\primeiro}{$1^{\underline{o}}$ }
+\newcommand{\nee}{\mbox{$\;=\kern-0.90em/\;$}}
+
+\setlength{\parskip}{0.0cm} %espaco entre parágrafos
+\setlength{\oddsidemargin}{-1cm} %margem esquerda das páginas
+%\setlength{\unitlength}{3cm} %tamanho da figura criada
+\linespread{1.5} %distância entre linhas
+\setlength{\textheight}{25cm} %distância entre a primeira e última linha do texto(comprimento do texto)
+\setlength{\textwidth}{18cm} %indica a largura do texto
+\topmargin=-2cm %margem superior entre topo da página e o cabeçalho
+%\headsep=0.5cm %distãncia entre o cabeçalho e o corpo do texto
+%\setlength{\footskip}{27pt} %distãncia da última linha ao número da página
+%\evensidemargin=-0.2in %margem esquerda das páginas pares
+%\marginparwidth=1.7in %tamanho das notas de margem
+%\marginparsep=0.2in %distância entre a margem direita e as notas de margem
+%\topmargin=0cm
+%\stackrel{\frown}{AB}
+
+\begin{document}
+\singlespacing
+
+\begin{center}
+Pontifícia Universidade Católica do Rio Grande do Sul (PUCRS)\\
+Escola Politécnica\\
+Disciplina: Fundamentos de Programação - Professor: Roland Teodorowitsch\\
+24 de agosto de 2022
+\end{center}
+
+\begin{center}
+\textbf{Lista de Exercícios - Unidade 2: Tipos de Dados Fundamentais\\(GABARITO)}
+\end{center}
+
+\begin{enumerate}[1.]
+
+%1----------------------------------------------------------------------
+\item Qual o valor de \texttt{misterio} após a sequência de comandos a seguir?\\
+\begin{javacode}
+int misterio = 1;
+misterio = 1 - 2 * misterio;
+misterio = misterio + 1;
+\end{javacode}
+{\tiny Fonte: Horstmann (2013, p. 68)}\\
+\textcolor{red}{Resposta:\\
+\texttt{0}
+}
+
+%2----------------------------------------------------------------------
+\item O que está errado com a sequência de comandos a seguir?\\
+\begin{javacode}
+int misterio = 1;
+misterio = misterio + 1;
+int misterio = 1 - 2 * misterio;
+\end{javacode}
+{\tiny Fonte: Horstmann (2013, p. 68)}\\
+\textcolor{red}{Resposta:\\
+A variável \texttt{misterio} está sendo declarada 2 vezes.
+}
+
+%3----------------------------------------------------------------------
+\item Escreva as expressões matemáticas a seguir em Java.
+\begin{center}
+\begin{tabular}{p{5cm}p{5cm}}
+$\displaystyle s = s_0 + v_0t+\frac{1}{2}gt^2 $ & $\displaystyle G = 4\pi^2\frac{a^3}{p^2(m_1+m_2)} $ \\
+~ & ~\\
+$\displaystyle \mathit{FV} = \mathit{PV} \cdot \left( 1 + \frac{\mathit{INT}}{100} \right)^{\mathit{YRS}} $ & $\displaystyle c = \sqrt{a^2+b^2-2ab\cos{\lambda}} $ \\
+\end{tabular}
+\end{center}
+{\tiny Fonte: Horstmann (2013, p. 68)}\\
+\textcolor{red}{Respostas:}\\
+\begin{javacode}
+s = s0 + v0 * t + g * t * t / 2.0;
+G = 4.0 * Math.PI * Math.PI * Math.pow(a,3) / (p * p * (m1 + m2));
+FV = PV * Math.pow((1.0 + INT / 100.0), YRS);
+c = Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(gamma));
+\end{javacode}
+
+%4----------------------------------------------------------------------
+\item Converta as seguintes atribuições em Java para expressões matemáticas.
+\begin{enumerate}[a)]
+\item \texttt{dm = m * (Math.sqrt(1 + v / c) / Math.sqrt(1 - v / c) - 1);}
+\item \texttt{volume = Math.PI * r * r * h;}
+\item \texttt{volume = 4 * Math.PI * Math.pow(r, 3) / 3;}
+\item \texttt{z = Math.sqrt(x * x + y * y);}
+\end{enumerate}
+{\tiny Fonte: Horstmann (2013, p. 68)}\\
+\textcolor{red}{Respostas:
+\begin{enumerate}[a)]
+\item $ dm = m \left( \frac{\sqrt{1+\frac{v}{c}}}{\sqrt{1-\frac{v}{c}}} - 1 \right) $
+\item $ volume = \pi r^{2}h $
+\item $ volume = 4 \pi \frac{r^3}{3} $
+\item $ z = \sqrt{x^2 + y^2} $
+\end{enumerate}
+}
+
+%5----------------------------------------------------------------------
+\item Quais são os valores das seguintes expressões? Em cada linha, assuma que\\
+\texttt{double x = 2.5;\\
+double y = -1.5;\\
+int m = 18;\\
+int n = 4;}
+\begin{enumerate}[a)]
+\item \texttt{x + n * y - (x + n) * y}
+\item \texttt{m / n + m \% n}
+\item \texttt{5 * x - n / 5}
+\item \texttt{1 - (1 - (1 - (1 - (1 - n))))}
+\item \texttt{Math.sqrt(Math.sqrt(n))}
+\end{enumerate}
+{\tiny Fonte: Horstmann (2013, p. 68-69)}\\
+\textcolor{red}{Respostas:
+\begin{enumerate}[a)]
+\item \texttt{6.25}
+\item \texttt{6}
+\item \texttt{12.5}
+\item \texttt{-3}
+\item \texttt{1.4142135623730951}
+\end{enumerate}
+}
+
+%6----------------------------------------------------------------------
+\item Quais são os valores das expressões a seguir, assumindo que \texttt{n} seja $17$ e \texttt{m} seja $18$?
+\begin{enumerate}[a)]
+\item \texttt{n / 10 + n \% 10}
+\item \texttt{n \% 2 + m \% 2}
+\item \texttt{(m + n) / 2}
+\item \texttt{(m + n) / 2.0}
+\item \texttt{(int) (0.5 * (m + n))}
+\item \texttt{(int) Math.round(0.5 * (m + n))}
+\end{enumerate}
+{\tiny Fonte: Horstmann (2013, p. 69)}\\
+\textcolor{red}{Respostas:
+\begin{enumerate}[a)]
+\item \texttt{8}
+\item \texttt{1}
+\item \texttt{17}
+\item \texttt{17.5}
+\item \texttt{17}
+\item \texttt{18}
+\end{enumerate}
+}
+
+%7----------------------------------------------------------------------
+\item Quais são os valores das seguintes expressões? Em cada linha, assuma que\\
+\texttt{String s = "Hello";\\
+String t = "World";}
+\begin{enumerate}[a)]
+\item \texttt{s.length() + t.length()}
+\item \texttt{s.substring(1, 2)}
+\item \texttt{s.substring(s.length() / 2, s.length())}
+\item \texttt{s + t}
+\item \texttt{t + s}
+\end{enumerate}
+{\tiny Fonte: Horstmann (2013, p. 69)}\\
+\textcolor{red}{Respostas:
+\begin{enumerate}[a)]
+	\item \texttt{10}
+	\item \texttt{e}
+	\item \texttt{llo}
+	\item \texttt{HelloWorld}
+	\item \texttt{WorldHello}
+\end{enumerate}
+}
+
+%8----------------------------------------------------------------------
+\item Encontre pelo menos cinco erros de compilação no seguinte programa.\\
+\begin{javacode}
+public class HasErrors
+{
+   public static void main();
+   {
+      System.out.print(Please enter two numbers:)
+      x = in.readDouble;
+      y = in.readDouble;
+      System.out.printline("The sum is " + x + y);
+   }
+}
+\end{javacode}
+{\tiny Fonte: Horstmann (2013, p. 69)}\\
+\textcolor{red}{Resposta:
+\begin{itemize}
+\item Há um ponto-e-vírgula errado após \texttt{main()}
+\item A mensagem na primeira chamada a \texttt{print} não está entre aspas como todo \emph{string} exige
+\item As variáveis \texttt{x} e \texttt{y} não foram declaradas
+\item A variável \texttt{in} também não foi declarada
+\item O método \texttt{readDouble} não existe (deveria teri sido usado \texttt{nextDouble}) e, se existisse, deveria ser precedido por \texttt{()}
+\item Em vez de \texttt{printline}, o correto é \texttt{println}
+\end{itemize}
+}
+
+%9----------------------------------------------------------------------
+\item Encontre três erros de execução no seguinte programa.\\
+\begin{javacode}
+public class HasErrors
+{
+   public static void main(String[] args)
+   {
+      int x = 0;
+      int y = 0;
+      Scanner in = new Scanner("System.in");
+      System.out.print("Please enter an integer:");
+      x = in.readInt();
+      System.out.print("Please enter another integer: ");
+      x = in.readInt();
+      System.out.println("The sum is " + x + y);
+   }
+}
+\end{javacode}
+{\tiny Fonte: Horstmann (2013, p. 69)}\\
+\textcolor{red}{Resposta:
+\begin{itemize}
+\item O parâmetro da construção de \texttt{Scanner} (ou seja, \texttt{System.in}) deve ser usado sem aspas, pois não se trata de um \emph{string}
+\item A segunda leitura com \texttt{readInt} deveria ser para a leitura da variável \texttt{y} (na versão apresentada, \texttt{x} é lido duas vezes e \texttt{y} não é lido)
+\item A soma deveria ser impressa como \texttt{"The sum is " + (x + y)}, de forma que os valores inteiros não sejam concatenados, e sim, somados
+\end{itemize}
+}
+
+%10----------------------------------------------------------------------
+\item Explique as diferenças em Java entre \texttt{2}, \texttt{2.0}, \texttt{'2'}, \texttt{"2"} e \texttt{"2.0"}.\\
+{\tiny Fonte: Horstmann (2013, p. 70)}\\
+\textcolor{red}{Resposta:\\
+Todas as expressões são contantes literais, porém \texttt{2} é uma contante inteira, \texttt{2.0} é uma constante real (do tipo \texttt{double}), \texttt{'2'} é uma constante do tipo \texttt{char} (que equivale ao código ASCII 50 ou 0x32 em hexadecimal), \texttt{"2"} é uma \texttt{String} constante (armazenando um texto que contém o caracter \texttt{'2'}) e \texttt{"2.0"} também é uma \texttt{String} constante (armazenando um texto que contém os caracteres \texttt{'2'}, \texttt{'.'} e \texttt{'0'} em sequência)
+}
+
+%11----------------------------------------------------------------------
+\item Dados 3 valores reais positivos (por exemplo, \texttt{a}, \texttt{b}, \texttt{c}), escreva um programa em Java para ler estes valores, calcular e exibir as médias aritmética, harmônica, geométrica e ponderada (respectivamente, com pesos $1$, $2$ e $3$) destes números. Lembre-se que as fórmulas das médias são respectivamente:
+\begin{center}
+\begin{tabular}{p{4cm}p{5cm}}
+$\displaystyle m_A = \frac{a+b+c}{3} $ & $\displaystyle m_H = \frac{3}{\frac{1}{a}+\frac{1}{b}+\frac{1}{c}} $ \\
+~ & ~\\
+$\displaystyle m_G = \sqrt[3]{a \times b \times c} $ & $\displaystyle m_P = \frac{1 \times a + 2 \times b + 3 \times c}{1+2+3} $ \\
+\end{tabular}
+\end{center}
+{\tiny Adaptado de: Orth (2001, p. 17)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Calcula medias aritmetica, harmonica, geometrica e ponderada
+ */
+public class Medias {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Forneca 3 valores: ");
+        double a = in.nextDouble();
+        double b = in.nextDouble();
+        double c = in.nextDouble();
+        double mArit = (a + b + c) / 3;
+        System.out.println("Media aritmetica = " + mArit);
+        double mHarm = 3 / ( 1/a + 1/b + 1/c);
+        System.out.println("Media harmonica = " + mHarm);
+        double mGeom = Math.pow ( a * b * c, 1.0/3.0 );
+        System.out.println("Media geometrica = " + mGeom);
+        double mPond = (a + 2.0 * b + 3.0 * c) / 6.0;
+        System.out.println("Media ponderada = " + mPond);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Forneca 3 valores: \textbf{4 5 6}\\
+Media aritmetica = 5.0\\
+Media harmonica = 4.864864864864865\\
+Media geometrica = 4.93242414866094\\
+Media ponderada = 5.333333333333333}
+}
+
+%12----------------------------------------------------------------------
+\item Escreva um programa em Java que lê uma medida em metros e então converte esta medida para milhas, pés e polegadas.\\
+{\tiny Adaptado de: Horstmann (2013, p. 72)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que le uma medida em metros e converte
+   esta medida para milhas, pes e polegadas
+ */
+public class ConversorDeMetros {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Forneca um valor em metros: ");
+        double metros = in.nextDouble();
+        System.out.println(metros + " m...");
+        System.out.println(" = " + (metros * 0.00062137) + " milhas");
+        System.out.println(" = " + (metros * 3.2808) + " pes");
+        System.out.println(" = " + (metros * 39.3701) + " polegadas");
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Forneca um valor em metros: \textbf{1000}\\
+1000.0 m...\\
+ = 0.62137 milhas\\
+ = 3280.8 pes\\
+ = 39370.1 polegadas}
+}
+
+%13----------------------------------------------------------------------
+\item Escreva um programa em Java que lê o valor de um raio e então mostra:
+\begin{itemize}
+	\item A área e a circunferência de um círculo com este raio
+	\item O volume e a superfície de uma esfera com este raio
+\end{itemize}
+{\tiny Adaptado de: Horstmann (2013, p. 72)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que le o valor de um raio e mostra:
+   1) a  area e a circunferencia de um circulo com este raio e
+   2) o volume e a superficie de uma esfera com este raio
+ */
+public class CirculoEEsfera {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Forneca o raio: ");
+        double raio = in.nextDouble();
+        System.out.println("Circulo de raio  = " + raio);
+        System.out.println("- area           = " + (Math.PI*raio*raio) );
+        System.out.println("- circunferencia = " + (2*Math.PI*raio) );
+        System.out.println("Esfera de raio = " + raio);
+        System.out.println("- volume       = " + (4*Math.PI*Math.pow(raio,3)/3) );
+        System.out.println("- superficie   = " + (4*Math.PI*raio*raio) );
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Forneca o raio: \textbf{10}\\
+Circulo de raio  = 10.0\\
+- area           = 314.1592653589793\\
+- circunferencia = 62.83185307179586\\
+Esfera de raio = 10.0\\
+- volume       = 4188.790204786391\\
+- superficie   = 1256.6370614359173}
+}
+
+%14----------------------------------------------------------------------
+\item Construa um programa em Java para calcular as raízes de uma equação do 2\textdegree grau ($ax^2+bx+c$), sendo que os valores \texttt{a}, \texttt{b} e \texttt{c} são fornecidos pelo usuário (considere que a equação possui duas raízes reais e que \texttt{a} é diferente de zero).\\
+{\tiny Adaptado de: Forbellone e Eberspächer (2005, p. 33)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que le os coeficientes de uma equacao do segundo grau e
+   calcula as suas raizes. Considera-se que a equacao tenha duas
+   raizes reais e que o primeiro coeficiente seja diferente de zero.
+*/
+public class RaizesEquacao2Grau {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Forneca os 3 coeficientes: ");
+        double a = in.nextDouble();
+        double b = in.nextDouble();
+        double c = in.nextDouble();
+        double delta = b*b - 4*a*c;
+        double raizDelta = Math.sqrt(delta);
+        double r1 = (-b + raizDelta)/(2*a);
+        double r2 = (-b - raizDelta)/(2*a);
+        System.out.println("Raizes:\n- raiz1 = "+r1);
+        System.out.println("- raiz2 = "+r2);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Forneca os 3 coeficientes: \textbf{1 -7 10}\\
+Raizes:\\
+- raiz1 = 5.0\\
+- raiz2 = 2.0}
+}
+
+%15----------------------------------------------------------------------
+\item Construa um programa em Java que leia as duas raízes reais de uma equação do segundo grau e apresente os coeficientes \texttt{a}, \texttt{b} e \texttt{c} ($ax^2+bx+c$) desta equação .\\
+{\tiny Autor: Roland Teodorowitsch}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que le duas raizes reais de uma equacao do segundo grau e
+   apresenta os coeficientes desta equacao
+*/
+public class CoeficientesEquacao2Grau {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Forneca as 2 raizes: ");
+        double raiz1 = in.nextDouble();
+        double raiz2 = in.nextDouble();
+        double a = 1.0;
+        double b = -raiz1 - raiz2;
+        double c = raiz1 * raiz2;
+        System.out.println("Equacao do 2. grau: "+a+" * x^2 + " + b+" * x + "+c);
+        System.out.println("a = " + a);
+        System.out.println("b = " + b);
+        System.out.println("c = " + c);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Forneca as 2 raizes: \textbf{2 5}\\
+Equacao do 2. grau: 1.0 * x\textasciicircum 2 + -7.0 * x + 10.0\\
+a = 1.0\\
+b = -7.0\\
+c = 10.0}
+}
+
+%16----------------------------------------------------------------------
+\item Escreva um programa em Java que solicite do usuário: o valor do odômetro (quilometragem do carro) no abastecimento anterior (em Km), o valor do odômetro no abastecimento atual (em Km), o valor do combustível (em R\$/litro) e a quantidade de combustível abastecida (em litros). A seguir calcule e mostre: o rendimento do carro (em Km/litro) e o custo por quilômetro (R\$/Km). Considere que em todos os abastecimentos o tanque foi completado.\\
+{\tiny Autor: Roland Teodorowitsch}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que le os leia valor do odometro de um carro no abastecimento
+   anterior, o valor do odometro no abastecimento atual, valor do combustivel e
+   quantidade de combustivel, e calcule o rendimento do carro (Km/l) e o custo por
+   quilometro rodado (R$/Km).
+*/
+public class ControleConsumoCombustivel {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Odontometro do abastecimento anterior e atual: ");
+        int odmAnt = in.nextInt();
+        int odmAtual = in.nextInt();
+        int kmRodados = odmAtual - odmAnt;
+        System.out.print("Valor do litro e quantidade de litros de combustivel: ");
+        double valComb = in.nextDouble();
+        double litrosComb = in.nextDouble();
+        double rendimento = kmRodados / litrosComb;
+        double custoKm = (valComb * litrosComb) / kmRodados;
+        System.out.println("Rendimento (Km/l)  = "+rendimento);
+        System.out.println("Custo/Km   (R$/Km) = "+custoKm);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Odontometro do abastecimento anterior e atual: \textbf{10200 10575}\\
+Valor do litro e quantidade de litros de combustivel: \textbf{3,28} \textbf{18,91}\\
+Rendimento (Km/l)  = 19.830777366472766\\
+Custo/Km   (R\$/Km) = 0.16539946666666666}
+}
+
+%17----------------------------------------------------------------------
+\item Escreva um programa em Java que solicita do usuário uma letra de dispositivo (\texttt{C}), um caminho (\texttt{\textbackslash Windows\textbackslash System}), o nome do arquivo (\texttt{Readme}) e a extensão (\texttt{txt}). E então imprima o nome completo do arquivo:\\ \texttt{C:\textbackslash Windows\textbackslash System\textbackslash Readme.txt}.\\Considere apenas nomes de arquivos para o sistema operacional Windows.\\
+{\tiny Adaptado de: Horstmann (2013, p. 73)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que le unidade de dispositivo, caminho, nome de arquivo e extensao, e
+   monta o caminho completo do arquivo.
+*/
+public class CaminhoCompleto {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Unidade: ");
+        String unidade = in.next();
+        System.out.print("Caminho: ");
+        String caminho = in.next();
+        System.out.print("Nome: ");
+        String nome = in.next();
+        System.out.print("Extensao: ");
+        String extensao = in.next();
+        System.out.println("Caminho completo: "+unidade+":"+caminho+"\\"+nome+"."+extensao);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Unidade: \textbf{C}\\
+Caminho: \textbf{\textbackslash Documentos\textbackslash Programacao}\\
+Nome: \textbf{Programa}\\
+Extensao: \textbf{java}\\
+Caminho completo: C:\textbackslash Documentos\textbackslash Programacao\textbackslash Programa.java}
+}
+
+%18----------------------------------------------------------------------
+\item Escreva um programa em Java que leia 3 números inteiros correspondendo, respectivamente, a dia, mês e ano, imprimindo esta data como uma cadeia de caracteres no formanto \texttt{DD/MM/AAAA} (por exemplo, como: 16/03/2016).\\
+{\tiny Autor: Roland Teodorowitsch}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que le 3 valores inteiros correspondentes a dia, mes e ano e mostra
+   a data no formato DD/MM/AAAA.
+*/
+public class DataFormatada {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Dia, mes e ano: ");
+        int dia = in.nextInt();
+        int mes = in.nextInt();
+        int ano = in.nextInt();
+        System.out.printf("Data formatada: %02d/%02d/%04d\n",dia, mes, ano);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Dia, mes e ano: \textbf{16 3 2016}\\
+Data formatada: 16/03/2016}
+}
+
+%19----------------------------------------------------------------------
+\item Escreva um programa em Java que leia uma cadeia de caracteres com uma data formato \texttt{DD/MM/AAAA}, extraindo desta data os 3 valores inteiros correspondentes a dia, mês e ano, e imprimindo-os como valores inteiros. Use o método \texttt{substring} para obter as partes da cadeia de caracteres e o método \texttt{parseInt} da classe \texttt{Integer} para conversão para valores inteiros.
+\begin{itemize}
+\item Desafio: reescreva este programa sem usar nenhum outro método além de \texttt{charAt}.
+\end{itemize}
+{\tiny Autor: Roland Teodorowitsch}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que le uma cadeia de caracteres no formato de data (DD/MM/AAAA) e
+   extrai os valores inteiros correspondentes a dia, mes e ano.
+*/
+public class DecompoeData {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Digite uma data (DD/MM/AAAA): ");
+        String data = in.next();
+        int dia = Integer.parseInt(data.substring(0,2));
+        int mes = Integer.parseInt(data.substring(3,5));
+        int ano = Integer.parseInt(data.substring(6));
+        System.out.println("Dia = "+dia);
+        System.out.println("Mes = "+mes);
+        System.out.println("Ano = "+ano);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Digite uma data (DD/MM/AAAA): \textbf{16/03/2016}\\
+Dia = 16\\
+Mes = 3\\
+Ano = 2016}
+}
+
+%20----------------------------------------------------------------------
+\item De acordo com a lei da força de Coulomb, uma força elétrica entre duas partículas carregadas com cargas de $Q_1$ e $Q_2$ Coulombs, que estão afastadas por uma distância de $r$ metros, é $F = \frac{Q_1Q_2}{4\pi \varepsilon r^2}$ Newtons, onde $\varepsilon = 8.854 \times 10^{-12}$ Farads/metro. Escreva um programa em Java que calcula a força elétrica entre um par de partículas carregadas, baseado nos valores de $Q_1$, $Q_2$ e $r$ fornecidos pelo usuário, exibindo este valor.\\
+{\tiny Adaptado de: Horstmann (2013, p. 78)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que calcula a forca eletrica entre um par de particulas
+   carregadas de acordo com a lei da forca de Coulomb
+*/
+public class LeiDeCoulomb {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Forneca Q1, Q2 e r: ");
+        double q1 = in.nextDouble();
+        double q2 = in.nextDouble();
+        double r = in.nextDouble();
+        double epsilon = 8.854E-12;
+        double forcaEletrica = (q1*q2) / (4*Math.PI*epsilon*r*r);
+        System.out.println("Forca Eletrica = "+forcaEletrica);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Forneca Q1, Q2 e r: \textbf{0,25 0,1 100}\\
+Forca Eletrica = 22469.356094970546
+}
+}
+
+%21----------------------------------------------------------------------
+\item Escrever um programa em Java que lê o número de um funcionário, seu número de horas trabalhadas, o valor que recebe por hora, o número de filhos com idade menor do que 14 anos e o valor do salário família (pago por filho com menos de 14 anos). Calcular o salário total deste funcionário e escrever o seu número e o seu salário total.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que le o numero do funcionario, seu numero de horas trabalhadas,
+   valor por hora, numero de filhos com direito a salario familia e valor do
+   salario familia, e imprime o numero do funcionario e o seu salario total
+   calculado.
+*/
+public class SalarioTotal {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Numero do funcionario: ");
+        int numFun = in.nextInt();
+        System.out.print("Horas trabalhadas e salario por hora: ");
+        double horas = in.nextDouble();
+        double valorHora = in.nextDouble();
+        System.out.print("Numero de filhos e salario-familia: ");
+        int numFilhos = in.nextInt();
+        double salFamilia = in.nextDouble();
+        double salTotal = horas * valorHora + numFilhos * salFamilia;
+        System.out.printf("Funcionario %d: salario total = R$%.2f\n",numFun,salTotal);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Funcionario Numero do funcionario: \textbf{179}\\
+Horas trabalhadas e salario por hora: \textbf{160 10,50}\\
+Numero de filhos e salario-familia: \textbf{2 255,50}\\
+Funcionario 179: salario total = R\$2191,00}
+}
+
+%22----------------------------------------------------------------------
+\item Escrever um programa em Java que lê 3 valores reais \texttt{a}, \texttt{b} e \texttt{c}, calculando e exibindo:\\
+A área do triângulo que tem \texttt{a} por base e \texttt{b} por altura;\\
+A área do círculo de raio \texttt{c};\\
+A área do trapézio que tem \texttt{a} e \texttt{b} por bases e \texttt{c} por altura\\
+A área do quadrado de lado \texttt{b};\\
+A área do retângulo de lados \texttt{a} e \texttt{b};\\
+A área da superfície de um cubo que tem \texttt{c} por aresta.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que a partir de 3 valores, calcula e mostra areas de
+   triangulo, circulo, trapezio, quadrado e retangulo, e
+   superficie de cubo.
+*/
+public class DiversasAreas {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Forneca a, b e c: ");
+        double a = in.nextDouble();
+        double b = in.nextDouble();
+        double c = in.nextDouble();
+        System.out.println("Triangulo (a=base/b=altura): area = "+((a*b)/2.0));
+        System.out.println("Circulo (c=raio): area = "+(Math.PI*c*c));
+        System.out.println("Trapezio (a=base/b=base/c=altura): area = "+((a+b)*c/2.0));
+        System.out.println("Quadrado (b=lado): area = "+(b*b));
+        System.out.println("Retangulo (a=lado/b=lado): area = "+(a*b));
+        System.out.println("Cubo (c=aresta): area = "+(6.0*c*c));
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Forneca a, b e c: \textbf{2 3 4}\\
+Triangulo (a=base/b=altura): area = 3.0\\
+Circulo (c=raio): area = 50.26548245743669\\
+Trapezio (a=base/b=base/c=altura): area = 10.0\\
+Quadrado (b=lado): area = 9.0\\
+Retangulo (a=lado/b=lado): area = 6.0\\
+Cubo (c=aresta): area = 96.0}
+}
+
+%23----------------------------------------------------------------------
+\item Escrever um programa em Java que lê \texttt{p}, \texttt{u} e \texttt{r}, respectivamente, o primeiro termo de uma progressão aritmética, o último termo da progressão e a sua razão. Determinar e escrever a soma dos termos desta progressão.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que a partir do primeiro termo, ultimo termo e razao de uma
+   progressao aritmetica, calcula a soma de seus termos.
+*/
+public class SomaProgressaoAritmetica {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Forneca p, u e r de uma P.A.: ");
+        double p = in.nextDouble();
+        double u = in.nextDouble();
+        double r = in.nextDouble();
+        double numTermos = (u-p)/r+1;
+        double soma = ((p + u) * numTermos ) / 2.0;
+        System.out.println("Soma dos termos = " + soma);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Forneca p, u e r de uma P.A.: \textbf{-1 19 4}\\
+Soma dos termos = 54.0}
+}
+
+%24----------------------------------------------------------------------
+\item Escrever um programa em Java que lê o número de peças do tipo 1, o valor de cada peça do tipo 1, o número de peças do tipo 2, o valor de cada peça do tipo 2 e o percentual de IPI (Imposto sobre Produtos Industrializados) a ser acrescentado. Calcular e escrever o valor total a ser pago por esta compra.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que le o numero de pecas do tipo 1, o valor de cada peca
+   do tipo 1, o numero de pecas do tipo 2, o valor de cada peca do
+   tipo 2 e o percentual de IPI (Imposto sobre Produtos
+   Industrializados) a ser acrescentado, calculando e escrevendo o
+   o valor total a ser pago por esta compra.
+
+*/
+public class PrecoCompraComIPI {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Pecas tipo 1 (quantidade e valor unitario): ");
+        int p1Quant = in.nextInt();
+        double p1Preco = in.nextDouble();
+        System.out.print("Pecas tipo 2 (quantidade e valor unitario): ");
+        int p2Quant = in.nextInt();
+        double p2Preco = in.nextDouble();
+        System.out.print("Percentual IPI: ");
+        double ipi = in.nextDouble();
+        ipi = ipi/100 + 1.0;
+        double precoCompra = (p1Quant*p1Preco + p2Quant*p2Preco) * ipi;
+        System.out.printf("Preco da compra = R$%.2f\n",precoCompra);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Pecas tipo 1 (quantidade e valor unitario): \textbf{10 12,50}\\
+Pecas tipo 2 (quantidade e valor unitario): \textbf{20 6,25}\\
+Percentual IPI: \textbf{10}\\
+Preco da compra = R\$275,00}
+}
+
+%25----------------------------------------------------------------------
+\item Um avião em linha reta, a uma altitude \texttt{a}, passa sobre um ponto \texttt{p} situado no solo, num instante \texttt{t=0}. Se a velocidade é \texttt{v}, calcular a distância \texttt{d} do avião ao ponto \texttt{p} após 30 segundos. Escrever um programa em Java que lê \texttt{v} e \texttt{a}, e calcula e escreve a distância do avião ao ponto \texttt{p} após 30 segundos.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Um aviao em linha reta, a uma altitude a, passa sobre um ponto p
+   situado no solo, num instante t=0. Se sua velocidade e v, calcular
+   a distancia d do aviao ao ponto p apos 30 segundos. Este programa
+   le v e a, e calcula e escreve a distancia do aviao ao ponto p
+   apos 30 segundos.
+*/
+public class DistanciaAviaoPonto {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Forneca velocidade (km/h) e altitude (m): ");
+        // altitude convertida em m/s
+        double v  = (in.nextDouble()*1000.0)/3600.0;
+        double a  = in.nextDouble();  // altitude em metros
+        double t = 30.0; // tempo em segundos
+        double distHoriz = v * t;
+        double distDiag = Math.sqrt(distHoriz*distHoriz + a*a);
+        System.out.println("Distancia do aviao ao ponto p = " + distDiag + " m");
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Forneca velocidade (km/h) e altitude (m): \textbf{48 300}\\
+Distancia do aviao ao ponto p = 500.0 m}
+}
+
+%26----------------------------------------------------------------------
+\item Uma farmácia paga o seu funcionário a cada sexta-feira e deseja deixar pronto o envelope de pagamento. Escrever um programa em Java que lê o valor do salário do funcionário em reais e calcula qual o menor número possível de notas de $100$, $50$, $10$, $5$ e $1$, em que o valor lido pode ser decomposto. Escrever o valor lido e o número de notas de cada tipo que compõe o envelope de pagamento.\\
+{\tiny Adaptado de: Orth (2001, p. 26)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Uma farmacia paga o seu funcionario a cada sexta-feira e deseja deixar pronto o
+   envelope de pagamento. Programa que le o valor do salario do funcionario em
+   reais e calcula qual o menor numero possivel de notas de 100, 50, 10, 5 e 1, em
+   que o valor lido pode ser decomposto, escrevendo o valor lido e o numero de notas
+   de cada tipo que compoe o envelope de pagamento.
+*/
+public class SalarioFuncionarioFarmacia {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Salario do funcionario: ");
+        double sal = in.nextDouble();
+        int salInteiro = (int) sal;
+        int notas100 = salInteiro / 100;
+        int resto = salInteiro % 100;
+        int notas50 = resto / 50;
+        resto = resto % 50;
+        int notas10 = resto / 10;
+        resto = resto % 10;
+        int notas5 = resto / 5;
+        int notas1 = resto % 5;
+        System.out.println("Notas de R$100 = " + notas100);
+        System.out.println("Notas de  R$50 = " + notas50);
+        System.out.println("Notas de  R$10 = " + notas10);
+        System.out.println("Notas de   R$5 = " + notas5);
+        System.out.println("Notas de   R$1 = " + notas1);
+        System.out.println("+ centavos");
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Salario do funcionario: \textbf{2778,35}\\
+Notas de R\$100 = 27\\
+Notas de  R\$50 = 1\\
+Notas de  R\$10 = 2\\
+Notas de   R\$5 = 1\\
+Notas de   R\$1 = 3\\
++ centavos}
+}
+
+%27----------------------------------------------------------------------
+\item Escrever um programa em Java que lê o número de um vendedor, o seu salário fixo, o total de vendas efetuadas por ele e o percentual que ganha sobre o total de suas vendas. Calcular o salário total do vendedor e escrever o número e o salário do vendedor.\\
+{\tiny Adaptado de: Orth (2001, p. 26)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que le o numero de um vendedor, o seu salario fixo, o total de
+   vendas efetuadas por ele e o percentual que ganha sobre o total de suas
+   vendas, calculando o salario total do vendedor e escrevendo o numero e o
+   salario do vendedor.
+*/
+public class SalarioVendedor {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Numero do vendendor: ");
+        int numVend = in.nextInt();
+        System.out.print("Salario fixo: ");
+        double salFixo = in.nextDouble();
+        System.out.print("Total de vendas: ");
+        double totalVendas = in.nextDouble();
+        System.out.print("Percentual sobre vendas: ");
+        double percentualVendas = in.nextDouble()/100.0;
+        double salTotal = salFixo + totalVendas*percentualVendas;
+        System.out.printf("Vendedor %d: salario total = R$%.2f\n",numVend,salTotal);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Numero do vendendor: \textbf{134}\\
+Salario fixo: \textbf{1200}\\
+Total de vendas: \textbf{2400}\\
+Percentual sobre vendas: \textbf{10}\\
+Vendedor 134: salario total = R\$1440,00}
+}
+
+%28----------------------------------------------------------------------
+\item Escrever um programa em Java que lê 3 valores \texttt{a}, \texttt{b} e \texttt{c}, que são os lados de um triângulo e calcula e escreve a área deste triângulo. Lembre-se que, se \texttt{s} é o semiperímetro do triângulo (metade do perímetro), a área será calculada da seguinte forma: $A = \sqrt{s(s-a)(s-b)(s-c)}$.\\
+{\tiny Adaptado de: Orth (2001, p. 26)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que le 3 lados de um triangulo e calcula e escreve
+   a area deste triangulo.
+*/
+public class AreaTriangulo {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Lados do triangulo (a, b, c): ");
+        double a = in.nextDouble();
+        double b = in.nextDouble();
+        double c = in.nextDouble();
+        double s = (a + b + c)/2.0;
+        double area = Math.sqrt(s*(s-a)*(s-b)*(s-c));
+        System.out.println("Area do triangulo = "+area);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Lados do triangulo (a, b, c): \textbf{3 4 5}\\
+Area do triangulo = 6.0}
+}
+
+%29----------------------------------------------------------------------
+\item O custo de um carro novo ao consumidor é a soma do custo de fábrica com a percentagem do distribuidor e o percentual de impostos (aplicados ao custo de fábrica). Escrever um programa em Java que lê o custo de fábrica, o percentual do distribuidor e o percentual dos impostos, e calcula e escreve o valor a ser pago pelo consumidor por este carro.\\
+{\tiny Adaptado de: Orth (2001, p. 26)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   O custo de um carro novo ao consumidor e a soma do custo de fabrica
+   com a percentagem do distribuidor e o percentual de impostos (aplicados
+   ao custo de fabrica). Programa que le o custo de fabrica, o percentual
+   do distribuidor e o percentual dos impostos, calculando e escrevendo o
+   valor a ser pago pelo consumidor por este carro.
+*/
+public class CustoFinalCarro {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Custo de fabrica: ");
+        double custoFabrica = in.nextDouble();
+        System.out.print("Percentual do distribuidor: ");
+        double perDist = in.nextDouble()/100.0;
+        System.out.print("Percentual de impostos: ");
+        double perImp = in.nextDouble()/100.0;
+        double valorCons = custoFabrica * (1.0 + perDist + perImp);
+        System.out.printf("Valor final do carro = R$%.2f\n",valorCons);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Custo de fabrica: \textbf{20000}\\
+Percentual do distribuidor: \textbf{5}\\
+Percentual de impostos: \textbf{25}\\
+Valor final do carro = R\$26000,00}
+}
+
+%30----------------------------------------------------------------------
+\item Escrever um programa em Java que lê as coordenadas de dois pontos no plano cartesiano, calcula e escreve a distância entre estes dois pontos, sabendo-se que a fórmula da distância entre dois pontos $P_1(x_1,y_1)$ e $P_2(x_2,y_2)$ é $d = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$.\\
+{\tiny Adaptado de: Orth (2001, p. 26)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que le as coordenadas de 2 pontos no plano e
+   calcula a distancia entre eles.
+*/
+public class DistanciaEntrePontos {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("P1 (x1,y1): ");
+        double x1 = in.nextDouble();
+        double y1 = in.nextDouble();
+        System.out.print("P2 (x2,y2): ");
+        double x2 = in.nextDouble();
+        double y2 = in.nextDouble();
+        double distancia = Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2));
+        System.out.println("Distancia = "+distancia);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{P1 (x1,y1): \textbf{3 0}\\
+P2 (x2,y2): \textbf{0 4}\\
+Distancia = 5.0}
+}
+
+%31----------------------------------------------------------------------
+\item Escrever um programa em Java que lê 3 valores \texttt{a}, \texttt{b} e \texttt{c}, e os escreve. Encontre, a seguir, o maior dos 3 valores e o escreva com a mensagem "eh o maior!".
+\[ Maior = \frac{a+b+|a-b|}{2} \]
+{\tiny Adaptado de: Orth (2001, p. 26)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que le 3 valores e imprime o maior deles,
+   usando apenas expressoes.
+*/
+public class MaiorDeTres {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Digite 3 valores: ");
+        double a = in.nextDouble();
+        double b = in.nextDouble();
+        double c = in.nextDouble();
+        double maior = (a + b + Math.abs(a-b))/2;
+        maior = (maior + c + Math.abs(maior-c))/2;
+        System.out.println("Maior = "+maior);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Digite 3 valores: \textbf{1,6 6,0  -3,4}\\
+Maior = 6.0}
+}
+
+%32----------------------------------------------------------------------
+\item O Domingo de Páscoa é o primeiro domingo após a primeira lua cheia da primavera. Para calcular esta data, você pode usar o seguinte algoritmo, inventado por Carl Friedrich Gauss em 1800:
+\begin{enumerate}[a)]
+	\item Faça \texttt{y} ser o ano (tal como $1800$ ou $2001$).
+	\item Divida \texttt{y} por $19$ e guarde o resto da divisão em \texttt{a}. Ignore o quociente.
+	\item Divida \texttt{y} por $100$ e guarde o quociente em \texttt{b} e o resto em \texttt{c}.
+	\item Divida \texttt{b} por $4$ e guarde o quociente em \texttt{d} e o resto em \texttt{e}.
+	\item Divida \texttt{8 * b + 13} por $25$ e guarde o quociente em \texttt{g}. Ignore o resto.
+	\item Divida \texttt{19 * a + b - d - g + 15} por $30$ e guarde o resto da divisão em \texttt{h}. Ignore o quociente.
+	\item Divida \texttt{c} por $4$ e guarde o quociente em \texttt{j} e o resto em \texttt{k}.
+	\item Divida \texttt{a + 11 * h} por $319$ e guarde o quociente em \texttt{m}. Ignore o resto.
+	\item Divida \texttt{2 * e + 2 * j - k - h + m + 32} por $7$ e guarde o resto da divisão em \texttt{r}. Ignore o quociente.
+	\item Divida \texttt{h - m + r + 90} por $25$ e guarde o quociente em \texttt{n}. Ignore o resto.
+	\item Divida \texttt{h - m + r + n + 19} por $32$ e guarde o resto da divisão em \texttt{p}. Ignore o quociente.
+\end{enumerate}
+Então a Páscoa cairá no dia \texttt{p} do mês \texttt{n}. Por exemplo, se \texttt{y} for $2001$:
+\begin{center}
+\begin{tabular}{lll}
+\texttt{a = 6}         & \texttt{h = 18}       & \texttt{n = 4} \\
+\texttt{b = 20, c = 1} ~ & \texttt{j = 0, k = 1} ~ & \texttt{p = 15} \\
+\texttt{d = 5, e = 0}  & \texttt{m = 0}        & ~ \\
+\texttt{g = 6}         & \texttt{r = 6}        & ~ \\
+\end{tabular}
+\end{center}
+Portanto, em 2001, o Domingo de Páscoa cairá no dia 15 de abril. Escreva um programa em Java que solicita o ano ao usuário e imprime o dia e o mês do domingo de Páscoa neste ano.\\
+{\tiny Adaptado de: Horstmann (2013, p. 74-75)}\\
+\textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+
+/**
+   Programa que calcula o domingo de Pascoa baseado no
+   algoritmo de Carl Friedrich Gauss em 1800.
+*/
+public class DiaDaPascoa {
+    public static void main (String [] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Ano: ");
+        int y = in.nextInt();
+        int a = y % 19;
+        int b = y / 100;
+        int c = y % 100;
+        int d = b / 4;
+        int e = b % 4;
+        int g = (8 * b + 13) / 25;
+        int h = (19 * a + b - d - g + 15) % 30;
+        int j = c / 4;
+        int k = c % 4;
+        int m = (a + 11 * h) / 319;
+        int r = (2 * e + 2 * j - k - h + m + 32) % 7;
+        int n = (h - m + r + 90) / 25;
+        int p = (h - m + r + n + 19) % 32;
+        System.out.printf("Pascoa sera no dia %d do mes %d\n",p,n);
+    }
+}
+\end{javacode}
+\textcolor{red}{Execução:\\
+\texttt{Ano: \textbf{2001}\\
+Pascoa sera no dia 15 do mes 4}
+}
+
+%----------------------------------------------------------------------
+\textbf{REFERÊNCIAS}
+
+\noindent{FORBELLONE, André Luiz Villar; EBERSPÄCHER, Henri Frederico. \textbf{Lógica de programação}: a construção de algoritmos e estruturas de dados. 3. ed. São Paulo: Prentice Hall, 2005. 218 p.}
+
+\noindent{HORSTMANN, C. \textbf{Java for Everyone – Late Objetct}. 2. ed. Hoboken: Wiley, 2013. xxxiv, 589 p.}
+
+\noindent{ORTH, Afonso Inácio. \textbf{Algoritmos e Programação com Resumo das Linguagens PASCAL e C}. Porto Alegre: AIO, 2001. 176 p.}
+
+\end{enumerate}
+\end{document}
+

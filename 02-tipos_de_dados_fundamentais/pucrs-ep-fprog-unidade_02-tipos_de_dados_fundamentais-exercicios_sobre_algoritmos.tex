@@ -1,0 +1,249 @@
+\documentclass[onecolumn,a4paper,10pt]{report}
+%\documentclass[12pt,a4paper,twoside]{book} %twoside distingue página par de ímpar
+\usepackage[utf8]{inputenc}
+\usepackage[portuges]{babel} %para separar sílabas em Português, etc...
+\usepackage[usenames,dvipsnames]{color} % para letras e caixas coloridas
+\usepackage{latexsym} %para fazer $\Box$ no \LaTeX2$\epsilon$
+\usepackage{makeidx} % índice remissivo
+\usepackage{amstext} %texto em equações: $... \text{} ...$
+\usepackage{theorem}
+\usepackage{tabularx} %tabelas ocupando toda a página
+\usepackage[all]{xy}
+\usepackage{a4wide} %correta formatação da página em A4
+\usepackage{indentfirst} %adiciona espaços no primeiro parágrafo
+
+\usepackage{graphics,amssymb,amsfonts,amsmath}
+\usepackage{tikz}
+\usepackage{enumerate,hyperref}
+\usepackage{palatino}
+\usepackage{ragged2e}
+\usepackage{minted}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}                   
+\usepackage{xcolor}
+\usepackage{textcomp} % para usar \textdegree
+\usepackage{setspace}
+\usetikzlibrary{shadows}
+
+\newminted{java}{bgcolor=cyan!10}
+
+\definecolor{cinza}{gray}{.8}
+\definecolor{branco}{gray}{1}
+\definecolor{preto}{gray}{0}
+\definecolor{verdemusgo}{rgb}{.3,.7,.5}
+\definecolor{vinho}{cmyk}{0,1,1,.5}
+%\setcounter{secnumdepth}{1}
+%\renewcommand{\thesection}{\textcolor{preto}{\arabic{section}}}
+%\renewcommand{\thepage}{\textcolor{preto}{\color{preto}{{\scriptsize}}}}
+{\theorembodyfont{\upshape}
+\newtheorem{Dem}{Demonstração}[chapter]}
+\newtheorem{Ex}{Exemplo}[chapter]
+\newtheorem{Exer}{Exercício}
+\newtheorem{Lista}{Lista de exercícios}
+\newtheorem{Def}{Definição}[chapter]
+
+\newtheorem{Pro}{Proposição}[chapter]
+\newtheorem{Ax}{Axioma}[chapter]
+\newtheorem{Teo}{Teorema}[chapter]
+\newtheorem{Cor}{Corolário}[chapter]
+\newtheorem{Cas}{Caso}[subsection]
+\newtheorem{lema}{Lema}[chapter]
+\newtheorem{que}{Questão}[chapter]
+\newcommand{\dem}{\noindent{\bf Demonstração:}}
+\newcommand{\sol}{\noindent{\it Solução.}}
+\newcommand{\nota}{\noindent{\bf Notação:}}
+\newcommand{\ex}{\noindent{\bf Exemplos}}
+\newcommand{\Obs}{\noindent{\bf Observação:}}
+\newcommand{\fim}{\hfill $\blacksquare$}
+\newcommand{\ig}{\,\, = \,\,}
+\newcommand{\+}{\, + \,}
+\newcommand{\m}{\, - \,}
+\newcommand{\I}{\mbox{$I\kern-0.40emI$}}
+\newcommand{\Z}{\mbox{Z$\kern-0.40em$Z}}
+\newcommand{\Q}{\mbox{I$\kern-0.60em$Q}}
+\newcommand{\C}{\mbox{I$\kern-0.60em$C}}
+\newcommand{\N}{\mbox{I$\kern-0.40em$N}}
+\newcommand{\R}{\mbox{I$\kern-0.40em$R}}
+\newcommand{\Ro}{\rm{I\!R\!}}
+\newcommand{\disp}{\displaystyle}
+\newcommand{\<}{\hspace*{-0.4cm}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ov}{\overline}
+\newcommand{\aj}{\vspace*{-0.2cm}}
+\newcommand{\pt}{\hspace{-1mm}\times\hspace{-1mm}}
+\newcommand{\cm}{\mbox{cm}}
+\newcommand{\np}{\mbox{$\in \kern-0.80em/$}}
+\newcommand{\tg} {\mbox{tg\,}}
+\newcommand{\ptm}{\hspace{-0.4mm}\cdot\hspace{-0.4mm}}
+\newcommand{\arc}{\stackrel{\;\;\frown}}
+\newcommand{\rad}{\;\mbox{rad}}
+\newcommand{\esp}{\;\;\;\;}
+\newcommand{\sen}{\mbox{sen\,}}
+\newcommand{\grau}{^{\mbox{{\scriptsize o}}}}
+\newcommand{\real} {\mbox{$I\kern-0.60emR$}}
+\newcommand{\vetor}{\stackrel{\color{vinho}\vector(1,0){15}}}
+\newcommand{\arctg}{\mbox{arctg\,}}
+\newcommand{\arcsen}{\mbox{arcsen\,}}
+\newcommand{\ordinal}{^{\underline{\scriptsize\mbox{\rmo}}}}
+\newcommand{\segundo}{$2^{\underline{o}}$ }
+\newcommand{\primeiro}{$1^{\underline{o}}$ }
+\newcommand{\nee}{\mbox{$\;=\kern-0.90em/\;$}}
+
+\setlength{\parskip}{0.0cm} %espaco entre parágrafos
+\setlength{\oddsidemargin}{-1cm} %margem esquerda das páginas
+%\setlength{\unitlength}{3cm} %tamanho da figura criada
+\linespread{1.5} %distância entre linhas
+\setlength{\textheight}{25cm} %distância entre a primeira e última linha do texto(comprimento do texto)
+\setlength{\textwidth}{18cm} %indica a largura do texto
+\topmargin=-2cm %margem superior entre topo da página e o cabeçalho
+%\headsep=0.5cm %distãncia entre o cabeçalho e o corpo do texto
+%\setlength{\footskip}{27pt} %distãncia da última linha ao número da página
+%\evensidemargin=-0.2in %margem esquerda das páginas pares
+%\marginparwidth=1.7in %tamanho das notas de margem
+%\marginparsep=0.2in %distância entre a margem direita e as notas de margem
+%\topmargin=0cm
+%\stackrel{\frown}{AB}
+
+\begin{document}
+\singlespacing
+
+\begin{center}
+Pontifícia Universidade Católica do Rio Grande do Sul (PUCRS)\\
+Curso de Bacharelado em Ciência da Computação\\
+Disciplina: Fundamentos de Programação - Professor: Roland Teodorowitsch\\
+5 de abril de 2020
+\end{center}
+~\\
+
+\begin{center}
+\textbf{Lista de Exercícios - Algoritmos Sequenciais (ORTH, 2001, p. 16-17)}
+\end{center}
+~\\
+
+\begin{enumerate}[1.]
+
+%1----------------------------------------------------------------------
+\item Reescrever o algoritmo que calcula as médias, apresentado no início deste capítulo (ORTH, 2001, p. 11), utilizando a linguagem apresentada.\\
+\fbox{
+\begin{minipage}{0.75\textwidth} % 3/4 da largura de texto
+\begin{enumerate}[1)]
+	\item Obter os valores de a, b, c
+	\item Calcular a média aritmética pela fórmula $ma = \frac{a+b+c}{3}$
+	\item Calcular a média harmônica pela fórmula $mh = \frac{3}{\frac{1}{a}+\frac{1}{b}+\frac{1}{c}}$
+	\item Calcular a média geométrica pela fórmula $mg = \sqrt[3]{a \times b \times c}$
+	\item Calcular a média ponderada pela fórmula $mp = \frac{1 \times a + 2 \times b + 3 \times c}{1+2+3}$
+	\item Comunicar os resultados obtidos: $ma$, $mh$, $mg$, $mp$
+	\item Terminar
+\end{enumerate}
+\end{minipage}
+} % fbox
+
+%2----------------------------------------------------------------------
+\item Escrever um algoritmo que lê o número de um funcionário, seu número de horas trabalhadas, o valor que recebe por hora, o número de filhos com idade menor do que 14 anos e o valor do salário família (pago por filho com menos de 14 anos). Calcular o salário total deste funcionário e escrever o seu número e o seu salário total.
+
+%3----------------------------------------------------------------------
+\item Escrever um algoritmo que calcula e escreve o fatorial de 5.
+
+%4----------------------------------------------------------------------
+\item Escrever um algoritmo que lê 3 valores reais \textbf{a}, \textbf{b}, \textbf{c} e calcula:
+\begin{itemize}
+    \item A área do triângulo que tem \textbf{a} por base e \textbf{b} por altura;
+    \item A área do círculo de raio \textbf{c};
+    \item A área do trapézio que tem \textbf{a} e \textbf{b} por bases e \textbf{c} por altura;
+    \item A área do quadrado de lado \textbf{b};
+    \item A área do retângulo de lados \textbf{a} e \textbf{b};
+    \item A área da superfície de um cubo que tem \textbf{c} por aresta.
+\end{itemize}
+
+%5----------------------------------------------------------------------
+\item Escrever um algoritmo que escreve os números ímpares entre 10 e 20.
+
+%6----------------------------------------------------------------------
+\item Escrever um algoritmo que lê \textbf{p}, \textbf{u} e \textbf{r} respectivamente o primeiro termo de uma progressão aritmética, o último termo da progressão e a sua razão. Determinar e escrever a soma dos termos desta progressão.
+
+%7----------------------------------------------------------------------
+\item Escrever um algoritmo que lê o número de peças do tipo 1, o valor de cada peça do tipo 1, o número de peças do tipo 2, o valor de cada peça do tipo 2 e o percentual do IPI a ser acrescentado. Calcular e escrever o valor total a ser pago por esta compra.
+
+%8----------------------------------------------------------------------
+\item Um avião em linha reta, a uma altitude \textbf{a} passa sobre um ponto \textbf{p} situado no solo, num instante \textbf{t} = 0. Se a velocidade é \textbf{v}, calcular a distância \textbf{d} do avião ao ponto \textbf{p} após 30 segundos. Escrever um algoritmo que lê \textbf{v} (em m/s) e \textbf{a} (em m) e calcula e escreve a distância do avião ao ponto \textbf{p} após 30 segundos.
+
+%9----------------------------------------------------------------------
+\item Uma farmácia paga o seu funcionário a cada sexta-feira e deseja deixar pronto o envelope de pagamento. Escrever um algoritmo que lê o valor do salário do funcionário e calcula qual o menor número possível de notas de 100, 50, 10, 5 e 1, em que o valor lido pode ser decomposto. Escrever o valor lido e o número de notas de cada tipo que compõe o envelope de pagamento.
+
+%10----------------------------------------------------------------------
+\item Escrever um algoritmo que lê o número de um vendedor, o seu salário fixo, o total de vendas por ele efetuadas e o percentual que ganha sobre o total de suas vendas. Calcular o salário total do vendedor e escrever o número e o salário do vendedor.
+
+%11----------------------------------------------------------------------
+\item Escrever um algoritmo que lê 3 valores \textbf{a}, \textbf{b}, \textbf{c} que são lados de um triângulo e calcula e escreve a área deste triângulo.\\
+\emph{Área} $ = \sqrt{s \times (s - a) \times (s - b) \times (s - c)}$\\
+Onde $s = $ \emph{semiperímetro}.
+
+%12----------------------------------------------------------------------
+\item O custo ao consumidor, de um carro novo, é a soma do custo de fábrica com a percentagem do distribuidor e o
+percentual dos impostos (aplicados ao custo de fábrica). Escrever um algoritmo que lê o custo de fábrica, o
+percentual do distribuidor e o percentual dos impostos e calcula e escreve o valor a ser pago pelo consumidor
+por este carro.
+
+%13----------------------------------------------------------------------
+\item Uma revendedora de carros usados paga a seus funcionários vendedores, um salário fixo por mês, mais uma
+comissão também fixa para cada carro vendido e mais 5\% do valor das vendas por ele efetuadas. Escrever um
+algoritmo que lê o número do vendedor, o número de carros por ele vendidos, o valor de cada carro, o salário
+fixo e o valor que recebe por carro vendido e calcula o salário a ser pago a este vendedor, escrevendo o número
+do vendedor e seu salário total.
+
+%14----------------------------------------------------------------------
+\item Considerando que o aumento dos funcionários de uma empresa tenha sido definido da seguinte forma: 80\% de
+um índice chamado INTEMP e mais um percentual de produtividade discutido com a empresa por ocasião do
+dissídio da categoria. Escrever um algoritmo que lê o número do funcionário, seu salário atual, o valor do
+INTEMP e o índice de produtividade conquistado e escreve o número do funcionário, seu aumento e seu novo
+salário.
+
+%15----------------------------------------------------------------------
+\item Escrever um algoritmo que lê as coordenadas de dois pontos no plano cartesiano e calcula e escreve a distância
+entre estes dois pontos, sabendo-se que a fórmula da distância entre dois pontos $P_1(X_1,Y_1)$ e $P_2(X_2,Y_2)$ é\\
+\emph{Distância} $= \sqrt{ ( X_2 - X_1 )^2 + ( Y_2 - Y_1 )^2 }$.
+
+%16----------------------------------------------------------------------
+\item Escrever um algoritmo que lê 3 valores a, b, c e os escreve. Encontre, a seguir, o maior dos 3 valores e o
+escreva com a mensagem: ``É O MAIOR''.
+\[Maior = \frac{a + b + | a - b |}{2}\]
+
+%17----------------------------------------------------------------------
+\item Escrever um algoritmo que lê o valor de uma compra em dólares e a taxa do dólar no dia da compra e calcula e
+escreve o valor a ser pago em reais.
+
+%18----------------------------------------------------------------------
+\item Um hotel com 42 apartamentos resolveu fazer promoções para os fins de semana for a da alta temporada, isto
+é, nos meses de abril, maio, junho, agosto, setembro outubro e novembro. A taxa da promoção é de 22\% da
+diária normal. A expectativa é aumentar a taxa de ocupação de 40 para 70\%. Supondo que as expectativas se
+confirmem, escrever um algoritmo que lê a diária normal e calcula e escreve as seguintes informações:
+\begin{enumerate}[a)]
+	\item O valor da diária no período da promoção.
+	\item O valor médio arrecadado sem a promoção, durante um mês.
+	\item O valor médio arrecadado com a promoção, durante um mês.
+	\item O lucro ou prejuízo mensal com a promoção.
+\end{enumerate}
+
+%19----------------------------------------------------------------------
+\item Escrever um algoritmo que lê a hora de início de um jogo e a hora de fim do jogo, considerando apenas horas
+inteiras e jogos que começam e terminam no mesmo dia, calcular e escrever o tempo de duração do jogo em
+horas.
+
+%20----------------------------------------------------------------------
+\item O mesmo problema anterior, mas escrevendo o tempo do jogo em minutos.
+
+%21----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um número de 3 dígitos e o inverte, escrevendo o número lido e o número invertido.
+
+\end{enumerate}
+
+%----------------------------------------------------------------------
+~\\
+\noindent{\textbf{REFERÊNCIAS}}
+
+\noindent{ORTH, Afonso Inácio. \textbf{Algoritmos e Programação com Resumo das Linguagens PASCAL e C}. Porto Alegre: AIO, 2001. 176 p.}
+
+\end{document}
+
