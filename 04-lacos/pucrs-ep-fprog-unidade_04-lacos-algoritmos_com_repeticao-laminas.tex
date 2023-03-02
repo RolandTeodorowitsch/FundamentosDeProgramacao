@@ -1,0 +1,698 @@
+\documentclass[xcolor={dvipsnames,table},aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{graphics,amssymb,amsfonts,amsmath}
+\usepackage{tikz}
+\usepackage{enumerate,hyperref}
+\usepackage{palatino}
+\usepackage{ragged2e}
+\usepackage{minted}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}                   
+\usepackage{xcolor}
+\usepackage{textcomp} % para usar \textdegree
+\usepackage{fancyvrb}
+\usetikzlibrary{shadows}
+\usetheme{AnnArbor}
+\usecolortheme{orchid}
+\usefonttheme[onlymath]{serif}
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+
+\newminted{java}{bgcolor=cyan!10}
+
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+\title[\sc{Algoritmos com Repetição}]{Algoritmos com Repetição}
+\author[Roland Teodorowitsch]{Roland Teodorowitsch}
+\institute[FPROG - EP - PUCRS]{Fundamentos de Programação - Escola Politécnica - PUCRS}
+\date{24 de agosto de 2022}
+
+\begin{document}
+\justifying
+
+%-------------------------------------------------------
+\begin{frame}
+	\titlepage
+\end{frame}
+
+%=======================================================
+\section{Introdução}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Obra Consultada}
+
+\noindent{ORTH, Afonso Inácio. \textbf{Algoritmos e Programação com Resumo das Linguagens PASCAL e C}. Porto Alegre: AIO, 2001. 176 p.}
+
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Conteúdos}
+\begin{itemize}
+	\item Definições
+	\item Variáveis Especiais
+	\item Comandos de Repetição
+	\item Repetições Aninhadas
+	\item Exemplos
+	\item Exercícios
+\end{itemize}
+\end{frame}
+
+%=======================================================
+\section{Definições}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Algoritmos com Repetição}
+\begin{itemize}
+	\item São algoritmos que repetem duas ou mais vezes um ou mais de seus passos
+	\item Permitem executar um mesmo trecho de algoritmo sobre diferentes conjuntos de entradas
+	\item As construções que permitem a repetição são chamadas \textbf{laços}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{O número de repetições pode ser}
+\begin{itemize}
+	\item Constante (fixo)
+    \begin{itemize}
+        \item \emph{Calcular a média das notas de uma turma de 10 alunos. (+)}
+    \end{itemize}
+    \item Fornecido pelo usuário
+    \begin{itemize}
+        \item \emph{Ler o número de alunos da turma, e calcular a média de suas notas. (+)}
+    \end{itemize}
+    \item Determinado por condição ou cálculo (\textbf{teste de valor final})
+    \begin{itemize}
+        \item \emph{Ler as notas dos alunos de uma turma, até que uma nota negativa                 tenha sido fornecida (fim da entrada), calculando a média da turma. (+)}
+        \item \emph{Ler as notas dos alunos de uma turma, perguntando após a leitura de cada nota se há mais alguma nota a ser lida, e, no final, calculando a média da turma. (+)}
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+%=======================================================
+\section{Variáveis Especiais}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Variáveis Especiais}
+\begin{itemize}
+	\item \textbf{Contadora}
+	\begin{itemize}
+		\item Recebe um valor inicial (geralmente 0) e é incrementada em algum ponto do algoritmo, de um valor CONSTANTE (geralmente 1)
+		\item Exemplo\\\texttt{cont = cont + 1}
+		\item Pode ser usada para contar eventos ou ocorrências
+	\end{itemize}
+	\item \textbf{Acumuladora}
+	\begin{itemize}
+		\item Recebe um valor inicial (geralmente 0) e é incrementada em algum ponto do algoritmo, de um valor VARIÁVEL
+		\item Exemplo\\\texttt{soma = soma + variavel}
+		\item É usada, por exemplo, para realizar somatórios
+	\end{itemize}
+	\item \textbf{de Indução}
+	\begin{itemize}
+		\item É uma variável que controla o número de vezes que um laço irá executar
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%=======================================================
+\section{Comandos de Repetição}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Tipos de Comandos de Repetição}
+\begin{itemize}
+	\item Pré-teste
+	\begin{itemize}
+		\item Primeiro testam, depois executam
+		\item O laço pode se repetir nenhuma ou mais vezes
+		\item Exemplos\\
+		\begin{itemize}
+			\item \texttt{Enquanto <condição> fazer ...}
+			\item \texttt{Para <variável> = <exp1> até <exp2> [passo <exp3>] fazer ...}
+		\end{itemize}
+	\end{itemize}
+	\item Pós-teste
+	\begin{itemize}
+		\item Primeiro executam, depois testam
+		\item O laço se repete no mínimo uma vez
+		\item Exemplos
+		\begin{itemize}
+			\item \texttt{Fazer ... enquanto <condição>}
+			\item \texttt{Repetir ... até <condição>}
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Enquanto <condição> fazer ...}
+\begin{itemize}
+	\item Repete o(s) passo(s) enquanto a condição for verdadeira
+	\item Faz o teste antes de executar os passos
+	\item É mais geral e flexível
+	\item Sempre pode ser usado
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Para <variável> = <exp1> até <exp2> [passo <exp3>] fazer ...}
+\begin{itemize}
+	\item Repete o(s) passo(s) para cada valor da variável
+	\item A variação da variável de indução costuma ser regular
+	\item Nem sempre é recomendável
+	\item Se o passo for positivo, verifica se a variável ainda é menor ou igual a <exp2>
+	\item Se o passo for negativo, verifica se a variável ainda é maior ou igual a <exp2>
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Fazer ... enquanto <condição>}
+\begin{itemize}
+	\item Executa determinado(s) passo(s) enquanto a condição for verdadeira
+	\item Só sai do laço quando a condição for falsa
+	\item C, C++ e Java usam uma forma equivalente
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Repetir ... até <condição>}
+\begin{itemize}
+	\item Executa determinado(s) passo(s) até que a condição seja verdadeira
+	\item Só sai do laço quando a condição for verdadeira
+	\item Pascal usa uma forma equivalente
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\newbox\verbboxA
+\newbox\verbboxB
+\newbox\verbboxC
+\newbox\verbboxD
+\setbox\verbboxA=\vbox{\hsize=2.75in\footnotesize
+\begin{Verbatim}
+i=1
+Enquanto i<=5 fazer Início
+  Escrever(i)
+  i=i+1
+Fim
+\end{Verbatim}
+}
+\setbox\verbboxB=\vbox{\hsize=2.75in\footnotesize
+\begin{Verbatim}
+Para i=1 até 5 fazer
+  Escrever(i)
+
+
+
+\end{Verbatim}
+}
+\setbox\verbboxC=\vbox{\hsize=2.75in\footnotesize
+\begin{Verbatim}
+i=1
+Fazer Início
+  Escrever(i)
+  i=i+1
+Fim
+enquanto i<=5
+\end{Verbatim}
+}
+\setbox\verbboxD=\vbox{\hsize=2.75in\footnotesize
+\begin{Verbatim}
+i=1
+Repetir Início
+  Escrever(i)
+  i=i+1
+Fim
+até i>5
+\end{Verbatim}
+}
+\begin{frame}[fragile]\frametitle{Exemplo 1 (1,2,3,4,5)}
+\begin{center}
+\begin{tabular}{|l|l|}\hline
+\box\verbboxA & \box\verbboxB\\\hline
+\box\verbboxC & \box\verbboxD\\\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+%-------------------------------------------------------
+\newbox\verbboxA
+\newbox\verbboxB
+\newbox\verbboxC
+\newbox\verbboxD
+\setbox\verbboxA=\vbox{\hsize=2.75in\footnotesize
+\begin{Verbatim}
+i=2
+Enquanto i<=10 fazer Início
+  Escrever(i)
+  i=i+2
+Fim
+\end{Verbatim}
+}
+\setbox\verbboxB=\vbox{\hsize=2.75in\footnotesize
+\begin{Verbatim}
+Para i=2 até 10 passo 2 fazer
+  Escrever(i)
+
+
+
+\end{Verbatim}
+}
+\setbox\verbboxC=\vbox{\hsize=2.75in\footnotesize
+\begin{Verbatim}
+i=2
+Fazer Início
+  Escrever(i)
+  i=i+2
+Fim
+enquanto i<=10
+\end{Verbatim}
+}
+\setbox\verbboxD=\vbox{\hsize=2.75in\footnotesize
+\begin{Verbatim}
+i=2
+Repetir Início
+  Escrever(i)
+  i=i+2
+Fim
+até i>10
+\end{Verbatim}
+}
+\begin{frame}[fragile]\frametitle{Exemplo 2 (2,4,6,8,10)}
+\begin{center}
+\begin{tabular}{|l|l|}\hline
+\box\verbboxA & \box\verbboxB\\\hline
+\box\verbboxC & \box\verbboxD\\\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+%-------------------------------------------------------
+\newbox\verbboxA
+\newbox\verbboxB
+\newbox\verbboxC
+\newbox\verbboxD
+\setbox\verbboxA=\vbox{\hsize=2.75in\footnotesize
+\begin{Verbatim}
+i=1.0
+Enquanto i>=0.0 fazer Início
+  Escrever(i)
+  i=i-0.25
+Fim  
+\end{Verbatim}
+}
+\setbox\verbboxB=\vbox{\hsize=2.75in\footnotesize
+\begin{Verbatim}
+Para i=1.0 até 0.0 passo -0.25 fazer
+  Escrever(i)
+
+
+
+\end{Verbatim}
+}
+\setbox\verbboxC=\vbox{\hsize=2.75in\footnotesize
+\begin{Verbatim}
+i=1.0
+Fazer Início
+  Escrever(i)
+  i=i-0.25
+Fim
+enquanto >=0.0
+\end{Verbatim}
+}
+\setbox\verbboxD=\vbox{\hsize=2.75in\footnotesize
+\begin{Verbatim}
+i=1.0
+Repetir Início
+  Escrever(i)
+  i=i-0.25
+Fim
+até i<0.0
+\end{Verbatim}
+}
+\begin{frame}[fragile]\frametitle{Exemplo 3 (1.0,0.75,0.5,0.25,0.0)}
+\begin{center}
+\begin{tabular}{|l|l|}\hline
+\box\verbboxA & \box\verbboxB\\\hline
+\box\verbboxC & \box\verbboxD\\\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+%-------------------------------------------------------
+\newbox\verbboxA
+\newbox\verbboxB
+\newbox\verbboxC
+\newbox\verbboxD
+\setbox\verbboxA=\vbox{\hsize=2.75in\footnotesize
+\begin{Verbatim}
+i=1
+Enquanto i<=16 fazer Início
+  Escrever(i)
+  i=i*2
+Fim   
+\end{Verbatim}
+}
+\setbox\verbboxC=\vbox{\hsize=2.75in\footnotesize
+\begin{Verbatim}
+i=1
+Fazer Início
+  Escrever(i)
+  i=i*2
+Fim
+enquanto i<=16
+\end{Verbatim}
+}
+\setbox\verbboxD=\vbox{\hsize=2.75in\footnotesize
+\begin{Verbatim}
+i=1
+Repetir Início
+  Escrever(i)
+  i=i*2
+Fim
+até i>16
+\end{Verbatim}
+}
+\begin{frame}[fragile]\frametitle{Exemplo 4 (1,2,4,8,16)}
+\begin{center}
+\begin{tabular}{|l|l|}\hline
+\box\verbboxA & ~\\\hline
+\box\verbboxC & \box\verbboxD\\\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+%=======================================================
+\section{Repetições Aninhadas}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Repetições Aninhadas}
+\begin{itemize}
+	\item São repetições dentro de outras repetições
+	\item É possível ter vários níveis de laços aninhados
+	\item Exemplos
+	\begin{itemize}
+		\item Um único laço sem aninhamento
+		\begin{itemize}
+            \item \emph{Verificar se um número lido é primo. (+)}
+            \item \emph{Calcular o fatorial de um número. (+)}
+            \item \emph{Ler um vetor (array de 1 dimensão) (-)}
+        \end{itemize}
+		\item Dois laços aninhados
+		\begin{itemize}
+            \item \emph{Ler 10 números, verificando se eles são primos. (+)}
+            \item \emph{Ler valores e, enquanto nenhum valor negativo for fornecido, calcular o fatorial de cada valor. (+)}
+            \item \emph{Ler uma matriz (array de 2 dimensões). (-)}
+        \end{itemize}
+		\item Três laços aninhados
+		\begin{itemize}
+            \item \emph{Ler um array tridimensional. (-)}
+            \item \emph{Multiplicar 2 matrizes. (-)}
+        \end{itemize}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%=======================================================
+\section{Exemplos}
+
+%-------------------------------------------------------
+\newbox\verbboxA
+\setbox\verbboxA=\vbox{\hsize=3in\footnotesize
+\begin{Verbatim}
+Algoritmo MediaNota10Alunos
+  cont: inteiro
+  nota, media: Reais
+Início
+  cont = 0
+  media = 0.0
+  Enquanto cont < 10 fazer Início
+    Ler(nota)
+    media = media + nota
+    cont = cont + 1
+  Fim
+  media = media / cont
+  Escrever(media)
+Fim
+\end{Verbatim}
+}
+\begin{frame}[fragile]\frametitle{Exemplo 1}
+\small{\emph{Calcular a média das notas de uma turma de 10 alunos.}}
+\begin{center}
+\begin{tabular}{|l|}\hline
+\box\verbboxA \\\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+%-------------------------------------------------------
+\newbox\verbboxA
+\setbox\verbboxA=\vbox{\hsize=3in\scriptsize
+\begin{Verbatim}
+Algoritmo MediaNotaNAlunos
+  cont, n: inteiro
+  nota, media: Reais
+Início
+  cont = 0
+  media = 0.0
+  Ler(n)
+  Enquanto cont < n fazer Início
+    Ler(nota)
+    media = media + nota
+    cont = cont + 1
+  Fim
+  Se cont>0 então Início
+    media = media / cont
+    Escrever(media)
+  Fim
+Fim
+\end{Verbatim}
+}
+\begin{frame}[fragile]\frametitle{Exemplo 2}
+\small{\emph{Ler o número de alunos da turma, e calcular a média de suas notas.}}
+\begin{center}
+\begin{tabular}{|l|}\hline
+\box\verbboxA \\\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+%-------------------------------------------------------
+\newbox\verbboxA
+\setbox\verbboxA=\vbox{\hsize=3in\tiny
+\begin{Verbatim}
+Algoritmo MediaNotaNAlunosV2
+  cont, n: inteiro
+  nota, media: Reais
+Início
+  cont = 0
+  media = 0.0
+  Ler(nota)
+  Enquanto nota>=0 fazer Início
+    media = media + nota
+    cont = cont + 1
+    Ler(nota)
+  Fim
+  Se cont>0 então Início
+    media = media / cont
+    Escrever(media)
+  Fim
+Fim
+\end{Verbatim}
+}
+\begin{frame}[fragile]\frametitle{Exemplo 3}
+\small{\emph{Ler as notas dos alunos de uma turma, até que uma nota negativa tenha sido fornecida (fim da entrada), calculando a média da turma.}}
+\begin{center}
+\begin{tabular}{|l|}\hline
+\box\verbboxA \\\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+%-------------------------------------------------------
+\newbox\verbboxA
+\setbox\verbboxA=\vbox{\hsize=3in\tiny
+\begin{Verbatim}
+Algoritmo MediaNotaNAlunosV3
+  cont, n: inteiro
+  nota, media: Reais
+  continuar: Texto
+Início
+  cont = 0
+  media = 0.0
+  Ler(nota)
+  Ler(continuar)
+  Enquanto continuar="S" fazer Início
+    media = media + nota
+    cont = cont + 1
+    Ler(nota)
+    Ler(continuar)
+  Fim
+  Se cont>0 então Início
+    media = media / cont
+    Escrever(media)
+  Fim
+Fim
+\end{Verbatim}
+}
+\begin{frame}[fragile]\frametitle{Exemplo 4}
+\small{\emph{Ler as notas dos alunos de uma turma, perguntando após a leitura de cada nota se há mais alguma nota a ser lida, e, no final, calculando a média da turma.}}
+\begin{center}
+\begin{tabular}{|l|}\hline
+\box\verbboxA \\\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+%-------------------------------------------------------
+\newbox\verbboxA
+\setbox\verbboxA=\vbox{\hsize=4.5in
+\begin{Verbatim}
+Algoritmo EhPrimo
+  div, n, i: inteiro
+Início
+  Ler(n)
+  div = 0
+  Para i=1 até n passo 1 fazer Início
+    Se n % i == 0 então div = div + 1
+  Fim
+  Se div == 2 então Escrever("Eh primo")
+              senão Escrever("NAO eh primo")
+Fim
+\end{Verbatim}
+}
+\begin{frame}[fragile]\frametitle{Exemplo 5}
+\small{\emph{Verificar se um número lido é primo.}}
+\begin{center}
+\begin{tabular}{|l|}\hline
+\box\verbboxA \\\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+%-------------------------------------------------------
+\newbox\verbboxA
+\setbox\verbboxA=\vbox{\hsize=4.5in\small
+\begin{Verbatim}
+Algoritmo QuaisDos10SaoPrimos
+  div, n, i, cont: inteiro
+Início
+  Para cont=1 até 10 passo 1 fazer Início
+    Ler(n)
+    div = 0
+    Para i=1 até n passo 1 fazer Início
+      Se n % i == 0 então div = div + 1
+    Fim
+    Se div == 2 então Escrever("Eh primo")
+                senão Escrever("NAO eh primo")
+  Fim
+Fim
+\end{Verbatim}
+}
+\begin{frame}[fragile]\frametitle{Exemplo 6}
+\small{\emph{Ler 10 números, verificando se eles são primos.}}
+\begin{center}
+\begin{tabular}{|l|}\hline
+\box\verbboxA \\\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+%-------------------------------------------------------
+\newbox\verbboxA
+\setbox\verbboxA=\vbox{\hsize=4in
+\begin{Verbatim}
+Algoritmo Fatorial
+  fat, n, i: inteiro
+Início
+  Ler(n)
+  fat = 1
+  Para i=2 até n passo 1 fazer Início
+    fat = fat * i
+  Fim
+  Escrever(fat)
+Fim
+\end{Verbatim}
+}
+\begin{frame}[fragile]\frametitle{Exemplo 7}
+\small{\emph{Calcular o fatorial de um número.}}
+\begin{center}
+\begin{tabular}{|l|}\hline
+\box\verbboxA \\\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+%-------------------------------------------------------
+\newbox\verbboxA
+\setbox\verbboxA=\vbox{\hsize=4in\small
+\begin{Verbatim}
+Algoritmo FatorialDeVariosNumeros
+  fat, n, i: inteiro
+Início
+  Ler(n)
+  Enquanto n>=0 fazer Início
+    fat = 1
+    Para i=2 até n passo 1 fazer Início
+      fat = fat * i
+    Fim
+    Escrever(fat)
+    Ler(n)
+  Fim
+Fim
+\end{Verbatim}
+}
+\begin{frame}[fragile]\frametitle{Exemplo 8}
+\small{\emph{Ler valores e, enquanto nenhum valor negativo for fornecido, calcular o fatorial de cada valor.}}
+\begin{center}
+\begin{tabular}{|l|}\hline
+\box\verbboxA \\\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+%=======================================================
+\section{Exercícios}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Exercícios 1-5}
+\begin{enumerate}[1.]
+{\small
+\item Escrever um algoritmo que lê 5 valores reais para \texttt{a}, um de cada vez, e conta quantos destes valores são negativos, escrevendo esta informação.
+\item Escrever um algoritmo que gera e escreve os números ímpares entre 100 e 200.
+\item Escrever um algoritmo que lê 10 valores reais, um de cada vez, e conta quantos deles estão no intervalo [10,20] e quantos deles estão fora deste intervalo, escrevendo estas informações.
+\item Escrever um algoritmo que lê um número não conhecido de valores reais, um de cada vez, e conta quantos deles estão em cada um dos intervalos [0,25), [25,50), [50,75) e [75,100], escrevendo estas informações. A leitura deve ser feita até que um valor fora dos intervalos seja fornecido.
+\item Escrever um algoritmo semelhante ao anterior, que calcula as médias aritméticas de cada intervalo e as escreve, juntamente com o número de valores encontrados em cada intervalo. Caso nenhum valor tenha sido encontrado em determinado intervalo, escrever ``*'' no lugar da média.
+}
+\end{enumerate}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Exercícios 6-8}
+\begin{enumerate}[1.]
+\setItemnumber{6}
+{\small
+\item A série de Fibonacci tem como dados os 2 primeiros termos da série que são respectivamente 0 e 1. À partir deles, os demais termos são construídos pela seguinte regra:
+\[ t_{n} = t_{n-1} + t_{n-2} \]
+Escrever um algoritmo que gera os 10 primeiros termos desta série e calcula e escreve a sua soma.
+\item Escrever um algoritmo que gera os 10 primeiros termos da série de Fibonacci, escrevendo para cada termo gerado o número de ordem e o valor do termo da série de Fibonacci. Considere que os números de ordem iniciam com 0.
+\item Escrever um algoritmo que gera os 30 primeiros termos da série de Fibonacci e escreve os termos gerados com a mensagem: ``EH PRIMO'' ou ``NAO EH PRIMO'', conforme o caso.
+}
+\end{enumerate}
+\end{frame}
+
+%=======================================================
+\end{document}
+

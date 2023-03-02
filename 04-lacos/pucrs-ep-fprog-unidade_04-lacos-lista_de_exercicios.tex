@@ -1,0 +1,315 @@
+\documentclass[onecolumn,a4paper,10pt]{report}
+%\documentclass[12pt,a4paper,twoside]{book} %twoside distingue página par de ímpar
+\usepackage[utf8]{inputenc}
+\usepackage[portuges]{babel} %para separar sílabas em Português, etc...
+\usepackage[usenames,dvipsnames]{color} % para letras e caixas coloridas
+\usepackage{latexsym} %para fazer $\Box$ no \LaTeX2$\epsilon$
+\usepackage{makeidx} % índice remissivo
+\usepackage{amstext} %texto em equações: $... \text{} ...$
+\usepackage{theorem}
+\usepackage{tabularx} %tabelas ocupando toda a página
+\usepackage[all]{xy}
+\usepackage{a4wide} %correta formatação da página em A4
+\usepackage{indentfirst} %adiciona espaços no primeiro parágrafo
+
+\usepackage{graphics,amssymb,amsfonts,amsmath}
+\usepackage{tikz}
+\usepackage{enumerate,hyperref}
+\usepackage{palatino}
+\usepackage{ragged2e}
+\usepackage{minted}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}                   
+\usepackage{xcolor}
+\usepackage{textcomp} % para usar \textdegree
+\usepackage{setspace}
+\usetikzlibrary{shadows}
+
+\newminted{java}{bgcolor=cyan!10}
+
+\definecolor{cinza}{gray}{.8}
+\definecolor{branco}{gray}{1}
+\definecolor{preto}{gray}{0}
+\definecolor{verdemusgo}{rgb}{.3,.7,.5}
+\definecolor{vinho}{cmyk}{0,1,1,.5}
+%\setcounter{secnumdepth}{1}
+%\renewcommand{\thesection}{\textcolor{preto}{\arabic{section}}}
+%\renewcommand{\thepage}{\textcolor{preto}{\color{preto}{{\scriptsize}}}}
+{\theorembodyfont{\upshape}
+\newtheorem{Dem}{Demonstração}[chapter]}
+\newtheorem{Ex}{Exemplo}[chapter]
+\newtheorem{Exer}{Exercício}
+\newtheorem{Lista}{Lista de exercícios}
+\newtheorem{Def}{Definição}[chapter]
+
+\newtheorem{Pro}{Proposição}[chapter]
+\newtheorem{Ax}{Axioma}[chapter]
+\newtheorem{Teo}{Teorema}[chapter]
+\newtheorem{Cor}{Corolário}[chapter]
+\newtheorem{Cas}{Caso}[subsection]
+\newtheorem{lema}{Lema}[chapter]
+\newtheorem{que}{Questão}[chapter]
+\newcommand{\dem}{\noindent{\bf Demonstração:}}
+\newcommand{\sol}{\noindent{\it Solução.}}
+\newcommand{\nota}{\noindent{\bf Notação:}}
+\newcommand{\ex}{\noindent{\bf Exemplos}}
+\newcommand{\Obs}{\noindent{\bf Observação:}}
+\newcommand{\fim}{\hfill $\blacksquare$}
+\newcommand{\ig}{\,\, = \,\,}
+\newcommand{\+}{\, + \,}
+\newcommand{\m}{\, - \,}
+\newcommand{\I}{\mbox{$I\kern-0.40emI$}}
+\newcommand{\Z}{\mbox{Z$\kern-0.40em$Z}}
+\newcommand{\Q}{\mbox{I$\kern-0.60em$Q}}
+\newcommand{\C}{\mbox{I$\kern-0.60em$C}}
+\newcommand{\N}{\mbox{I$\kern-0.40em$N}}
+\newcommand{\R}{\mbox{I$\kern-0.40em$R}}
+\newcommand{\Ro}{\rm{I\!R\!}}
+\newcommand{\disp}{\displaystyle}
+\newcommand{\<}{\hspace*{-0.4cm}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ov}{\overline}
+\newcommand{\aj}{\vspace*{-0.2cm}}
+\newcommand{\pt}{\hspace{-1mm}\times\hspace{-1mm}}
+\newcommand{\cm}{\mbox{cm}}
+\newcommand{\np}{\mbox{$\in \kern-0.80em/$}}
+\newcommand{\tg} {\mbox{tg\,}}
+\newcommand{\ptm}{\hspace{-0.4mm}\cdot\hspace{-0.4mm}}
+\newcommand{\arc}{\stackrel{\;\;\frown}}
+\newcommand{\rad}{\;\mbox{rad}}
+\newcommand{\esp}{\;\;\;\;}
+\newcommand{\sen}{\mbox{sen\,}}
+\newcommand{\grau}{^{\mbox{{\scriptsize o}}}}
+\newcommand{\real} {\mbox{$I\kern-0.60emR$}}
+\newcommand{\vetor}{\stackrel{\color{vinho}\vector(1,0){15}}}
+\newcommand{\arctg}{\mbox{arctg\,}}
+\newcommand{\arcsen}{\mbox{arcsen\,}}
+\newcommand{\ordinal}{^{\underline{\scriptsize\mbox{\rmo}}}}
+\newcommand{\segundo}{$2^{\underline{o}}$ }
+\newcommand{\primeiro}{$1^{\underline{o}}$ }
+\newcommand{\nee}{\mbox{$\;=\kern-0.90em/\;$}}
+
+\setlength{\parskip}{0.0cm} %espaco entre parágrafos
+\setlength{\oddsidemargin}{-1cm} %margem esquerda das páginas
+%\setlength{\unitlength}{3cm} %tamanho da figura criada
+\linespread{1.5} %distância entre linhas
+\setlength{\textheight}{25cm} %distância entre a primeira e última linha do texto(comprimento do texto)
+\setlength{\textwidth}{18cm} %indica a largura do texto
+\topmargin=-2cm %margem superior entre topo da página e o cabeçalho
+%\headsep=0.5cm %distãncia entre o cabeçalho e o corpo do texto
+%\setlength{\footskip}{27pt} %distãncia da última linha ao número da página
+%\evensidemargin=-0.2in %margem esquerda das páginas pares
+%\marginparwidth=1.7in %tamanho das notas de margem
+%\marginparsep=0.2in %distância entre a margem direita e as notas de margem
+%\topmargin=0cm
+%\stackrel{\frown}{AB}
+
+\begin{document}
+\singlespacing
+
+\begin{center}
+Pontifícia Universidade Católica do Rio Grande do Sul (PUCRS)\\
+Escola Politécnica\\
+Disciplina: Fundamentos de Programação - Professor: Roland Teodorowitsch\\
+24 de agosto de 2022
+\end{center}
+
+\begin{center}
+\textbf{Lista de Exercícios - Unidade 4: Laços}
+\end{center}
+
+\begin{enumerate}[1.]
+
+%----------------------------------------------------------------------
+\item Escreva laços em Java usando \texttt{while} para imprimir
+\begin{enumerate}[a)]
+	\item Todos os quadrados menores do que \texttt{n}. Por exemplo, se \texttt{n} for 100, o laço deve imprimir 0 1 4 9 16 25 36 49 64 81.
+	\item Todos os números positivos que são divisíveis por 10 e menores do que \texttt{n}. Por exemplo, se \texttt{n} for 100, o laço deve imprimir 10 20 30 40 50 60 70 80 90.
+	\item Todas as potências de 2 menores do que \texttt{n}. Por exemplo, se \texttt{n} for igual a 100, o laço deve imprimir 1 2 4 8 16 32 64.
+\end{enumerate}
+{\tiny Fonte: Horstmann (2013, p. 184)}
+
+%----------------------------------------------------------------------
+\item Escreva laços em Java que calculem
+\begin{enumerate}[a)]
+	\item A soma de todos os números pares entre 2 e 100 (inclusive).
+	\item A soma de todos os quadrados entre 1 e 100 (inclusive).
+	\item A soma de todos os números ímpares entre \texttt{a} e \texttt{b} (inclusive).
+	\item A soma de todos os dígitos ímpares de \texttt{n}. (Por exemplo, se \texttt{n} for igual a 32677, a soma será $3 + 7 + 7 = 17$.)
+\end{enumerate}
+{\tiny Fonte: Horstmann (2013, p. 184)}
+
+%----------------------------------------------------------------------
+\item Crie tabelas de depuração (teste de mesa) para os seguintes laços:
+\begin{enumerate}[a)]
+\item
+\begin{javacode}
+int i = 0; int j = 10; int n = 0;
+while (i < j) { i++; j--; n++; }
+\end{javacode}
+\item
+\begin{javacode}
+int i = 0; int j = 0; int n = 0;
+while (i < 10) { i++; n = n + i + j; j++; }
+\end{javacode}
+\item
+\begin{javacode}
+int i = 10; int j = 0; int n = 0;
+while (i > 0) { i--; j++; n = n + i - j; }
+\end{javacode}
+\item
+\begin{javacode}
+int i = 0; int j = 10; int n = 0;
+while (i != j) { i = i + 2; j = j - 2; n++; }
+\end{javacode}
+\end{enumerate}
+{\tiny Fonte: Horstmann (2013, p. 184)}
+
+%----------------------------------------------------------------------
+\item O que os seguintes laços imprimem?
+\begin{enumerate}[a)]
+\item
+\begin{javacode}
+for (int i = 1; i < 10; i++) { System.out.print(i + " "); }
+\end{javacode}
+\item
+\begin{javacode}
+for (int i = 1; i < 10; i += 2) { System.out.print(i + " "); }
+\end{javacode}
+\item
+\begin{javacode}
+for (int i = 10; i > 1; i--) { System.out.print(i + " "); }
+\end{javacode}
+\item
+\begin{javacode}
+for (int i = 0; i < 10; i++) { System.out.print(i + " "); }
+\end{javacode}
+\item
+\begin{javacode}
+for (int i = 1; i < 10; i = i * 2) { System.out.print(i + " "); }
+\end{javacode}
+\item
+\begin{javacode}
+for (int i = 1; i < 10; i++) { if (i % 2 == 0) { System.out.print(i + " "); } }
+\end{javacode}
+\end{enumerate}
+{\tiny Fonte: Horstmann (2013, p. 184)}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que imprime uma tabela de multiplicação, como a mostrada a seguir:\\
+\begin{tabular}{rrrrrrrrrr}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10\\
+2 & 4 & 6 & 8 & 10 & 12 & 14 & 16 & 18 & 20\\
+3 & 6 & 9 & 12 & 15 & 18 & 21 & 24 & 27 & 30\\
+\multicolumn{10}{l}{...}\\
+10 & 20 & 30 & 40 & 50 & 60 & 70 & 80 & 90 & 100\\
+\end{tabular}\\
+{\tiny Fonte: Horstmann (2013, p. 191)}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que inicialmente leia um número inteiro correspondente ao número de valores reais que deverão serem lidos a seguir, determinando: quantos destes valores são positivos, quantos destes valores são negativos, quantos são iguais a zero, qual o maior valor, qual o menor valor, qual a média, qual o somatório destes valores reais e qual o produtório destes valores reais.\\
+{\tiny Autor: Roland Teodorowitsch}
+
+%----------------------------------------------------------------------
+\item A série de Fibonacci tem seus 2 primeiros termos definidos como 0 e 1. À partir deles, os demais termos são construídos pela seguinte regra:
+\[ t_n = t_{n-1} + t_{n-2}\]
+Escreva um programa em Java que gera os 10 primeiros termos da série de Fibonacci.\\
+{\tiny Adaptado de: Orth (2001, p. 51)}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que obtenha o mínimo múltiplo comum (MMC) entre dois números fornecidos.\\
+{\tiny Adaptado de: Forbellone e Eberspächer (2005, p. 64)}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que obtenha o máximo divisor comum (MDC) entre dois números fornecidos.\\
+{\tiny Adaptado de: Forbellone e Eberspächer (2005, p. 64)}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que calcule o valor de H, sendo que ele é determinado pela série
+\[ H = \frac{1}{1} + \frac{3}{2} + \frac{5}{3} + \frac{7}{4} + ... \frac{99}{50} \]
+{\tiny Adaptado de: Forbellone e Eberspächer (2005, p. 65)}
+
+%----------------------------------------------------------------------
+\item Escrever um programa em Java que lê um valor inteiro e positivo (\texttt{n}), calculando o escrevendo o valor de E, que é dado pela fórmula:
+\[ E = 1 + \frac{1}{1!} + \frac{1}{2!}+ \frac{1}{3!} + ... + + \frac{1}{n!}\]
+{\tiny Adaptado de: Orth (2001, p. 53)}
+
+%----------------------------------------------------------------------
+\item Um Clube de Futebol de uma cidade fez uma pesquisa entre seus sócios, coletando dados sobre o salário e o número de filhos dos sócios. O Clube deseja saber:
+\begin{enumerate}[a)]
+	\item A média do salário dos sócios
+	\item A média do número de filhos
+	\item O maior salário
+	\item O percentual de pessoas com salário até R\$400,00
+\end{enumerate}
+Escreva um programa em Java para ler, para cada sócio, o seu salário e o seu número de filhos. O final de dados se dará quando um salário negativo for lido.\\
+{\tiny Adaptado de: Orth (2001, p. 53)}
+
+%----------------------------------------------------------------------
+\item Em uma eleição presidencial existem quatro candidados. Os votos são informados por código. Os dados utilizados para a escrutinagem obedecem à seguinte condificação:
+\begin{itemize}
+	\item 1, 2, 3, 4 = voto para os respectivos candidatos;
+	\item 5 = voto nulo;
+	\item 6 = voto em branco.
+\end{itemize}
+Escreva um programa em Java que calcule e escreva:
+\begin{itemize}
+	\item o total de votos para cada candidato e o seu percentual sobre o total;
+	\item o total de votos nulos e o seu percentual sobre o total;
+	\item o total de votos em branco e o seu percentual sobre o total.
+\end{itemize}
+Como finalizador do conjunto de votos tem-se o valor 0.\\
+{\tiny Adaptado de: Forbellone e Eberspächer (2005, p. 64)}
+
+%----------------------------------------------------------------------
+\item Gustavo tem 1,40 metros e cresce 8 centímetros por ano, enquanto Juliano tem 1,10 metros e cresce 17 centímetros por ano. Construa um programa em Java que calcula e escreve quantos anos serão necessários para que Juliano ultrapasse Gustavo.\\
+{\tiny Adaptado de: Orth (2001, p. 53)}
+
+%----------------------------------------------------------------------
+\item Escrever um programa em Java que gera e escreve os 5 primeiros números perfeitos. Um número perfeito é aquele que é igual à soma de seus divisores, exceto ele próprio. Por exemplo:
+\[  6 = 1 + 2 + 3\]
+\[ 28 = 1 + 2 + 4 + 7 + 14 \]
+{\tiny Adaptado de: Orth (2001, p. 54)}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que lê \texttt{n}, inteiro e positivo, e calcula e escreve o termo de ordem \texttt{n} da sucessão a seguir:\\
+\begin{tabular}{lrrrrrrrrrr}
+Ordem: & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10\\
+Sucessão: & -1 & 0 & 5 & 6 & 11 & 12 & 17 & 18 & 23 & 24\\
+\end{tabular}\\
+{\tiny Adaptado de: Orth (2001, p. 57)}
+
+%----------------------------------------------------------------------
+\item \emph{The game of Nim.} This is a well-known game with a number of variants. The following variant has an interesting winning strategy. Two players alternately take
+marbles from a pile. In each move, a player chooses how many marbles to take. The
+player must take at least one but at most half of the marbles. Then the other player
+takes a turn. The player who takes the last marble loses.\\
+Write a program in which the computer plays against a human opponent. Generate a
+random integer between 10 and 100 to denote the initial size of the pile. Generate a
+random integer between 0 and 1 to decide whether the computer or the human takes
+the first turn. Generate a random integer between 0 and 1 to decide whether the
+computer plays \emph{smart} or \emph{stupid}. In stupid mode the computer simply takes a random
+legal value (between $1$ and $n/2$) from the pile whenever it has a turn. In smart mode
+the computer takes off enough marbles to make the size of the pile a power of two
+minus 1 — that is, 3, 7, 15, 31, or 63. That is always a legal move, except when the size
+of the pile is currently one less than a power of two. In that case, the computer makes a random legal move.\\
+You will note that the computer cannot be beaten in smart mode when it has the first
+move, unless the pile size happens to be 15, 31, or 63. Of course, a human player who
+has the first turn and knows the winning strategy can win against the computer.\\
+{\tiny Fonte: Horstmann (2013, p. 192)}
+
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\noindent{\textbf{REFERÊNCIAS}}
+
+\noindent{FORBELLONE, André Luiz Villar; EBERSPÄCHER, Henri Frederico. \textbf{Lógica de programação}: a construção de algoritmos e estruturas de dados. 3. ed. São Paulo: Prentice Hall, 2005. 218 p.}
+
+\noindent{HORSTMANN, C. \textbf{Java for Everyone – Late Objetct}. 2. ed. Hoboken: Wiley, 2013. xxxiv, 589 p.}
+
+\noindent{ORTH, Afonso Inácio. \textbf{Algoritmos e Programação com Resumo das Linguagens PASCAL e C}. Porto Alegre: AIO, 2001. 176 p.}
+
+\end{document}
+

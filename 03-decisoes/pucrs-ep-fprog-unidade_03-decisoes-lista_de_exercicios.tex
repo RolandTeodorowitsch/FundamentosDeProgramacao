@@ -1,0 +1,329 @@
+\documentclass[onecolumn,a4paper,10pt]{report}
+%\documentclass[12pt,a4paper,twoside]{book} %twoside distingue página par de ímpar
+\usepackage[utf8]{inputenc}
+\usepackage[portuges]{babel} %para separar sílabas em Português, etc...
+\usepackage[usenames,dvipsnames]{color} % para letras e caixas coloridas
+\usepackage{latexsym} %para fazer $\Box$ no \LaTeX2$\epsilon$
+\usepackage{makeidx} % índice remissivo
+\usepackage{amstext} %texto em equações: $... \text{} ...$
+\usepackage{theorem}
+\usepackage{tabularx} %tabelas ocupando toda a página
+\usepackage[all]{xy}
+\usepackage{a4wide} %correta formatação da página em A4
+\usepackage{indentfirst} %adiciona espaços no primeiro parágrafo
+
+\usepackage{graphics,amssymb,amsfonts,amsmath}
+\usepackage{tikz}
+\usepackage{enumerate,hyperref}
+\usepackage{palatino}
+\usepackage{ragged2e}
+\usepackage{minted}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}                   
+\usepackage{xcolor}
+\usepackage{textcomp} % para usar \textdegree
+\usepackage{setspace}
+\usetikzlibrary{shadows}
+
+\newminted{java}{bgcolor=cyan!10}
+
+\definecolor{cinza}{gray}{.8}
+\definecolor{branco}{gray}{1}
+\definecolor{preto}{gray}{0}
+\definecolor{verdemusgo}{rgb}{.3,.7,.5}
+\definecolor{vinho}{cmyk}{0,1,1,.5}
+%\setcounter{secnumdepth}{1}
+%\renewcommand{\thesection}{\textcolor{preto}{\arabic{section}}}
+%\renewcommand{\thepage}{\textcolor{preto}{\color{preto}{{\scriptsize}}}}
+{\theorembodyfont{\upshape}
+\newtheorem{Dem}{Demonstração}[chapter]}
+\newtheorem{Ex}{Exemplo}[chapter]
+\newtheorem{Exer}{Exercício}
+\newtheorem{Lista}{Lista de exercícios}
+\newtheorem{Def}{Definição}[chapter]
+
+\newtheorem{Pro}{Proposição}[chapter]
+\newtheorem{Ax}{Axioma}[chapter]
+\newtheorem{Teo}{Teorema}[chapter]
+\newtheorem{Cor}{Corolário}[chapter]
+\newtheorem{Cas}{Caso}[subsection]
+\newtheorem{lema}{Lema}[chapter]
+\newtheorem{que}{Questão}[chapter]
+\newcommand{\dem}{\noindent{\bf Demonstração:}}
+\newcommand{\sol}{\noindent{\it Solução.}}
+\newcommand{\nota}{\noindent{\bf Notação:}}
+\newcommand{\ex}{\noindent{\bf Exemplos}}
+\newcommand{\Obs}{\noindent{\bf Observação:}}
+\newcommand{\fim}{\hfill $\blacksquare$}
+\newcommand{\ig}{\,\, = \,\,}
+\newcommand{\+}{\, + \,}
+\newcommand{\m}{\, - \,}
+\newcommand{\I}{\mbox{$I\kern-0.40emI$}}
+\newcommand{\Z}{\mbox{Z$\kern-0.40em$Z}}
+\newcommand{\Q}{\mbox{I$\kern-0.60em$Q}}
+\newcommand{\C}{\mbox{I$\kern-0.60em$C}}
+\newcommand{\N}{\mbox{I$\kern-0.40em$N}}
+\newcommand{\R}{\mbox{I$\kern-0.40em$R}}
+\newcommand{\Ro}{\rm{I\!R\!}}
+\newcommand{\disp}{\displaystyle}
+\newcommand{\<}{\hspace*{-0.4cm}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ov}{\overline}
+\newcommand{\aj}{\vspace*{-0.2cm}}
+\newcommand{\pt}{\hspace{-1mm}\times\hspace{-1mm}}
+\newcommand{\cm}{\mbox{cm}}
+\newcommand{\np}{\mbox{$\in \kern-0.80em/$}}
+\newcommand{\tg} {\mbox{tg\,}}
+\newcommand{\ptm}{\hspace{-0.4mm}\cdot\hspace{-0.4mm}}
+\newcommand{\arc}{\stackrel{\;\;\frown}}
+\newcommand{\rad}{\;\mbox{rad}}
+\newcommand{\esp}{\;\;\;\;}
+\newcommand{\sen}{\mbox{sen\,}}
+\newcommand{\grau}{^{\mbox{{\scriptsize o}}}}
+\newcommand{\real} {\mbox{$I\kern-0.60emR$}}
+\newcommand{\vetor}{\stackrel{\color{vinho}\vector(1,0){15}}}
+\newcommand{\arctg}{\mbox{arctg\,}}
+\newcommand{\arcsen}{\mbox{arcsen\,}}
+\newcommand{\ordinal}{^{\underline{\scriptsize\mbox{\rmo}}}}
+\newcommand{\segundo}{$2^{\underline{o}}$ }
+\newcommand{\primeiro}{$1^{\underline{o}}$ }
+\newcommand{\nee}{\mbox{$\;=\kern-0.90em/\;$}}
+
+\setlength{\parskip}{0.0cm} %espaco entre parágrafos
+\setlength{\oddsidemargin}{-1cm} %margem esquerda das páginas
+%\setlength{\unitlength}{3cm} %tamanho da figura criada
+\linespread{1.5} %distância entre linhas
+\setlength{\textheight}{25cm} %distância entre a primeira e última linha do texto(comprimento do texto)
+\setlength{\textwidth}{18cm} %indica a largura do texto
+\topmargin=-2cm %margem superior entre topo da página e o cabeçalho
+%\headsep=0.5cm %distãncia entre o cabeçalho e o corpo do texto
+%\setlength{\footskip}{27pt} %distãncia da última linha ao número da página
+%\evensidemargin=-0.2in %margem esquerda das páginas pares
+%\marginparwidth=1.7in %tamanho das notas de margem
+%\marginparsep=0.2in %distância entre a margem direita e as notas de margem
+%\topmargin=0cm
+%\stackrel{\frown}{AB}
+
+\begin{document}
+\singlespacing
+
+\begin{center}
+Pontifícia Universidade Católica do Rio Grande do Sul (PUCRS)\\
+Escola Politécnica\\
+Disciplina: Fundamentos de Programação - Professor: Roland Teodorowitsch\\
+24 de agosto de 2022
+\end{center}
+
+\begin{center}
+\textbf{Lista de Exercícios - Unidade 3: Decisões}
+\end{center}
+
+\begin{enumerate}[1.]
+
+%----------------------------------------------------------------------
+\item Qual o valor de cada variável dos trechos de código Java a seguir após o respectivo comando \texttt{if}?
+\begin{enumerate}[a)]
+\item
+\begin{javacode}
+int n = 1; int k = 2; int r = n;
+if (k < n) { r = k; }
+\end{javacode}
+\item
+\begin{javacode}
+int n = 1; int k = 2; int r;
+if (n < k) { r = k; }
+else { r = k + n; }
+\end{javacode}
+\item
+\begin{javacode}
+int n = 1; int k = 2; int r = k;
+if (r < k) { n = r; }
+else { k = n; }
+\end{javacode}
+\item
+\begin{javacode}
+int n = 1; int k = 2; int r = 3;
+if (r < n + k) { r = 2 * n; }
+else { k = 2 * r; }
+\end{javacode}
+\end{enumerate}
+{\tiny Fonte: Horstmann (2013, p. 121, R3.1)}
+
+%----------------------------------------------------------------------
+\item O que está errado em cada um dos fragmentos de código Java a seguir?
+\begin{enumerate}[a)]
+\item
+\begin{javacode}
+if x > 0 then System.out.print(x);
+\end{javacode}
+\item
+\begin{javacode}
+if (1 + x > Math.pow(x, Math.sqrt(2)) { y = y + x; }
+\end{javacode}
+\item
+\begin{javacode}
+if (x = 1) { y++; }
+\end{javacode}
+\item
+\begin{javacode}
+x = in.nextInt();
+if (in.hasNextInt()) {
+   sum = sum + x;
+}
+else {
+   System.out.println("Bad input for x");
+}
+\end{javacode}
+\item
+\begin{javacode}
+String letterGrade = "F";
+if (grade >= 90) { letterGrade = "A"; }
+if (grade >= 80) { letterGrade = "B"; }
+if (grade >= 70) { letterGrade = "C"; }
+if (grade >= 60) { letterGrade = "D"; }
+\end{javacode}
+\end{enumerate}
+{\tiny Fonte: Horstmann (2013, p. 122, R3.3)}
+
+%----------------------------------------------------------------------
+\item O que os fragmentos de código Java a seguir imprimem?
+\begin{enumerate}[a)]
+\item
+\begin{javacode}
+int n = 1;
+int m = -1;
+if (n < -m) { System.out.print(n); }
+else { System.out.print(m); }
+\end{javacode}
+\item
+\begin{javacode}
+int n = 1;
+int m = -1;
+if (-n >= m) { System.out.print(n); }
+else { System.out.print(m); }
+\end{javacode}
+\item
+\begin{javacode}
+double x = 0;
+double y = 1;
+if (Math.abs(x - y) < 1) { System.out.print(x); }
+else { System.out.print(y); }
+\end{javacode}
+\item
+\begin{javacode}
+double x = Math.sqrt(2);
+double y = 2;
+if (x * x == y) { System.out.print(x); }
+else { System.out.print(y); }
+\end{javacode}
+\end{enumerate}
+{\tiny Fonte: Horstmann (2013, p. 122, R3.4)}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que lê um valor inteiro e imprime se ele é negativo, zero ou positivo.\\
+{\tiny Fonte: Horstmann (2013, p. 126, P3.1)}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que lê um número em ponto-flutuante e imprime: ``zero'', se o número é zero. Caso contrário, imprime ``positivo" ou ``negativo'', conforme o caso. O programa também deve imprimir ``pequeno'', se o valor absoluto do número for menor do que $1$, ou ``grande'', se o número exceder $1.000.000$\\
+{\tiny Fonte: Horstmann (2013, p. 126, P3.2)}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que lê as coordenadas de um ponto no plano cartesiano, \texttt{x} e \texttt{y},
+e determine se este ponto corresponde à origem, se está sobre um dos eixos (eixo $x$ ou eixo $y$) ou em qual
+quadrante o ponto se encontra (primeiro, segundo, terceiro ou quarto quadrante).\\
+{\tiny Autor: Roland Teodorowitsch}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que lê um inteiro e imprime quantos dígitos o número tem, verificando se o número é $\geqslant 10$, $\geqslant 100$, e assim por diante. (Assuma que todos os inteiros sejam menores do que dez bilhões.)
+Se o número for negativo, primeiro multiplique ele por $-1$.\\
+{\tiny Fonte: Horstmann (2013, p. 126, P3.3)}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que lê três números e imprime: "todos iguais", se eles forem todos iguais;
+"todos diferentes", se forem todos diferentes; e "nenhuma alternativa", em caso contrário.\\
+{\tiny Fonte: Horstmann (2013, p. 126, P3.4)}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que lê três números e imprime: ``crescentes'', se eles estiverem em ordem crescente;
+``decrescentes'', se eles estiverem em ordem decrescente; e ``nenhuma ordem aparente'', em caso contrário. A ordem deve ser
+seguida estritamente, ou seja, cada valor deverá ser maior do que seu predecessor (ou menor, conforme o teste). A sequência
+$3 4 4$, por exemplo, não deve ser considerada crescente.\\
+{\tiny Fonte: Horstmann (2013, p. 126, P3.5)}
+
+%----------------------------------------------------------------------
+\item Escrever um programa em Java que lê 3 valores (\texttt{a}, \texttt{b} e \texttt{c}) e calcula e escreve
+a média ponderada com peso 5 para o maior dos 3 valores e peso 2,5 para os outros dois.\\
+{\tiny Adaptado de: Orth (2001, p. 39)}
+
+%----------------------------------------------------------------------
+\item Escrever um programa em Java que lê dois valores (\texttt{a} e \texttt{b}) e verifica se eles são múltiplos ou não.
+Escrever os números e uma mensagem (``são múltiplos'' ou ``não são múltiplos'').\\
+{\tiny Adaptado de: Orth (2001, p. 39)}
+
+%----------------------------------------------------------------------
+\item Escrever um programa em Java que lê 4 números inteiros e imprime: ``dois pares'', se na entrada houver dois pares
+de números iguais (em qualquer posição), ou ``sem dois pares'', em caso contrário. Por exemplo, em ``1 2 2 1'' e ``2 2 2 2'' há ``dois pares''.
+Para ``1 2 2 3'', por outro lado, seria impresso ``sem dois pares''.\\
+{\tiny Fonte: Horstmann (2013, p. 126, P3.8)}
+
+%----------------------------------------------------------------------
+\item Escreva um programa em Java que leia 3 \emph{strings} e ordene elas lexicograficamente. Por exemplo:\\
+\texttt{Forneca 3 strings: \textbf{Charlie Alfa Bravo}\\
+Alfa\\
+Bravo\\
+Charlie}\\
+{\tiny Fonte: Horstmann (2013, p. 127, P3.16)}
+
+%----------------------------------------------------------------------
+\item Quando dois instantes de tempo são comparados, cada um dado em horas (variando de 0 a 23) e minutos, o seguinte pseudocódigo determina qual ocorre antes:
+\begin{verbatim}
+If hour1 < hour2
+   time1 comes first.
+Else if hour1 and hour2 are the same
+   If minute1 < minute2
+      time1 comes first.
+   Else if minute1 and minute2 are the same
+      time1 and time2 are the same.
+   Else
+      time2 comes first.
+Else
+   time2 comes first.
+\end{verbatim}
+Escreva um programa em Java que solicite dois horários ao usuário (cada hora formada por dois valores inteiros: horas e minutos) e imprima o menor horário antes e o maior depois.\\
+{\tiny Fonte: Horstmann (2013, p. 127, P3.17)}
+
+%----------------------------------------------------------------------
+\item O seguinte algoritmo descobre a estação do ano (Primavera, Verão, Outono ou Inverno) para determinado mês e dia.
+\begin{verbatim}
+If month is 1, 2, or 3, season = "Winter"
+Else if month is 4, 5, or 6, season = "Spring"
+Else if month is 7, 8, or 9, season = "Summer"
+Else if month is 10, 11, or 12, season = "Fall"
+If month is divisible by 3 and day >= 21
+   If season is "Winter", season = "Spring"
+   Else if season is "Spring", season = "Summer"
+   Else if season is "Summer", season = "Fall"
+   Else season = "Winter"
+\end{verbatim}
+Escreva um programa em Java que solicite o dia e o mês
+ao usuário e então descubra e imprima a estação do ano.
+O algoritmo acima funciona para o hemisfério em que nos encontramos? Caso não funcione adapte-o.\\
+{\tiny Adaptado de: Horstmann (2013, p. 128, P3.18)}
+
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\noindent{\textbf{REFERÊNCIAS}}
+
+\begin{comment}
+\noindent{FORBELLONE, André Luiz Villar; EBERSPÄCHER, Henri Frederico. \textbf{Lógica de programação}: a construção de algoritmos e estruturas de dados. 3. ed. São Paulo: Prentice Hall, 2005. 218 p.}
+\end{comment}
+
+\noindent{HORSTMANN, C. \textbf{Java for Everyone – Late Objetct}. 2. ed. Hoboken: Wiley, 2013. xxxiv, 589 p.}
+
+\noindent{ORTH, Afonso Inácio. \textbf{Algoritmos e Programação com Resumo das Linguagens PASCAL e C}. Porto Alegre: AIO, 2001. 176 p.}
+
+\end{document}
+

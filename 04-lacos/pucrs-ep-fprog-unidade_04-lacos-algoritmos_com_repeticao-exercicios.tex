@@ -1,0 +1,434 @@
+\documentclass[onecolumn,a4paper,10pt]{report}
+%\documentclass[12pt,a4paper,twoside]{book} %twoside distingue página par de ímpar
+\usepackage[utf8]{inputenc}
+\usepackage[portuges]{babel} %para separar sílabas em Português, etc...
+\usepackage[usenames,dvipsnames]{color} % para letras e caixas coloridas
+\usepackage{latexsym} %para fazer $\Box$ no \LaTeX2$\epsilon$
+\usepackage{makeidx} % índice remissivo
+\usepackage{amstext} %texto em equações: $... \text{} ...$
+\usepackage{theorem}
+\usepackage{tabularx} %tabelas ocupando toda a página
+\usepackage[all]{xy}
+\usepackage{a4wide} %correta formatação da página em A4
+\usepackage{indentfirst} %adiciona espaços no primeiro parágrafo
+
+\usepackage{graphics,amssymb,amsfonts,amsmath}
+\usepackage{tikz}
+\usepackage{enumerate,hyperref}
+\usepackage{palatino}
+\usepackage{ragged2e}
+\usepackage{minted}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}                   
+\usepackage{xcolor}
+\usepackage{textcomp} % para usar \textdegree
+\usepackage{setspace}
+\usetikzlibrary{shadows}
+
+\newminted{java}{bgcolor=cyan!10}
+
+\definecolor{cinza}{gray}{.8}
+\definecolor{branco}{gray}{1}
+\definecolor{preto}{gray}{0}
+\definecolor{verdemusgo}{rgb}{.3,.7,.5}
+\definecolor{vinho}{cmyk}{0,1,1,.5}
+%\setcounter{secnumdepth}{1}
+%\renewcommand{\thesection}{\textcolor{preto}{\arabic{section}}}
+%\renewcommand{\thepage}{\textcolor{preto}{\color{preto}{{\scriptsize}}}}
+{\theorembodyfont{\upshape}
+\newtheorem{Dem}{Demonstração}[chapter]}
+\newtheorem{Ex}{Exemplo}[chapter]
+\newtheorem{Exer}{Exercício}
+\newtheorem{Lista}{Lista de exercícios}
+\newtheorem{Def}{Definição}[chapter]
+
+\newtheorem{Pro}{Proposição}[chapter]
+\newtheorem{Ax}{Axioma}[chapter]
+\newtheorem{Teo}{Teorema}[chapter]
+\newtheorem{Cor}{Corolário}[chapter]
+\newtheorem{Cas}{Caso}[subsection]
+\newtheorem{lema}{Lema}[chapter]
+\newtheorem{que}{Questão}[chapter]
+\newcommand{\dem}{\noindent{\bf Demonstração:}}
+\newcommand{\sol}{\noindent{\it Solução.}}
+\newcommand{\nota}{\noindent{\bf Notação:}}
+\newcommand{\ex}{\noindent{\bf Exemplos}}
+\newcommand{\Obs}{\noindent{\bf Observação:}}
+\newcommand{\fim}{\hfill $\blacksquare$}
+\newcommand{\ig}{\,\, = \,\,}
+\newcommand{\+}{\, + \,}
+\newcommand{\m}{\, - \,}
+\newcommand{\I}{\mbox{$I\kern-0.40emI$}}
+\newcommand{\Z}{\mbox{Z$\kern-0.40em$Z}}
+\newcommand{\Q}{\mbox{I$\kern-0.60em$Q}}
+\newcommand{\C}{\mbox{I$\kern-0.60em$C}}
+\newcommand{\N}{\mbox{I$\kern-0.40em$N}}
+\newcommand{\R}{\mbox{I$\kern-0.40em$R}}
+\newcommand{\Ro}{\rm{I\!R\!}}
+\newcommand{\disp}{\displaystyle}
+\newcommand{\<}{\hspace*{-0.4cm}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ov}{\overline}
+\newcommand{\aj}{\vspace*{-0.2cm}}
+\newcommand{\pt}{\hspace{-1mm}\times\hspace{-1mm}}
+\newcommand{\cm}{\mbox{cm}}
+\newcommand{\np}{\mbox{$\in \kern-0.80em/$}}
+\newcommand{\tg} {\mbox{tg\,}}
+\newcommand{\ptm}{\hspace{-0.4mm}\cdot\hspace{-0.4mm}}
+\newcommand{\arc}{\stackrel{\;\;\frown}}
+\newcommand{\rad}{\;\mbox{rad}}
+\newcommand{\esp}{\;\;\;\;}
+\newcommand{\sen}{\mbox{sen\,}}
+\newcommand{\grau}{^{\mbox{{\scriptsize o}}}}
+\newcommand{\real} {\mbox{$I\kern-0.60emR$}}
+\newcommand{\vetor}{\stackrel{\color{vinho}\vector(1,0){15}}}
+\newcommand{\arctg}{\mbox{arctg\,}}
+\newcommand{\arcsen}{\mbox{arcsen\,}}
+\newcommand{\ordinal}{^{\underline{\scriptsize\mbox{\rmo}}}}
+\newcommand{\segundo}{$2^{\underline{o}}$ }
+\newcommand{\primeiro}{$1^{\underline{o}}$ }
+\newcommand{\nee}{\mbox{$\;=\kern-0.90em/\;$}}
+
+\setlength{\parskip}{0.0cm} %espaco entre parágrafos
+\setlength{\oddsidemargin}{-1cm} %margem esquerda das páginas
+%\setlength{\unitlength}{3cm} %tamanho da figura criada
+\linespread{1.5} %distância entre linhas
+\setlength{\textheight}{25cm} %distância entre a primeira e última linha do texto(comprimento do texto)
+\setlength{\textwidth}{18cm} %indica a largura do texto
+\topmargin=-2cm %margem superior entre topo da página e o cabeçalho
+%\headsep=0.5cm %distãncia entre o cabeçalho e o corpo do texto
+%\setlength{\footskip}{27pt} %distãncia da última linha ao número da página
+%\evensidemargin=-0.2in %margem esquerda das páginas pares
+%\marginparwidth=1.7in %tamanho das notas de margem
+%\marginparsep=0.2in %distância entre a margem direita e as notas de margem
+%\topmargin=0cm
+%\stackrel{\frown}{AB}
+
+\begin{document}
+\singlespacing
+
+\begin{center}
+Pontifícia Universidade Católica do Rio Grande do Sul (PUCRS)\\
+Escola  Politécnica\\
+Disciplina: Fundamentos de Programação - Professor: Roland Teodorowitsch\\
+24 de agosto de 2022
+\end{center}
+~\\
+
+\begin{center}
+\textbf{Lista de Exercícios - Algoritmos Com Repetição (ORTH, 2001, p. 34-39)}
+\end{center}
+~\\
+
+\begin{enumerate}[1.]
+
+%1----------------------------------------------------------------------
+\item Escrever um algoritmo que lê 5 valores reais para \texttt{a}, um de cada vez, e conta quantos destes valores são negativos, escrevendo esta informação.\\
+{\tiny Adaptado de: Orth (2001, p. 34)}
+
+%2----------------------------------------------------------------------
+\item Escrever um algoritmo que gera e escreve os números ímpares entre 100 e 200.\\
+{\tiny Adaptado de: Orth (2001, p. 34)}
+
+%3----------------------------------------------------------------------
+\item Escrever um algoritmo que lê 10 valores reais, um de cada vez, e conta quantos deles estão no intervalo [10,20] e quantos deles estão fora deste intervalo, escrevendo estas informações.\\
+{\tiny Adaptado de: Orth (2001, p. 34)}
+
+%4----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um número não conhecido de valores reais, um de cada vez, e conta quantos deles estão em cada um dos intervalos [0,25), [25,50), [50,75) e [75,100], escrevendo estas informações. A leitura deve ser feita até que um valor fora dos intervalos seja fornecido.\\
+{\tiny Adaptado de: Orth (2001, p. 34)}
+
+%5----------------------------------------------------------------------
+\item Escrever um algoritmo semelhante ao anterior, que calcula as médias aritméticas de cada intervalo e as escreve, juntamente com o número de valores encontrados em cada intervalo. Caso nenhum valor tenha sido encontrado em determinado intervalo, escrever ``*'' no lugar da média.\\
+{\tiny Adaptado de: Orth (2001, p. 34)}
+
+%6----------------------------------------------------------------------
+\item A série de Fibonacci tem como dados os 2 primeiros termos da série que são respectivamente 0 e 1. À partir deles, os demais termos são construídos pela seguinte regra:
+\[ t_{n} = t_{n-1} + t_{n-2} \]
+Escrever um algoritmo que gera os 10 primeiros termos desta série e calcula e escreve a sua soma.\\
+{\tiny Adaptado de: Orth (2001, p. 34)}
+
+%7----------------------------------------------------------------------
+\item Escrever um algoritmo que gera os 10 primeiros termos da série de Fibonacci, escrevendo para cada termo gerado o número de ordem e o valor do termo da série de Fibonacci. Considere que os números de ordem iniciam com 0.\\
+{\tiny Adaptado de: Orth (2001, p. 34)}
+
+%8----------------------------------------------------------------------
+\item Escrever um algoritmo que gera os 30 primeiros termos da série de Fibonacci e escreve os termos gerados com a mensagem: ``EH PRIMO'' ou ``NAO EH PRIMO'', conforme o caso.\\
+{\tiny Adaptado de: Orth (2001, p. 34)}
+
+%9----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um conjunto não determinado de valores, um de cada vez, e escreve uma tabela, contendo 20 linhas em cada página. A tabela deve conter o valor lido, seu quadrado, seu cubo e sua raiz quadrada.\\
+{\tiny Adaptado de: Orth (2001, p. 34)}
+
+%10----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um número não determinado de valores para \texttt{m}, todos inteiros e positivos, um de cada vez. Se \texttt{m} for par, verificar quantos divisores possui e escrever esta informação. Se \texttt{m} for ímpar e menor do que 12 calcular e escrever o fatorial de \texttt{m}. Se \texttt{m} for ímpar e maior do que 12, calcular e escrever a soma dos inteiros de 1 até \texttt{m}.\\
+{\tiny Adaptado de: Orth (2001, p. 34)}
+
+%11----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um número não determinado de valores \texttt{a}, todos inteiros e positivos, um de cada vez (até que um valor negativo seja lido), e calcule e escreva a média aritmética dos valores lidos, bem como, a quantidade de valores pares, a quantidade de valores ímpares, a percentagem dos valores pares e a percentagem dos valores ímpares. Se nenhum valor positivo for fornecido, imprimir ``*'' no lugar da média e das percentagens.\\
+{\tiny Adaptado de: Orth (2001, p. 34)}
+
+%12----------------------------------------------------------------------
+\item Escrever um algoritmo que escreve os números primos entre 100 e 200, bem como, a soma destes números primos.\\
+{\tiny Adaptado de: Orth (2001, p. 34)}
+
+%13----------------------------------------------------------------------
+\item Escrever um algoritmo que lê 10 valores para \texttt{n}, um de cada vez, todos inteiros e positivos, e para cada \texttt{n} lido, escreva a tabuada de 1 até \texttt{n} de \texttt{n}.\\
+\fbox{
+\begin{minipage}{0.12\textwidth} % 3/4 da largura de texto
+1 x n = n\\
+2 x n = 2n\\
+. . . . .\\
+. . . . .\\
+. . . . .\\
+n x n = n2
+\end{minipage}
+} % fbox
+\\
+{\tiny Adaptado de: Orth (2001, p. 35)}
+
+%14----------------------------------------------------------------------
+\item Escrever um algoritmo que lê 5 pares de valores (\texttt{a}, \texttt{b}), todos inteiros e positivos, um par de dada vez, com $a < b$ e escreve os inteiros pares de \texttt{a} até \texttt{b}, incluindo \texttt{a} e \texttt{b}, se eles forem pares.\\
+{\tiny Adaptado de: Orth (2001, p. 35)}
+
+%15----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um número não determinado de pares de valores (\texttt{m}, \texttt{n}), todos inteiros e positivos, um par de cada vez, e calcula e escreve a soma dos \texttt{n} inteiros consecutivos à partir de \texttt{m} inclusive.\\
+{\tiny Adaptado de: Orth (2001, p. 35)}
+
+%16----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um número não determinado de conjuntos de valores, cada um formado pelo número do aluno (um valor inteiro) e suas 3 notas. O algoritmo deve encerrar quando um número negativo for fornecido como número de aluno. Calcular, para cada aluno, a média ponderada com pesos respectivos de 4 para a maior nota e peso 3 para as outras duas. Escrever o número do aluno, a média calculada e uma mensagem ``APROVADO'' se a nota for $\geq 5$ ou ``REPROVADO'' se nota $< 5$.\\
+{\tiny Adaptado de: Orth (2001, p. 35)}
+
+%17----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um valor \texttt{n}, inteiro e positivo, e que calcula e escreve o valor de \texttt{E}, onde:
+\[E = 1 + \frac{1}{1!} + \frac{1}{2!} + \frac{1}{3!} + ... + \frac{1}{n!} \]\\
+{\tiny Adaptado de: Orth (2001, p. 35)}
+
+%18----------------------------------------------------------------------
+\item Um Clube de Futebol de uma cidade fez uma pesquisa entre seus sócios, coletando dados sobre o salário e o número de filhos dos sócios. O Clube deseja saber:
+\begin{enumerate}[a)]
+    \item A média do salário dos sócios;
+    \item A média do número de filhos;
+    \item O maior salário;
+    \item O percentual de pessoas com salário até R\$400,00.
+\end{enumerate}
+O final da leitura de dados se dará quando da leitura de um salário negativo. Caso nenhuma informação seja fornecida, imprimir ``* * * * ''.\\
+{\tiny Adaptado de: Orth (2001, p. 35)}
+
+%19----------------------------------------------------------------------
+\item Gustavo tem \texttt{a1} metros e cresce \texttt{c1} centímetros por ano, enquanto Juliano tem \texttt{a2} metros e cresce \texttt{c2} centímetros por ano. Construa um algoritmo que calcula e escreve, quantos anos serão necessários para que Juliano ultrapasse Gustavo. Caso não seja possível que Juliano ultrapasse a altura de Gustavo, escreva ``*''. Use laços para resolver o problema.\\
+{\tiny Adaptado de: Orth (2001, p. 35)}
+
+%20----------------------------------------------------------------------
+\item Em uma eleição presidencial existem 4 candidatos. Os votos são informados por meio de códigos. Os dados utilizados para a contagem dos votos obedecem à seguinte codificação:
+\begin{itemize}
+    \item Os códigos 1, 2, 3 e 4 representam os votos para os respectivos candidatos.
+    \item O código 5 representa o voto nulo.
+    \item O código 6 representa o voto em branco.
+\end{itemize}
+Elabore um algoritmo que lê os votos, um de cada vez, e calcula e escreve:
+\begin{itemize}
+    \item o total de votos para cada candidato;
+    \item  o total de votos nulos;
+    \item o percentual de votos em branco.
+\end{itemize}
+{\tiny Adaptado de: Orth (2001, p. 35-36)}
+
+%21----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um conjunto de 15 valores, um de cada vez, acompanhados de um código 1 ou 2. O valor representa o número de cobaias utilizadas em cada uma das 15 experiências feitas, e os códigos 1 ou 2 identificam se a experiência era, respectivamente, com coelhos ou ratos. Quer-se saber o número total de cobaias utilizadas, o total de coelhos, o total de ratos, a percentagem de coelhos e a percentagem de ratos. Escrever estes valores.\\
+{\tiny Adaptado de: Orth (2001, p. 36)}
+
+%22----------------------------------------------------------------------
+\item Escrever um algoritmo que lê, para cada um dos vendedores de uma empresa, o seu número de identificação (inteiro), seu salário fixo e o total das vendas por ele efetuadas em reais. Cada vendedor recebe um salário fixo e uma comissão proporcional às vendas por ele efetuadas. A comissão é de 3\% sobre o total de vendas até 10000,00 e 5\% sobre o que ultrapassa este valor. Escrever, para cada vendedor, o seu número de identificação e o seu salário total. O processamento deve ser feito até que um número negativo de funcionário seja fornecido.\\
+{\tiny Adaptado de: Orth (2001, p. 36)}
+
+%23----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um número \texttt{n} (que representa o número de termos de uma Progressão Aritmética), \texttt{a1} (o primeiro termo desta progressão) e \texttt{r} (a razão desta progressão). Escrever os \texttt{n} termos desta progressão, bem como a sua soma.\\
+{\tiny Adaptado de: Orth (2001, p. 36)}
+
+%24----------------------------------------------------------------------
+\item Escrever um algoritmo que lê 5 conjuntos de 2 valores, o primeiro representando o número de um aluno (valor inteiro), e o segundo representando a sua altura em centímetros (valor real). Encontrar o aluno mais alto e o mais baixo, escrevendo: o número do aluno mais alto, a mensagem `` eh o mais alto com '' e a altura mais alta; e o número do aluno mais baixo, a mensagem `` eh o mais baixo com '' e a altura mais baixa. Em caso de empate, considerar sempre o número do aluno que foi lido antes.\\
+{\tiny Adaptado de: Orth (2001, p. 36)}
+
+%25----------------------------------------------------------------------
+\item Um avião voando em linha reta, a uma altitude \texttt{a}, passa sobre um ponto \texttt{P} situado em solo num instante \texttt{t = 0}. Se a velocidade \texttt{v} e a altura \texttt{a} forem lidos, calcular a distância \texttt{d} do avião ao ponto \texttt{P} após 1, 2, ..., 30
+segundos. Escrever, para cada \texttt{t}, o tempo e a distância.\\
+{\tiny Adaptado de: Orth (2001, p. 36)}
+
+%26----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um valor \texttt{n} que indica quantos valores devem ser lidos para \texttt{m}, valores todos inteiros e positivos, com leitura de um valor de cada vez. Escreva, para cada valor lido, o próprio valor lido, seu fatorial e sua raiz cúbica.\\
+{\tiny Adaptado de: Orth (2001, p. 36)}
+
+%27----------------------------------------------------------------------
+\item Escrever um algoritmo que gera e escreve os 5 primeiros números perfeitos. Um número perfeito é aquele que é igual a soma de seus divisores, exceto ele próprio. Exemplos:\\
+$6 = 1 + 2 + 3$\\
+$28 = 1 + 2 + 4 + 7 + 14$\\
+{\tiny Adaptado de: Orth (2001, p. 36)}
+
+%28----------------------------------------------------------------------
+\item Escrever um algoritmo que lê 50 valores, um de cada vez, e encontra e escreve o maior deles.\\
+{\tiny Adaptado de: Orth (2001, p. 36)}
+
+%29----------------------------------------------------------------------
+\item Escrever um algoritmo lê \texttt{a}, \texttt{b}, \texttt{c}, \texttt{d} e \texttt{e}, que constituem o Gabarito de uma prova de 5 questões. Leia, a seguir, um número não determinado de conjuntos de 6 valores: \texttt{num}, \texttt{a1}, \texttt{a2}, \texttt{a3}, \texttt{a4} e \texttt{a5}, onde \texttt{num} representa o número do aluno e os demais valores são as respostas daquele aluno às 5 questões da prova. Conte o número de acertos e multiplique por 2. Escrever, para cada aluno, o seu número e a sua nota.\\
+{\tiny Adaptado de: Orth (2001, p. 36)}
+
+%30----------------------------------------------------------------------
+\item Foi feita uma pesquisa em um município. A pesquisa coletou, para cada habitante, os seguintes dados: idade, sexo (``M'' ou ``F'') e salário. Escreva um algoritmo que lê os conjuntos de dados obtidos, um conjunto de cada vez, obtém e escreve as seguintes informações:
+\begin{enumerate}[a)]
+    \item A média de salário dos habitantes do município.
+    \item A maior e a menor idade das pessoas pesquisadas.
+    \item A quantidade de mulheres com salário até 500,00.
+\end{enumerate}
+O algoritmo deve terminar quando for fornecida uma idade negativa.\\
+{\tiny Adaptado de: Orth (2001, p. 36)}
+
+\newpage
+%31----------------------------------------------------------------------
+\item Foi realizada uma pesquisa de algumas características físicas entre a população de uma determinada região. Os dados coletados por habitante, para serem analisados foram:
+\begin{itemize}
+    \item sexo (masculino ou feminino);
+    \item cor dos olhos (azuis, verdes ou castanhos);
+    \item cor dos cabelos (louros, castanhos, pretos);
+    \item idade.
+\end{itemize}
+Escrever um algoritmo que obtenha e escreva:
+\begin{itemize}
+    \item a maior idade entre os habitantes;
+    \item a quantidade de indivíduos do sexo feminino cuja idade está entre 18 e 24 anos inclusive e que tenham olhos verdes e cabelos louros.
+\end{itemize}
+O final do algoritmo ocorrerá quando entrar uma idade negativa.\\
+{\tiny Adaptado de: Orth (2001, p. 36-37)}
+
+%32----------------------------------------------------------------------
+\item Escrever um algoritmo que lê uma quantidade não determinada de números positivos. Calcula e escreve a quantidade de números pares e ímpares, a média dos valores pares e dos ímpares e a média geral dos valores lidos. O algoritmo finaliza quando entrar um valor nulo.\\
+{\tiny Adaptado de: Orth (2001, p. 37)}
+
+%33----------------------------------------------------------------------
+\item Escrever um algoritmo que lê o código e o valor de cada produto de uma empresa. Supondo que a empresa deseja aumentar todos os produtos de códigos pares em 15\% e todos os produtos cujos códigos são ímpares em 20\%, escreva a lista dos produtos com o respectivo código e o seu preço já reajustado. O algoritmo termina quando entrar um código nulo.\\
+{\tiny Adaptado de: Orth (2001, p. 37)}
+
+%34----------------------------------------------------------------------
+\item Escrever um algoritmo que gera os números entre 1000 e 2000 e escreve aquele que divididos por 11 deixam resto igual a 5.\\
+{\tiny Adaptado de: Orth (2001, p. 37)}
+
+%35----------------------------------------------------------------------
+\item Escrever um algoritmo que lê 50 valores inteiros e positivos e:
+\begin{enumerate}[a)]
+    \item apresenta o maior dos 50 valores lidos;
+    \item apresenta o menor dos 50 valores lidos;
+    \item apresenta a média aritmética dos 50 valores lidos.
+\end{enumerate}
+{\tiny Adaptado de: Orth (2001, p. 37)}
+
+%36----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um valor inteiro e positivo \texttt{n} e calcula a seguinte soma:
+\[ S = 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + ... + \frac{1}{n}\]
+O algoritmo deve escrever cada um dos termos da soma e o valor final de \texttt{S}.\\
+{\tiny Adaptado de: Orth (2001, p. 37)}
+
+%37----------------------------------------------------------------------
+\item Escrever um algoritmo que calcula e escreve a média ponderada com peso 1 para os valores ímpares e peso 2 para os valores pares situados no intervalo [13, 77].\\
+{\tiny Adaptado de: Orth (2001, p. 37)}
+
+%38----------------------------------------------------------------------
+\item Escrever um algoritmo que lê 50 pares de valores, cada par formado pela altura e pelo sexo de uma pessoa (código=1, masculino; e código=2, feminino) e escreve a maior e menor altura para cada sexo.\\
+{\tiny Adaptado de: Orth (2001, p. 37)}
+
+%39----------------------------------------------------------------------
+\item Escrever um algoritmo que calcula e escreve o produto dos números primos entre 95 e 1475.\\
+{\tiny Adaptado de: Orth (2001, p. 37)}
+
+\newpage
+%40----------------------------------------------------------------------
+\item Foi feita uma estatística nas 20 principais cidades do estado para coletar dados sobre acidentes de trânsito. Foram obtidos os seguintes dados:
+\begin{itemize}
+    \item código da cidade (1 a 20);
+    \item número de veículos de passeio do ano passado;
+    \item número de acidentes com vítimas do ano passado.
+\end{itemize}
+Escrever um algoritmo que lê 20 conjuntos de valores, um de cada vez, contendo o código da cidade, o número de veículos de passeio e o número de acidentes e, calcula e escreve:
+\begin{enumerate}[a)]
+    \item qual o maior e menor índice de acidentes e a que cidade pertencem respectivamente;
+    \item qual a média de veículos nas cidades pesquisadas;
+    \item qual a média de acidentes entre as 20 cidades pesquisadas.
+\end{enumerate}
+{\tiny Adaptado de: Orth (2001, p. 37-38)}
+
+%41----------------------------------------------------------------------
+\item Fez-se uma pesquisa entre os 1200 habitantes de uma região para coletar os seguintes dados: sexo (0 para feminino e 1 para masculino), idade e altura. Escrever um algoritmo que lê as informações coletadas e escreve as seguintes informações:
+\begin{enumerate}[a)]
+    \item média da idade do grupo;
+    \item média da altura das mulheres;
+    \item média da idade dos homens;
+    \item percentual de pessoas com idade entre 21 e 53 anos.
+\end{enumerate}
+{\tiny Adaptado de: Orth (2001, p. 38)}
+
+%42----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um conjunto não conhecido de pares de valores \texttt{a} e \texttt{b}, todos inteiros e positivos, e, para cada par de valores lido, obtém o M.D.C. de \texttt{a} e \texttt{b} e o escreve.\\
+{\tiny Adaptado de: Orth (2001, p. 38)}
+
+%43----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um conjunto não conhecido de pares de valores \texttt{a} e \texttt{b}, todos inteiros e positivos, e, para cada par de valores lido, obtém o M.D.C. e o M.M.C. de \texttt{a} e \texttt{b} e os escreve.\\
+{\tiny Adaptado de: Orth (2001, p. 38)}
+
+%44----------------------------------------------------------------------
+\item Escrever um algoritmo que lê \texttt{n}, inteiro e positivo, e calcula e escreve o termo de ordem \texttt{n} da sucessão abaixo:
+\begin{center}
+\begin{tabular}{lrrrrrrrrrr}
+\textbf{Ordem:} & ~ 1 & ~ 2 & ~ 3 & ~ 4 & ~ 5 & ~ 6 & ~ 7 & ~ 8 & ~ 9 & ~ 10 \\
+\textbf{Sucessão:} & ~ -1 & ~ 0 & ~ 5 & ~ 6 & ~ 11 & ~ 12 & ~ 17 & ~ 18 & ~ 23 & ~ 24\\
+\end{tabular}
+\end{center}
+{\tiny Adaptado de: Orth (2001, p. 38)}
+
+%45----------------------------------------------------------------------
+\item Foram entrevistadas 50 pessoas e coletados os seguintes dados:
+\begin{enumerate}[a)]
+    \item sexo: M (``masculino'') e F (``feminino'');
+    \item cor dos olhos: A (``azuis''), V (``verdes''), e C (``castanhos'');
+    \item cor dos cabelos: L (``louros''), C (``castanhos'') e P (``pretos'');
+    \item idade.
+\end{enumerate}
+Escrever um algoritmo que lê os 50 conjuntos de valores para cada uma das pessoas entrevistadas e escreve:
+\begin{enumerate}[a)]
+    \item a maior idade do grupo;
+    \item a quantidade de indivíduos do sexo feminino, com idade entre 18 e 24 anos e que tenham olhos verdes e cabelos louros.
+\end{enumerate}
+{\tiny Adaptado de: Orth (2001, p. 38)}
+
+%46----------------------------------------------------------------------
+\item Uma loja de departamentos que tem cadastrados 180 clientes deseja mandar uma correspondência aos melhores dos seus clientes anunciando-lhes um bônus especial. Escrever um algoritmo que lê o nome do cliente e o valor de suas compras no ano que passou e calcula um bônus de 15\% para aqueles clientes cujo valor de compras excedeu a 200 reais. Escrever o nome dos clientes que são merecedores deste brinde.\\
+{\tiny Adaptado de: Orth (2001, p. 38)}
+
+%47----------------------------------------------------------------------
+\item Escreva um algoritmo que lê um conjunto não determinado de pares de datas e escreva a diferença entre elas em dias.\\
+{\tiny Adaptado de: Orth (2001, p. 38)}
+
+%48----------------------------------------------------------------------
+\item Sabemos pela Lei de Newton que a força de atração entre dois corpos é diretamente proporcional ao produto de suas massas e inversamente proporcional ao quadrado da distância entre eles.
+\[f = G \times \frac{m_1 \times m_2}{d^2}\]
+Escrever um algoritmo que lê um número não conhecido de conjuntos de 4 valores \texttt{m1} (massa do primeiro corpo), \texttt{m2} (massa do segundo corpo), \texttt{G} (constante de gravitação universal) e \texttt{d} (distância entre os corpos) e calcula e escreve, para cada conjunto lido, a força de atração entre os dois corpos de massas \texttt{m1} e \texttt{m2}, respectivamente.
+{\tiny Adaptado de: Orth (2001, p. 38-39)}
+
+%49----------------------------------------------------------------------
+\item Supondo que a população de uma cidade \textbf{A} seja da ordem de 90.000 habitantes com uma taxa anual de crescimento de 3,1\% e que a população de uma cidade \textbf{B} seja da ordem de 200.000 habitantes com uma taxa anual de crescimento de 1,5\%. Escrever um algoritmo que calcula quantos anos serão necessários para que a população da cidade \textbf{A} ultrapasse a população da cidade \textbf{B}, mantidas as taxas atuais de crescimento de cada uma.\\
+{\tiny Adaptado de: Orth (2001, p. 39)}
+
+%50----------------------------------------------------------------------
+\item Supondo dados os três primeiros números primos, respectivamente 2, 3, e 5, escrever um algoritmo que escreve os 20 primeiros número primos, incluindo os três já dados.\\
+{\tiny Adaptado de: Orth (2001, p. 39)}
+
+\end{enumerate}
+
+%----------------------------------------------------------------------
+~\\
+\noindent{\textbf{REFERÊNCIAS}}
+
+\noindent{ORTH, Afonso Inácio. \textbf{Algoritmos e Programação com Resumo das Linguagens PASCAL e C}. Porto Alegre: AIO, 2001. 176 p.}
+
+\end{document}
+

@@ -1,0 +1,281 @@
+\documentclass[onecolumn,a4paper,10pt]{report}
+%\documentclass[12pt,a4paper,twoside]{book} %twoside distingue página par de ímpar
+\usepackage[utf8]{inputenc}
+\usepackage[portuges]{babel} %para separar sílabas em Português, etc...
+\usepackage[usenames,dvipsnames]{color} % para letras e caixas coloridas
+\usepackage{latexsym} %para fazer $\Box$ no \LaTeX2$\epsilon$
+\usepackage{makeidx} % índice remissivo
+\usepackage{amstext} %texto em equações: $... \text{} ...$
+\usepackage{theorem}
+\usepackage{tabularx} %tabelas ocupando toda a página
+\usepackage[all]{xy}
+\usepackage{a4wide} %correta formatação da página em A4
+\usepackage{indentfirst} %adiciona espaços no primeiro parágrafo
+
+\usepackage{graphics,amssymb,amsfonts,amsmath}
+\usepackage{tikz}
+\usepackage{enumerate,hyperref}
+\usepackage{palatino}
+\usepackage{ragged2e}
+\usepackage{minted}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}                   
+\usepackage{xcolor}
+\usepackage{textcomp} % para usar \textdegree
+\usepackage{setspace}
+\usetikzlibrary{shadows}
+
+\newminted{java}{bgcolor=cyan!10}
+
+\definecolor{cinza}{gray}{.8}
+\definecolor{branco}{gray}{1}
+\definecolor{preto}{gray}{0}
+\definecolor{verdemusgo}{rgb}{.3,.7,.5}
+\definecolor{vinho}{cmyk}{0,1,1,.5}
+%\setcounter{secnumdepth}{1}
+%\renewcommand{\thesection}{\textcolor{preto}{\arabic{section}}}
+%\renewcommand{\thepage}{\textcolor{preto}{\color{preto}{{\scriptsize}}}}
+{\theorembodyfont{\upshape}
+\newtheorem{Dem}{Demonstração}[chapter]}
+\newtheorem{Ex}{Exemplo}[chapter]
+\newtheorem{Exer}{Exercício}
+\newtheorem{Lista}{Lista de exercícios}
+\newtheorem{Def}{Definição}[chapter]
+
+\newtheorem{Pro}{Proposição}[chapter]
+\newtheorem{Ax}{Axioma}[chapter]
+\newtheorem{Teo}{Teorema}[chapter]
+\newtheorem{Cor}{Corolário}[chapter]
+\newtheorem{Cas}{Caso}[subsection]
+\newtheorem{lema}{Lema}[chapter]
+\newtheorem{que}{Questão}[chapter]
+\newcommand{\dem}{\noindent{\bf Demonstração:}}
+\newcommand{\sol}{\noindent{\it Solução.}}
+\newcommand{\nota}{\noindent{\bf Notação:}}
+\newcommand{\ex}{\noindent{\bf Exemplos}}
+\newcommand{\Obs}{\noindent{\bf Observação:}}
+\newcommand{\fim}{\hfill $\blacksquare$}
+\newcommand{\ig}{\,\, = \,\,}
+\newcommand{\+}{\, + \,}
+\newcommand{\m}{\, - \,}
+\newcommand{\I}{\mbox{$I\kern-0.40emI$}}
+\newcommand{\Z}{\mbox{Z$\kern-0.40em$Z}}
+\newcommand{\Q}{\mbox{I$\kern-0.60em$Q}}
+\newcommand{\C}{\mbox{I$\kern-0.60em$C}}
+\newcommand{\N}{\mbox{I$\kern-0.40em$N}}
+\newcommand{\R}{\mbox{I$\kern-0.40em$R}}
+\newcommand{\Ro}{\rm{I\!R\!}}
+\newcommand{\disp}{\displaystyle}
+\newcommand{\<}{\hspace*{-0.4cm}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ov}{\overline}
+\newcommand{\aj}{\vspace*{-0.2cm}}
+\newcommand{\pt}{\hspace{-1mm}\times\hspace{-1mm}}
+\newcommand{\cm}{\mbox{cm}}
+\newcommand{\np}{\mbox{$\in \kern-0.80em/$}}
+\newcommand{\tg} {\mbox{tg\,}}
+\newcommand{\ptm}{\hspace{-0.4mm}\cdot\hspace{-0.4mm}}
+\newcommand{\arc}{\stackrel{\;\;\frown}}
+\newcommand{\rad}{\;\mbox{rad}}
+\newcommand{\esp}{\;\;\;\;}
+\newcommand{\sen}{\mbox{sen\,}}
+\newcommand{\grau}{^{\mbox{{\scriptsize o}}}}
+\newcommand{\real} {\mbox{$I\kern-0.60emR$}}
+\newcommand{\vetor}{\stackrel{\color{vinho}\vector(1,0){15}}}
+\newcommand{\arctg}{\mbox{arctg\,}}
+\newcommand{\arcsen}{\mbox{arcsen\,}}
+\newcommand{\ordinal}{^{\underline{\scriptsize\mbox{\rmo}}}}
+\newcommand{\segundo}{$2^{\underline{o}}$ }
+\newcommand{\primeiro}{$1^{\underline{o}}$ }
+\newcommand{\nee}{\mbox{$\;=\kern-0.90em/\;$}}
+
+\setlength{\parskip}{0.0cm} %espaco entre parágrafos
+\setlength{\oddsidemargin}{-1cm} %margem esquerda das páginas
+%\setlength{\unitlength}{3cm} %tamanho da figura criada
+\linespread{1.5} %distância entre linhas
+\setlength{\textheight}{25cm} %distância entre a primeira e última linha do texto(comprimento do texto)
+\setlength{\textwidth}{18cm} %indica a largura do texto
+\topmargin=-2cm %margem superior entre topo da página e o cabeçalho
+%\headsep=0.5cm %distãncia entre o cabeçalho e o corpo do texto
+%\setlength{\footskip}{27pt} %distãncia da última linha ao número da página
+%\evensidemargin=-0.2in %margem esquerda das páginas pares
+%\marginparwidth=1.7in %tamanho das notas de margem
+%\marginparsep=0.2in %distância entre a margem direita e as notas de margem
+%\topmargin=0cm
+%\stackrel{\frown}{AB}
+
+\begin{document}
+\singlespacing
+
+\begin{center}
+Pontifícia Universidade Católica do Rio Grande do Sul (PUCRS)\\
+Escola Politécnica\\
+Disciplina: Fundamentos de Programação - Professor: Roland Teodorowitsch\\
+24 de agosto de 2022
+\end{center}
+~\\
+
+\begin{center}
+\textbf{Lista de Exercícios - Algoritmos Com Seleção (ORTH, 2001, p. 25-27)}
+\end{center}
+~\\
+
+\begin{enumerate}[1.]
+
+%1----------------------------------------------------------------------
+\item Escrever um algoritmo que lê $3$ valores \texttt{a}, \texttt{b}, \texttt{c} e calcula e escreve a média ponderada com peso $5$ para o maior dos $3$ valores e peso $2.5$ para os outros dois.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}
+
+%2----------------------------------------------------------------------
+\item Escrever um algoritmo que lê 3 valores \texttt{a}, \texttt{b}, \texttt{c} e verifica se eles formam ou não um triângulo. Supor que os valores lidos são inteiros e positivos. Caso os valores formem triângulo calcular e escrever a área deste triângulo. Se não formarem triângulo, escrever os valores lidos com a mensagem: ``Não formam triângulo''.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}
+
+%3----------------------------------------------------------------------
+\item Escrever um algoritmo que lê dois valores \texttt{a}, \texttt{b} e os escreve com a mensagem: ``São Múltiplos'' ou ``Não são Múltiplos''.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}
+
+%4----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um conjunto de $4$ valores \texttt{i}, \texttt{a}, \texttt{b}, \texttt{c}, onde \texttt{i} é um valor inteiro e positivo e \texttt{a}, \texttt{b}, \texttt{c} são quaisquer valores reais. Escreva os valores lidos e, a seguir:
+\begin{itemize}
+    \item Se $i = 1$ escrever os três valores \texttt{a}, \texttt{b}, \texttt{c} em ordem crescente.
+    \item Se $i = 2$ escrever os três valores \texttt{a}, \texttt{b}, \texttt{c} em ordem decrescente.
+    \item Se $i = 3$ escrever os três valores \texttt{a}, \texttt{b}, \texttt{c} de forma que o maior fique entre os outros dois.
+\end{itemize}
+{\tiny Adaptado de: Orth (2001, p. 25)}
+
+%5----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um conjunto de 6 valores \texttt{X1}, \texttt{Y1}, \texttt{X2}, \texttt{Y2}, \texttt{X3}, \texttt{Y3}, que representam as coordenadas cartesianas de 3 pontos $P_1(X_1,Y_1)$, $P_2(X_2,Y_2)$ e $P_3(X_3,Y_3)$. Calcule as distâncias entre $P_1$ e $P_2$, entre $P_2$ e $P_3$ e entre $P_1$ e $P_3$. Se os segmentos de retas calculados formam um triângulo, calcular e escrever a área deste triângulo, caso contrário, escrever as distâncias calculadas.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}
+
+%6----------------------------------------------------------------------
+\item Escrever um algoritmo que lê o número de um vendedor de uma empresa, seu salário fixo e o total das vendas por ele efetuadas. Sabe-se que cada vendedor recebe um salário fixo, mais uma comissão proporcional às vendas por ele efetuadas. A comissão é de $3\%$ sobre o total das vendas até $10000.00$ e $5\%$ sobre o que ultrapassa este valor. Escrever o seu número e o seu salário total.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}
+
+%7----------------------------------------------------------------------
+\item Escrever um algoritmo que lê 3 comprimentos reais (\texttt{a}, \texttt{b} e \texttt{c}) e os coloca em ordem decrescente, de forma que o \texttt{a} represente o maior dos 3 valores. Determine, a seguir, o tipo de triângulo que estes 3 lados formam com base nas seguintes relações, escrevendo a mensagem adequada.
+\begin{itemize}
+    \item Se $a \geq b + c$ então não formam triângulo algum;
+    \item Se $a^2 = b^2 + c^2$ então formam um triângulo retângulo;
+    \item Se $a^2 > b^2 + c^2$ então formam um triângulo obtusângulo;
+    \item Se $a^2 < b^2 + c^2$ então formam um triângulo acutângulo;
+    \item Se $a = b$ e $b = c$ então formam um triângulo equilátero;
+    \item Se $a = b$ ou $b = c$ ou $a = c$ e $a \neq b$ ou $a \neq c$ então formam triângulo isósceles.
+\end{itemize}
+{\tiny Adaptado de: Orth (2001, p. 25)}
+
+%8----------------------------------------------------------------------
+\item O departamento que controla o índice de poluição do meio ambiente mantém $3$ grupos de indústrias que são altamente poluidoras do meio ambiente. O índice de poluição aceitável varia de $0.05$ até $0.25$. Se o índice sobe para $0.3$ as indústrias do grupo $1$ são intimadas a suspenderem as suas atividades (use a mensagem ``Grupo 1''). Se o índice cresce para $0.4$ as indústrias dos grupos $1$ e $2$ recebem a intimação de suspensão das atividades (use a mensagem ``Grupos 1 e 2''). Se o índice atingir $0.5$ então todos os $3$ grupos são notificados  (use a mensagem ``Grupos 1, 2 e 3''). Escrever um algoritmo que lê o índice de poluição medido e emite as notificações adequadas aos diferentes grupos de indústrias.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}
+
+%9----------------------------------------------------------------------
+\item Escrever um algoritmo que lê a hora de início e a hora de fim do jogo (considerando apenas horas inteiras), calcula e escreve a duração do jogo em horas, sabendo-se que a duração máxima para o jogo é de 24 horas e que o jogo pode iniciar em um dia e terminar no dia seguinte.\\
+{\tiny Adaptado de: Orth (2001, p. 25)}
+
+%10----------------------------------------------------------------------
+\item Escrever um algoritmo que lê o número de um funcionário, o número de horas por ele trabalhadas, o valor que recebe por hora, o número de filhos com menos de $14$ anos, a idade do funcionário, o tempo de serviço do funcionário e o valor do salário família por filho. Calcular o salário bruto, o desconto do INSS ($8.5\%$ do salário bruto), e o salário família. Calcular o desconto do Imposto de Renda na fonte como segue:
+\begin{itemize}
+    \item Se \emph{Salário Bruto} $> 1500.00$ então \emph{Imposto de Renda} $= 15\%$ do \emph{Salário Bruto};
+    \item Se \emph{Salário Bruto} $> 500.00$ e \emph{Salário Bruto} $\leq 1500.00$ então \emph{Imposto de Renda} $= 10\%$ do \emph{Salário Bruto};
+    \item Se \emph{Salário Bruto} $\leq 500.00$ então \emph{Imposto de Renda} = $0$.
+\end{itemize}
+Calcular o adicional usando apenas uma das regras a seguir:
+\begin{itemize}
+    \item Se \emph{tempo de serviço} $\geq 15$ anos então \emph{adicional} $= 3.5\%$ do \emph{Salário Bruto};
+    \item Se \emph{idade} $> 40$ anos então \emph{adicional} $= 2\%$ do \emph{Salário Bruto};
+    \item Se \emph{tempo de serviço} $< 15$ anos mas superior a $5$ anos e \emph{idade} $> 30$ anos então \emph{adicional} $= 1.5\%$ do \emph{Salário Bruto}.
+\end{itemize}
+Calcular o Salário Líquido. Escrever o número do funcionário, seu salário bruto, o total de seus descontos (INSS e Imposto de Renda), os adicionais (salário família e adicional) e o salário líquido.\\
+{\tiny Adaptado de: Orth (2001, p. 25-26)}
+
+%11----------------------------------------------------------------------
+\item Escrever um algoritmo que lê o número de identificação de um aluno e as $3$ notas obtidas por este aluno nas $3$ verificações ao longo do semestre, bem como, a média dos exercícios que fazem parte da avaliação. Para cada aluno, calcular a média de aproveitamento, usando a fórmula:
+\[ MA = \frac{N_1 + N_2 \times 2 + N_3 \times 3 + ME}{7}\]
+A atribuição de conceitos obedece à tabela abaixo:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Média de Aproveitamento} & \textbf{Conceito}\\
+\hline\hline
+$\geqslant 9.0$ & A \\ \hline
+$\geqslant 7.5$ e $< 9.0$ & B\\ \hline
+$\geqslant 6.0$ e $< 7.5$ & C \\ \hline
+$\geqslant 4.0$ e $< 6.0$ & D \\ \hline
+$< 4.0$ & E\\ \hline
+\end{tabular}
+\end{center}
+O algoritmo deve escrever o número do aluno, a média de aproveitamento, o conceito correspondente e a mensagem ``APROVADO'' se o conceito for A, B ou C e ``REPROVADO'' se o conceito for D ou E.\\
+{\tiny Adaptado de: Orth (2001, p. 26)}
+
+%12----------------------------------------------------------------------
+\item A empresa XYZ decidiu conceder um aumento de salários a seus funcionários de acordo com a tabela abaixo:
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{SALÁRIO ATUAL} & \textbf{ÍNDICE DE AUMENTO}\\
+\hline\hline
+$\leq 400$ & 15\%\\ \hline
+$> 400$ e $\leq 700$ & 12\%\\ \hline
+$> 700$ e $\leq 1000$ & 10\%\\ \hline
+$> 1000$ e $\leq 1800$ & 7\%\\ \hline
+$> 1800$ e $\leq 2500$ & 4\%\\ \hline
+$> 2500$ & Sem Aumento \\ \hline
+\end{tabular}
+\end{center}
+Escrever um algoritmo que lê o número de um funcionário e o seu salário atual e escreve o número do funcionário, o percentual de seu aumento e o valor do salário corrigido.\\
+{\tiny Adaptado de: Orth (2001, p. 26)}
+
+%13----------------------------------------------------------------------
+\item Escrever um algoritmo que lê a hora de início de um jogo e a hora de término do jogo, ambas subdivididas em $2$ valores distintos, a saber: horas e minutos. Calcular e escrever a duração do jogo, também em horas e minutos, considerando que o tempo máximo do jogo é de $24$ horas, que sua duração não pode ser nula e que o jogo pode começar em um dia e terminar no dia seguinte.\\
+{\tiny Adaptado de: Orth (2001, p. 26)}
+
+%14----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um código \texttt{i} e $3$ valores, \texttt{a}, \texttt{b} e \texttt{c}. Tanto o código \texttt{i} quanto os valores \texttt{a}, \texttt{b} e \texttt{c} lidos são inteiros e positivos.
+\begin{itemize}
+    \item Se \emph{código} $= 1$ então calcular e escrever a área do trapézio de bases \texttt{a} e \texttt{b} e altura \texttt{c}.
+    \item Se \emph{código} $= 2$ então se \texttt{a}, \texttt{b} e \texttt{c}, formam equação de segundo grau com raízes reais então calcular e escrever a raiz ou as raízes (senão escrever ``*'').
+    \item Se \emph{código} $= 3$ então calcular e escrever a média geométrica dos $3$ valores.
+    \item Se \emph{código} $= 4$ então se \texttt{a}, \texttt{b} e \texttt{c} formam triângulo, calcular e escrever a área deste triângulo (senão escrever ``*'').
+    \item Se \emph{código} $> 4$ então escrever ``Código Inválido''.
+\end{itemize}
+{\tiny Adaptado de: Orth (2001, p. 26)}
+
+%15----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um valor real \texttt{m}.
+\begin{itemize}
+    \item Se \texttt{m} tem parte fracionária igual a zero, então escrever ``INTEIRO'', caso contrário escrever ``REAL''.
+    \item Se \texttt{m} é zero, escrever `` ZERO''; se é positivo, escrever `` POSITIVO''; se é negativo, escrever `` NEGATIVO''.
+    \item Se tiver parte fracionária igual a zero, então escrever, no final, `` PAR'', se for número par, ou `` IMPAR'' (sem acento), se for número ímpar.
+\end{itemize}
+{\tiny Adaptado de: Orth (2001, p. 26)}
+
+%16----------------------------------------------------------------------
+\item Um supermercado vende cerveja de três tipos (\texttt{c1}, \texttt{c2} e \texttt{c3}). Como o supermercado deseja fazer uma promoção destas $3$ marcas de cerveja e atender, ao mesmo tempo, um bom número de clientes, o número de cervejas de cada tipo foi limitado por cliente em $18$ do tipo \texttt{c1}, $12$ do tipo \texttt{c2} e $6$ do tipo \texttt{c3}. Escrever um algoritmo que lê a quantidade de cervejas do tipo \texttt{c1}, o valor unitário da cerveja \texttt{c1}, a quantidade de cervejas do tipo \texttt{c2}, o valor unitário da cerveja do tipo \texttt{c2}, a quantidade de cervejas do tipo \texttt{c3} e o valor unitário de cada cerveja do tipo \texttt{c3}. O algoritmo deve considerar as limitações impostas pelo supermercado, isto é, se o cliente pediu mais unidades do que o permitido deve-lhe ser debitado apenas o limite permitido. Deverá escrever o número de itens de cada tipo efetivamente fornecido e o valor total a ser pago.\\
+{\tiny Adaptado de: Orth (2001, p. 26-27)}
+
+%17----------------------------------------------------------------------
+\item Escrever um algoritmo que lê um valor inteiro e positivo \texttt{m}, de até $3$ dígitos, e escreve o seu equivalente em algarismos romanos (I, V, X, L, C, D, M).\\
+{\tiny Adaptado de: Orth (2001, p. 27)}
+
+%18----------------------------------------------------------------------
+\item Escrever um algoritmo que lê os nomes de $3$ produtos, o preço unitário de cada um e a quantidade de cada produto que foi solicitada. O algoritmo deverá escrever:
+\begin{enumerate}[a)]
+    \item O nome dos produtos cujo preço unitário é superior a $50$ reais;
+    \item O nome dos produtos que custarão menos do que $30$ reais (ou seja, cujo subtotal seja menor do que $30$ reais);
+    \item O preço unitário médio dos $3$ produtos;
+    \item O nome dos produtos cujo preço unitário é superior ao preço unitário médio;
+    \item O valor total a ser pago pelo pedido.
+\end{enumerate}
+{\tiny Adaptado de: Orth (2001, p. 27)}
+
+\end{enumerate}
+
+%----------------------------------------------------------------------
+~\\
+\noindent{\textbf{REFERÊNCIAS}}
+
+\noindent{ORTH, Afonso Inácio. \textbf{Algoritmos e Programação com Resumo das Linguagens PASCAL e C}. Porto Alegre: AIO, 2001. 176 p.}
+
+\end{document}
+
