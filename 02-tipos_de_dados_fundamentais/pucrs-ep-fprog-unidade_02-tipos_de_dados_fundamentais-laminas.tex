@@ -22,10 +22,23 @@
 
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
 \title[\sc{Tipos de Dados Fundamentais}]{Tipos de Dados Fundamentais}
 \author[Roland Teodorowitsch]{Roland Teodorowitsch}
 \institute[FPROG - EP - PUCRS]{Fundamentos de Programação - Escola Politécnica - PUCRS}
-\date{24 de agosto de 2022}
+\date{15 de março de 2023}
 
 \begin{document}
 \justifying
@@ -520,21 +533,125 @@ System.out.println(total); // Imprime 434.99999999999999
 \begin{itemize}
 	\item Java suporta as mesmas operações básicas que uma calculadora
 	\begin{itemize}
-		\item $+$: Adição
-		\item $-$: Subtração
-		\item $*$: Multiplicação
-		\item $/$: Divisão
+		\item parênteses
+		\item operadores unários (sinal): $-a$, $+a$
+		\item operadores binários: multiplicação ($a*b$), divisão inteira ou real ($a/b$), resto da divisão inteira ($a\%b$), adição ($a+b$), subtração ($a-b$)
 	\end{itemize}
-	\item Porém, as expressões são escritas de uma forma diferente:
+	\item Porém, as expressões devem escritas de uma forma diferente:
 	\begin{itemize}
-		\item Em Álgebra: \[\frac{a+b}{2}\]
-		\item Em Java: \texttt{(a + b) / 2}
+		\item Em Álgebra: \[x = \frac{a+b}{2}\]
+		\item Em Java: ~ ~ ~ ~\texttt{x = (a + b) / 2.0;}
 	\end{itemize}
 	\item A precedência nas expressões em Java é similar à precedência da Álgebra:
 	\begin{itemize}
-		\item Parenteses, Multiplicação/Divisão/Resto, Soma/Subtração
+		\item Parenteses, Operadores Unários, Multiplicação/Divisão/Resto, Soma/Subtração
+		\item Em caso de empate: resolver da esquerda para a direita
 	\end{itemize}
 \end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Divisão Inteira e Resto da Divisão Inteira}
+\begin{itemize}
+	\item Quando ambas as partes de uma divisão são inteiras, o resultado será um inteiro
+	\begin{itemize}
+		\item Toda informação fracionária será perdida e o resultado não será arredondado
+\begin{javacode}
+int resultado = 7 / 4;
+\end{javacode}
+		\item O valor de \texttt{resultado} será 1
+	\end{itemize}
+	\item Se você estiver interessado no resto da divisão de dois inteiros, use o operador \texttt{\%} (chamado módulo)
+	\begin{itemize}
+		\item Por exemplo, para:
+\begin{javacode}
+int resto = 7 % 4;
+\end{javacode}
+		\item O valor de \texttt{resto} será 3
+		\item O resto da divisão também é chamado de módulo da divisão
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Exemplos de Divisão Inteira e Resto da Divisão Inteira}
+{\footnotesize
+\begin{center}
+\begin{tikzpicture}
+\node[drop shadow,fill=white,inner sep=0pt] 
+{\rowcolors{1}{RoyalBlue!20}{RoyalBlue!5}
+  \begin{tabular}{|p{2.5cm}|c|p{10cm}|}
+\hline
+    \textbf{Express\~ao (onde n=1729)}  & \textbf{Valor} & \textbf{Comentário}\\
+\hline
+    \texttt{n \% 10}   & \texttt{9}     & \texttt{n \% 10} é sempre o último dígito de \texttt{b}\\
+    \texttt{n / 10}    & \texttt{172}   & Isto será sempre \texttt{n} sem o último dígito\\
+    \texttt{n \% 100}  & \texttt{29}    & Os últimos 2 dígitos de \texttt{n}\\
+    \texttt{n / 10.0}  & \texttt{172.9} & Como \texttt{10.0} é um número em ponto-flutuante, a parte fracionária não é descartada\\
+    \texttt{-n \% 10}  & \texttt{-9}    & Como o primeiro número é negativo, o resto também é\\
+    \texttt{n \% 2}    & \texttt{1}     & \texttt{n \% 2} é \texttt{0} se \texttt{n} for par, \texttt{1} ou \texttt{-1} se \texttt{n} for ímpar\\
+\hline
+  \end{tabular}
+};
+\end{tikzpicture}
+\end{center}
+}
+
+\begin{itemize}
+	\item Isto é muito útil para calcular troco
+\begin{javacode}
+int totalCentavos = 1729;
+int reais = totalCentavos / 100;      // 17
+int centavos = totalCentavos % 100;   // 29
+\end{javacode}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Potências e Raízes}
+\begin{itemize}
+	\item Em Java, não há símbolos para potência e raiz
+	\item Por exemplo, \[b \times \left(1+\frac{r}{100}\right)^n\]
+	\item Será implementado como: \texttt{b * Math.pow(1 + r / 100, n)}
+\begin{figure}[h]
+	\includegraphics[height=0.3\paperheight,center]{pucrs-ep-fprog-unidade_02-tipos_de_dados_fundamentais-laminas-pow.png}
+\end{figure}
+	\item Em Java, a classe \texttt{Math} disponibiliza uma série de funções matemáticas
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Métodos Matemáticos}
+{\footnotesize
+\begin{center}
+\begin{tikzpicture}
+\node[drop shadow,fill=white,inner sep=0pt] 
+{\rowcolors{1}{RoyalBlue!20}{RoyalBlue!5}
+  \begin{tabular}{|c|p{10cm}|}
+\hline
+    \textbf{Método}  & \textbf{Retorna}\\
+\hline
+    \texttt{Math.sqrt(x)}      & Raiz quadrada de $x$ ($\ge 0$)\\
+    \texttt{Math.pow(x, y)}    & $x^y$\\
+    \texttt{Math.sin(x)}       & Seno de $x$ ($x$ em radianos)\\
+    \texttt{Math.cos(x)}       & Cosseno de $x$ ($x$ em radianos)\\
+    \texttt{Math.tan(x)}       & Tangente de $x$ ($x$ em radianos)s\\
+    \texttt{Math.toRadians(x)} & Converte $x$ graus para radianos (isto é, retorna $x \cdot \pi / 180)$\\
+    \texttt{Math.toDegrees(x)} & Converte $x$ radianos para graus (isto é, retorna $x \cdot 180 / \pi$)\\
+    \texttt{Math.exp(x)}       & $e^x$\\
+    \texttt{Math.log(x)}       & Logaritmo natural ($\ln(x)$, $x > 0$)\\
+    \texttt{Math.log10(x)}     & Logaritmo decimal ($\log_{10}(x)$, $x > 0$)\\
+    \texttt{Math.round(x)}     & Inteiro mais próximo de $x$ (como um \texttt{long})\\
+    \texttt{Math.abs(x)}       & Absolute value $\left|x\right|$\\
+    \texttt{Math.max(x, y)}    & O maior valor entre $x$ e $y$\\
+    \texttt{Math.min(x, y)}    & O menor valor entre $x$ e $y$\\
+    ... & ...\\
+\hline
+  \end{tabular}
+};
+\end{tikzpicture}
+\end{center}
+}	
 \end{frame}
 
 %-------------------------------------------------------
@@ -554,6 +671,198 @@ area = raio * raio * pi;
 \end{javacode}
 \end{itemize}
 \end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Conversão de Ponto-Flutuante para Inteiro}
+\begin{itemize}
+	\item O compilador Java não permite atribuição direta de valores em ponto flutuante para variáveis inteiras:
+\begin{javacode}
+double balanco = total + taxa;
+int reais = balanco; // Erro!
+\end{javacode}
+	\item Você pode usar um conversor de tipo (\emph cast) para forçar a conversão:
+\begin{javacode}
+double balanco = total + taxa;
+int reais = (int)balanco; // Sem erro!
+\end{javacode}
+	\item Perde-se a parte fracionária do valor em ponto-flutuante (não é usado nenhum arredondamento)
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Sintaxe da Conversão Explícita de Tipo (\emph{cast})}
+\begin{itemize}
+	\item Um operador de conversão explícita corresponde ao nome de um tipo entre parênteses e é aplicado ao resultado de uma expressão
+	\item Por exemplo, em \texttt{(int) (balanco*100)}
+	\begin{itemize}
+		\item \texttt{balanco} é uma variável \texttt{double} e \texttt{100} é uma constante inteira
+		\item \texttt{balanco*100} resultará em um valor \texttt{double}
+		\item \texttt{(int)} faz com que o valor \texttt{double} seja convertido para \texttt{int} antes de ser usado
+	\end{itemize}
+	\item A conversão explícita de tipo é uma ferramenta bastante poderosa e deve ser usada com cuidado
+	\item Para arredondar um número de ponto-flutuante para o número inteiro mais próximo, use o método \texttt{Math.round}
+	\item Este método retorna um inteiro do tipo \texttt{long}, porque números de ponto-flutuante maiores não podem ser armazenados em uma variável \texttt{int}
+\begin{javacode}
+long valArredondado = Math.round(balanco);
+\end{javacode}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Expressões Aritméticas}
+{\footnotesize
+\begin{center}
+\begin{tikzpicture}
+\node[drop shadow,fill=white,inner sep=0pt] 
+{\rowcolors{1}{RoyalBlue!20}{RoyalBlue!5}
+  \begin{tabular}{|C{1.8cm}|C{4.7cm}|p{7.5cm}|}
+\hline
+    \textbf{Expressão Matemática}  & \textbf{Expressão Java} & \textbf{Comentários}\\
+\hline
+    $\displaystyle\frac{x+y}{2}$      & \texttt{(x + y) / 2} &  Os parênteses são necessários, pois \texttt{x + y / 2} corresponde a $\displaystyle x+\frac{y}{2}$.\\
+    $\displaystyle\frac{xy}{2}$      & \texttt{x * y / 2} & Parênteses não são necessários, pois operadores da mesma precedência são avaliados da esquerda para a direita.\\
+    $\displaystyle\left( 1 + \frac{r}{100}\right)^n$ &  \texttt{Math.pow(1 + r / 100, n)} &  Use \text{Math.pow(x, n)} para computar $\displaystyle x^n$.\\
+    $\displaystyle\sqrt{a^2 + b^2}$                & \texttt{Math.sqrt(a * a + b * b)} & \texttt{a * a} é mais simples do que \texttt{Math.pow(a, 2)}.\\
+    $\displaystyle\frac{i+j+k}{3}$ & \texttt{(i + j + k) / 3.0} &  Se \texttt{i}, \texttt{j} e \texttt{k} são inteiros, usar um denominador igual a \texttt{3.0} força a divisão a ocorrer em ponto-flutuante.\\
+    $\displaystyle\pi$      & \texttt{Math.PI} & \texttt{Math.PI} é uma constante declarada na classe \texttt{Math}.\\
+\hline
+  \end{tabular}
+};
+\end{tikzpicture}
+\end{center}
+}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Erros Comuns}
+\begin{itemize}
+	\item Divisão inteira não intencional
+\begin{javacode}
+System.out.print("Informe os ultimos 3 resultados: ");
+int s1 = in.nextInt();
+int s2 = in.nextInt();
+int s3 = in.nextInt();
+double media = (s1 + s2 + s3) / 3; // Error
+\end{javacode}
+	\item Por quê?
+	\begin{itemize}
+		\item Todos os cálculos do lado direito são feitos antes e como há apenas variáveis inteiras, o compilador usará divisão inteira
+		\item Então o resultado (um \texttt{int}) é atribuído a um \texttt{double}
+		\item Não haverá parte fracionária no resultado \texttt{int}, assim zero (.0) será atribuído à parte fracionária da variável \texttt{double}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Erros Comuns}
+\begin{itemize}
+	\item Parênteses desbalanceados... Qual está correto?
+\begin{javacode}
+d = (-(b * b - 4 * a * c) / (2 * a) ;
+\end{javacode}
+ou
+\begin{javacode}
+d = -(b * b - (4 * a * c) / 2 * a) ;
+\end{javacode}
+	\item A contagem de \texttt{(} e de \texttt{)} deve ser igual
+	\item \emph{``Tudo que se abre deve ser fechado...''}
+	\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Exercícios (1)}
+\begin{enumerate}
+	\item Qual será o valor das variáveis \texttt{a}, \texttt{b} e \texttt{c}, após cada uma das seguintes declarações e atribuições em Java?
+	\begin{enumerate}[a]
+		\item
+\begin{javacode}
+int a = 5, b = 2, c = 10;
+a = b;
+b = c;
+\end{javacode}
+		\item
+\begin{javacode}
+int a = 5, b = 2, c = 10;
+b = c;
+a = b;
+\end{javacode}
+	\end{enumerate}
+\end{enumerate}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Exercícios (2)}
+\begin{enumerate}
+	\setItemnumber{2}
+	\item Qual será o valor das variáveis \texttt{a}, \texttt{b} e \texttt{c}, após cada uma das seguintes declarações e atribuições em Java?
+	\begin{enumerate}[a]
+		\item
+\begin{javacode}
+int a = 1, b = 2, c = 3;
+a = b + 1;
+b = a - 1;
+c = c + 1;
+\end{javacode}
+		\item
+\begin{javacode}
+int a = 1, b = 2, c = 3;
+a = a + 1;
+b = b * a;
+c = c - b;
+\end{javacode}
+	\end{enumerate}
+\end{enumerate}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Exercícios (3)}
+\begin{enumerate}
+	\setItemnumber{3}
+	\item Qual será o valor da variável \texttt{x}, que foi declarada com valor inicial 15, após cada uma das operações indicada na seguinte sequência de atribuições em Java?
+\begin{javacode}
+int x = 15;
+x = x + 3;
+x = x - 6;
+x = x / 2;
+x = 3 * x;
+\end{javacode}
+\end{enumerate}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Exercícios (4)}
+\begin{enumerate}
+	\setItemnumber{4}
+	\item Considere as seguintes declarações em Java:
+\begin{javacode}
+int a = 5;
+int b = 2;
+int aux;
+\end{javacode}
+Qual a sequência de atribuições que deverá ser feita para trocar o valor das variáveis \texttt{a} e \texttt{b}? Se achar necessário, use a variável auxiliar \texttt{aux}.
+	\item Qual a sequência de operações necessárias para intercambiar os valores de 3 variáveis inteiras \texttt{a}, \texttt{b} e \texttt{c} de modo que \texttt{a} fique com o valor de \texttt{b}, \texttt{b} fique com o valor de \texttt{c} e \texttt{c} fique com o valor de \texttt{a}? Se achar necessário, use a variável auxiliar \texttt{aux}.
+\begin{javacode}
+int a = 10, b = 20, c = 30, aux;
+\end{javacode}
+\end{enumerate}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Exercícios (5)}
+\begin{enumerate}
+	\setItemnumber{6}
+	\item Converta cada uma das expressões algébricas a seguir para expressões válidas na linguagem Java. Considere que todas as variáveis são do tipo \texttt{double} e que têm valores válidos.
+	\begin{enumerate}[a]
+		\item \[ x = \frac{-b+\sqrt{b^2-4ac}}{2a} \]
+		\item \[ x = (a+b)^2 \cdot \frac{(2a+5b)}{2} + 1 \]
+		\item \[ x = \frac{a^2 -5b + \frac{c}{2} }{ \frac{(b+3)}{7} } \]
+		\item \[ x = \frac{(a+b^2)(a-b)+4a-5b+c}{2} \]
+	\end{enumerate}
+\end{enumerate}
+\end{frame}
+
+
+
 
 %-------------------------------------------------------
 \begin{frame}\frametitle{Incrementando uma Variável}
@@ -674,216 +983,6 @@ x /= (b + c);     // ou:    x /= b + c;
 z -= --x - y++;     // ou:    z += -(--x) + y++;
 \end{javacode}
 \end{enumerate}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Divisão Inteira e Resto da Divisão Inteira}
-\begin{itemize}
-	\item Quando ambas as partes de uma divisão são inteiras, o resultado será um inteiro
-	\begin{itemize}
-		\item Toda informação fracionária será perdida e o resultado não será arredondado
-\begin{javacode}
-int resultado = 7 / 4;
-\end{javacode}
-		\item O valor de \texttt{resultado} será 1
-	\end{itemize}
-	\item Se você estiver interessado no resto da divisão de dois inteiros, use o operador \texttt{\%} (chamado módulo)
-	\begin{itemize}
-		\item Por exemplo, para:
-\begin{javacode}
-int resto = 7 % 4;
-\end{javacode}
-		\item O valor de \texttt{resto} será 3
-		\item O resto da divisão também é chamado de módulo da divisão
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Exemplos de Divisão Inteira e Resto da Divisão Inteira}
-{\footnotesize
-\begin{center}
-\begin{tikzpicture}
-\node[drop shadow,fill=white,inner sep=0pt] 
-{\rowcolors{1}{RoyalBlue!20}{RoyalBlue!5}
-  \begin{tabular}{|p{2.5cm}|c|p{10cm}|}
-\hline
-    \textbf{Express\~ao (onde n=1729)}  & \textbf{Valor} & \textbf{Comentário}\\
-\hline
-    \texttt{n \% 10}   & \texttt{9}     & \texttt{n \% 10} é sempre o último dígito de \texttt{b}\\
-    \texttt{n / 10}    & \texttt{172}   & Isto será sempre \texttt{n} sem o último dígito\\
-    \texttt{n \% 100}  & \texttt{29}    & Os últimos 2 dígitos de \texttt{n}\\
-    \texttt{n / 10.0}  & \texttt{172.9} & Como \texttt{10.0} é um número em ponto-flutuante, a parte fracionária não é descartada\\
-    \texttt{-n \% 10}  & \texttt{-9}    & Como o primeiro número é negativo, o resto também é\\
-    \texttt{n \% 2}    & \texttt{1}     & \texttt{n \% 2} é \texttt{0} se \texttt{n} for par, \texttt{1} ou \texttt{-1} se \texttt{n} for ímpar\\
-\hline
-  \end{tabular}
-};
-\end{tikzpicture}
-\end{center}
-}
-
-\begin{itemize}
-	\item Isto é muito útil para calcular troco
-\begin{javacode}
-int totalCentavos = 1729;
-int reais = totalCentavos / 100;      // 17
-int centavos = totalCentavos % 100;   // 29
-\end{javacode}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Potências e Raízes}
-\begin{itemize}
-	\item Em Java, não há símbolos para potência e raiz
-	\item Por exemplo, \[b \times \left(1+\frac{r}{100}\right)^n\]
-	\item Será implementado como: \texttt{b * Math.pow(1 + r / 100, n)}
-\begin{figure}[h]
-	\includegraphics[height=0.3\paperheight,center]{pucrs-ep-fprog-unidade_02-tipos_de_dados_fundamentais-laminas-pow.png}
-\end{figure}
-	\item A biblioteca Java disponibiliza uma série de funções matemáticas, tai como \texttt{Math.sqrt} (raiz quadrada) e \texttt{Math.pow} (elevação a determinada potência).
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Métodos Matemáticos}
-{\footnotesize
-\begin{center}
-\begin{tikzpicture}
-\node[drop shadow,fill=white,inner sep=0pt] 
-{\rowcolors{1}{RoyalBlue!20}{RoyalBlue!5}
-  \begin{tabular}{|c|p{10cm}|}
-\hline
-    \textbf{Método}  & \textbf{Retorna}\\
-\hline
-    \texttt{Math.sqrt(x)}      & Raiz quadrada de $x$ ($\ge 0$)\\
-    \texttt{Math.pow(x, y)}    & $x^y$ ($x > 0$, ou $x = 0$ e $y > 0$, ou $x < 0$ e $y$ é um inteiro)\\
-    \texttt{Math.sin(x)}       & Seno de $x$ ($x$ em radianos)\\
-    \texttt{Math.cos(x)}       & Cosseno de $x$\\
-    \texttt{Math.tan(x)}       & Tangente de $x$\\
-    \texttt{Math.toRadians(x)} & Converte $x$ graus para radianos (isto é, retorna $x \cdot \pi / 180)$\\
-    \texttt{Math.toDegrees(x)} & Converte $x$ radianos para graus (isto é, retorna $x \cdot 180 / \pi$)\\
-    \texttt{Math.exp(x)}       & $e^x$\\
-    \texttt{Math.log(x)}       & Logaritmo natural ($\ln(x)$, $x > 0$)\\
-    \texttt{Math.log10(x)}     & Logaritmo decimal ($\log_{10}(x)$, $x > 0$)\\
-    \texttt{Math.round(x)}     & Inteiro mais próximo de $x$ (como um \texttt{long})\\
-    \texttt{Math.abs(x)}       & Absolute value $\left|x\right|$\\
-    \texttt{Math.max(x, y)}    & O maior valor entre $x$ e $y$\\
-    \texttt{Math.min(x, y)}    & O menor valor entre $x$ e $y$\\
-\hline
-  \end{tabular}
-};
-\end{tikzpicture}
-\end{center}
-}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Conversão de Ponto-Flutuante para Inteiro}
-\begin{itemize}
-	\item O compilador Java não permite atribuição direta de valores em ponto flutuante para variáveis inteiras:
-\begin{javacode}
-double balanco = total + taxa;
-int reais = balanco; // Erro!
-\end{javacode}
-	\item Você pode usar um conversor de tipo (\emph cast) para forçar a conversão:
-\begin{javacode}
-double balanco = total + taxa;
-int reais = (int)balanco; // Sem erro!
-\end{javacode}
-	\item Perde-se a parte fracionária do valor em ponto-flutuante (não é usado nenhum arredondamento)
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Sintaxe da Conversão Explícita de Tipo (\emph{cast})}
-\begin{itemize}
-	\item Um operador de conversão explícita corresponde ao nome de um tipo entre parênteses e é aplicado ao resultado de uma expressão
-	\item Por exemplo, em \texttt{(int) (balanco*100)}
-	\begin{itemize}
-		\item \texttt{balanco} é uma variável \texttt{double} e \texttt{100} é uma constante inteira
-		\item \texttt{balanco*100} resultará em um valor \texttt{double}
-		\item \texttt{(int)} faz com que o valor \texttt{double} seja convertido para \texttt{int} antes de ser usado
-	\end{itemize}
-	\item A conversão explícita de tipo é uma ferramenta bastante poderosa e deve ser usada com cuidado
-	\item Para arredondar um número de ponto-flutuante para o número inteiro mais próximo, use o método \texttt{Math.round}
-	\item Este método retorna um inteiro do tipo \texttt{long}, porque números de ponto-flutuante maiores não podem ser armazenados em uma variável \texttt{int}
-\begin{javacode}
-long valArredondado = Math.round(balanco);
-\end{javacode}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Expressões Aritméticas}
-{\footnotesize
-\begin{center}
-\begin{tikzpicture}
-\node[drop shadow,fill=white,inner sep=0pt] 
-{\rowcolors{1}{RoyalBlue!20}{RoyalBlue!5}
-  \begin{tabular}{|C{1.8cm}|C{4.7cm}|p{7.5cm}|}
-\hline
-    \textbf{Expressão Matemática}  & \textbf{Expressão Java} & \textbf{Comentários}\\
-\hline
-    $\displaystyle\frac{x+y}{2}$      & \texttt{(x + y) / 2} &  Os parênteses são necessários, pois \texttt{x + y / 2} corresponde a $\displaystyle x+\frac{y}{2}$.\\
-    $\displaystyle\frac{xy}{2}$      & \texttt{x * y / 2} & Parênteses não são necessários, pois operadores da mesma precedência são avaliados da esquerda para a direita.\\
-    $\displaystyle\left( 1 + \frac{r}{100}\right)^n$ &  \texttt{Math.pow(1 + r / 100, n)} &  Use \text{Math.pow(x, n)} para computar $\displaystyle x^n$.\\
-    $\displaystyle\sqrt{a^2 + b^2}$                & \texttt{Math.sqrt(a * a + b * b)} & \texttt{a * a} é mais simples do que \texttt{Math.pow(a, 2)}.\\
-    $\displaystyle\frac{i+j+k}{3}$ & \texttt{(i + j + k) / 3.0} &  Se \texttt{i}, \texttt{j} e \texttt{k} são inteiros, usar um denominador igual a \texttt{3.0} força a divisão a ocorrer em ponto-flutuante.\\
-    $\displaystyle\pi$      & \texttt{Math.PI} & \texttt{Math.PI} é uma constante declarada na classe \texttt{Math}.\\
-\hline
-  \end{tabular}
-};
-\end{tikzpicture}
-\end{center}
-}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Erros Comuns}
-\begin{itemize}
-	\item Divisão inteira não intencional
-\begin{javacode}
-System.out.print("Informe os ultimos 3 resultados: ");
-int s1 = in.nextInt();
-int s2 = in.nextInt();
-int s3 = in.nextInt();
-double media = (s1 + s2 + s3) / 3; // Error
-\end{javacode}
-	\item Por quê?
-	\begin{itemize}
-		\item Todos os cálculos do lado direito são feitos antes e como há apenas variáveis inteiras, o compilador usará divisão inteira
-		\item Então o resultado (um \texttt{int}) é atribuído a um \texttt{double}
-		\item Não haverá parte fracionária no resultado \texttt{int}, assim zero (.0) será atribuído à parte fracionária da variável \texttt{double}
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Erros Comuns}
-\begin{itemize}
-	\item Parênteses desbalanceados... Qual está correto?
-{\scriptsize
-\begin{javacode}
-(-(b * b - 4 * a * c) / (2 * a)   // 3 (, 2 )
--(b * b - (4 * a * c) / 2 * a)    // 2 (, 2 )
-\end{javacode}
-}
-	\item A contagem de \texttt{(} e de \texttt{)} deve ser igual
-	\item Infelizmente para humanos isto pode ser um pouco difícil, principalmente para fórmulas grandes
-	\item Segue um truque: conte \texttt{(} como +1 e \texttt{)} como -1; a contagem deve terminar em 0
-	\item Exemplo:
-{\scriptsize
-\begin{javacode}
-(-(b * b - 4 * a * c) / (2 * a)
-1 2                 1   2     1   
-
--(b * b - (4 * a * c) / 2 * a)
- 1        2        1         0
-\end{javacode}
-}
-\end{itemize}
 \end{frame}
 
 %=======================================================
