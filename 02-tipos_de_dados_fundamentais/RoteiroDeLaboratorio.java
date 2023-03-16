@@ -165,7 +165,7 @@ public class RoteiroDeLaboratorio {
 		System.out.println("\n- Algumas atribuições de variáveis de tipos diferentes NÃO trazem problema");
 		System.out.println("\n- Mas algumas vezes é necessário realizar uma conversão explícita (ou seja, indicar o tipo entrer parênteses)");
 
-		System.out.println("\n- Atribuir double para int é possível, mas o contrário requer conversão:");
+		System.out.println("\n- Atribuir int para double é possível, mas o contrário requer conversão:");
 		System.out.println("\tdouble varDouble = 1.5;");
 		System.out.println("\tint varInt = 1;");
 		System.out.println("\tvarDouble = varInt; // OK");
@@ -175,25 +175,25 @@ public class RoteiroDeLaboratorio {
 		System.out.println("\n- Atribuir float para double é possível, mas o contrário requer conversão:");
 		System.out.println("\tdouble varDouble = 1.5;");
 		System.out.println("\tfloat varFloat = 1.5F;");
-		System.out.println("\tvarDouble = varFloat; //OK");
+		System.out.println("\tvarDouble = varFloat; // OK");
 		System.out.println("\t// varFloat = varDouble; // ERRADO");
-		System.out.println("\tvarFloat = (float)varDouble;");
+		System.out.println("\tvarFloat = (float)varDouble; // OK");
 
-		System.out.println("\n- Atribuir float para double é possível, mas o contrário requer conversão:");
+		System.out.println("\n- Atribuir int para long é possível, mas o contrário requer conversão:");
 		System.out.println("\tlong varLong = 123;");
 		System.out.println("\tint varInt = 123;");
-		System.out.println("\tvarLong = varInt; //OK");
+		System.out.println("\tvarLong = varInt; // OK");
 		System.out.println("\t// varInt = varLong; // ERRADO");
-		System.out.println("\tvarInt = (int)varLong;");
+		System.out.println("\tvarInt = (int)varLong; // OK");
 
 		System.out.println("\n- Atribuir char para int é possível, mas o contrário requer conversão:");
 		System.out.println("\tint varLong = 65;");
 		System.out.println("\tchar varChar = 'A';");
-		System.out.println("\tvarInt = varChar; //OK");
+		System.out.println("\tvarInt = varChar; // OK");
 		System.out.println("\t// varChar = varInt; // ERRADO");
-		System.out.println("\tvarChar = (char)varInt;");
+		System.out.println("\tvarChar = (char)varInt; // OK");
 	
-		System.out.println("\n- Mas o que acontece quando se atribui um char para um int?");
+		System.out.println("\n- O que acontece quando se atribui um char para um int?");
 		System.out.println("\t* Na verdade atribui-se o código do char na tabela ASCII para a variável int");
 		System.out.println("\t* Na tabela ASCII:");
 		System.out.println("\t  '0' => 48, '1' => 49, '2' => 50, ...");
