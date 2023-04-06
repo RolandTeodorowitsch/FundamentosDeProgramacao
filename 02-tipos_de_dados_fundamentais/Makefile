@@ -2,7 +2,8 @@ PDF =	\
 	pucrs-ep-fprog-unidade_02-tipos_de_dados_fundamentais-laminas.pdf \
 	pucrs-ep-fprog-unidade_02-tipos_de_dados_fundamentais-exercicios_sobre_algoritmos.pdf \
 	pucrs-ep-fprog-unidade_02-tipos_de_dados_fundamentais-lista_de_exercicios-gabarito.pdf \
-	pucrs-ep-fprog-unidade_02-tipos_de_dados_fundamentais-lista_de_exercicios.pdf
+	pucrs-ep-fprog-unidade_02-tipos_de_dados_fundamentais-lista_de_exercicios.pdf \
+	pucrs-ep-fprog-unidade_02-tipos_de_dados_fundamentais-autodromo_desafios.pdf
 
 all:	$(PDF)
 
