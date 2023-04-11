@@ -3,14 +3,14 @@
 \usepackage[T1]{fontenc}
 \usepackage[brazil]{babel}
 \usepackage{graphics,amssymb,amsfonts,amsmath}
+\usepackage{tikz}
 \usepackage{enumerate,hyperref}
 \usepackage{palatino}
 \usepackage{ragged2e}
 \usepackage{minted}
 \usepackage{booktabs}
-\usepackage{verbatim}
 \usepackage{tabto}
-%\usepackage{listings}
+\usepackage{verbatim}
 \usepackage[export]{adjustbox}
 \usepackage{tikz}                   
 \usepackage{xcolor}
@@ -38,7 +38,7 @@
 \title[\sc{Decisões}]{Decisões}
 \author[Roland Teodorowitsch]{Roland Teodorowitsch}
 \institute[FPROG - EP - PUCRS]{Fundamentos de Programação - Escola Politécnica - PUCRS}
-\date{6 de abril de 2023}
+\date{11 de abril de 2023}
 
 \begin{document}
 \justifying
@@ -703,8 +703,8 @@ public enum EstadoSemaforo {
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{Solução do Exercício 2: \texttt{MesesComSwitchCase.java}}
-	\tiny{\inputminted[bgcolor=cyan!10]{java}{src/MesesComSwitchCase.java}}
+\begin{frame}\frametitle{Solução do Exercício 2: \texttt{MesesComSwitch.java}}
+	\tiny{\inputminted[bgcolor=cyan!10]{java}{src/MesesComSwitch.java}}
 \end{frame}
 
 %-------------------------------------------------------
@@ -713,8 +713,8 @@ public enum EstadoSemaforo {
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{Solução do Exercício 3: \texttt{DiasDaSemanaComSwitchCase.java}}
-	\tiny{\inputminted[bgcolor=cyan!10]{java}{src/DiasDaSemanaComSwitchCase.java}}
+\begin{frame}\frametitle{Solução do Exercício 3: \texttt{DiasDaSemanaComSwitch.java}}
+	\tiny{\inputminted[bgcolor=cyan!10]{java}{src/DiasDaSemanaComSwitch.java}}
 \end{frame}
 
 %=======================================================
@@ -987,38 +987,53 @@ if (input == 1 || input == 2)
 \begin{frame}\frametitle{Exercícios (3)}
 \begin{enumerate}
 	\setcounter{enumi}{4}
-	\item Escreva um programa em Java que leia as 4 notas de um aluno de Fundamentos de Programação ($P_1$, $P_2$, $P_3$ e $M_T$), calcule o seu grau $G_1$ e mostre este grau e uma mensagen indicando se o aluno passou por média ($G_1 \ge 7$), ficou em $G_2$ ($G_1 \ge 4$ e $G_1 < 7$) ou reprovou ($G_1 < 4$). Caso o aluno tenha ficado em $G_2$, calcule qual a nota mínima que o aluno deve tirar nesta prova para obter aprovação.
-	Considere que:
-	\begin{itemize}
-		\item $M_T$ já corresponde à média calculada dos trabalhos e exercícios realizados.
-		\item A média de $G_1$ é calculada com a seguinte fórmula:
-\[ G_1 = \frac{P_1 + 2 \times P_2 + 3 \times P_3 + M_t}{7} \]
-		\item Para obter aprovação depois da realização do $G_2$, a média aritmética entre $G_1$ e $G_2$ deve ser maior ou igual a $5$.
-	\end{itemize}
+	\item Escreva um programa em Java que leia as 4 notas de um aluno de Fundamentos de Programação: $P_1$ (nota da prova 1), $P_2$ (nota da prova 2), $M_E$ (média de exercícios) e $T_F$ (nota do trabalho final). Calcule o seu grau $G_1$, mostrando-o juntamente com uma mensagen indicando se o aluno passou por média ($G_1 \ge 7$), ficou em $G_2$ ($G_1 \ge 4$ e $G_1 < 7$) ou reprovou ($G_1 < 4$). Caso o aluno tenha ficado em $G_2$, calcule qual a nota mínima que o aluno deve tirar nessa prova para obter aprovação. Considere que a média de $G_1$ é calculada com a seguinte fórmula:
+\[ G_1 = \frac{P_1 + 2 \times P_2 + M_E + 2 \times T_F}{6} \]
+Lembre-se que, para obter aprovação depois da realização do $G_2$, a média aritmética entre $G_1$ e $G_2$ deve ser maior ou igual a $5$.
 \end{enumerate}
 \end{frame}
 
 %-------------------------------------------------------
 \begin{frame}\frametitle{Exercícios (4)}
-\begin{enumerate}
+	\begin{enumerate}
 	\setcounter{enumi}{5}
 	\item Escreva um trecho de programa em Java para calcular o número de pontos e o valor de multas de trânsito por excesso de velocidade. Inicialmente seu programa deverá ler o limite de velocidade da via e a velocidade do veículo (medida com um radar), ambos em quilômetros por hora e sem casas decimais. Para determinar a velocidade do veículo que será considerada, aplica-se uma tolerância de 7 km/h, se a velocidade medida for menor ou igual a 100 km/h, ou de 7\%, em caso contrário. Se a velocidade considerada for menor ou igual ao limite da via, não há multa. Se a velocidade considerada exceder 50\% do limite da via, a multa será de R\$880,41 (infração gravíssima, 7 pontos). Se a velocidade considerada exceder 20\% do limite da via, a multa será de R\$195,23 (infração grave, 5 pontos). Senão a multa será de R\$130,16 (infração média, 4 pontos).
 \end{enumerate}
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{Solução do Exercício 1: \texttt{PesoIdeal.java}}
+\begin{frame}[fragile]\frametitle{Solução do Exercício 1: \texttt{PesoIdeal.java}}
 	\scriptsize{\inputminted[bgcolor=cyan!10]{java}{src/PesoIdeal.java}}
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{Solução do Exercício 2: \texttt{Quadrante.java}}
+\begin{frame}[fragile]\frametitle{Solução do Exercício 2: \texttt{Quadrante.java}}
 	\tiny{\inputminted[bgcolor=cyan!10]{java}{src/Quadrante.java}}
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{Solução do Exercício 3: \texttt{Idade.java}}
+\begin{frame}[fragile]\frametitle{Solução do Exercício 3: \texttt{Idade.java}}
 	\tiny{\inputminted[bgcolor=cyan!10]{java}{src/Idade.java}}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Solução do Exercício 4: \texttt{Classificacao.java}}
+	\tiny{\inputminted[bgcolor=cyan!10]{java}{src/Classificacao.java}}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Solução do Exercício 4: \texttt{ClassificacaoComSwitch.java}}
+	\tiny{\inputminted[bgcolor=cyan!10]{java}{src/ClassificacaoComSwitch.java}}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Solução do Exercício 5: \texttt{Notas.java}}
+	\scriptsize{\inputminted[bgcolor=cyan!10]{java}{src/Notas.java}}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Solução do Exercício 6: \texttt{MultaDeTransito.java}}
+	\tiny{\inputminted[bgcolor=cyan!10]{java}{src/MultaDeTransito.java}}
 \end{frame}
 
 %=======================================================

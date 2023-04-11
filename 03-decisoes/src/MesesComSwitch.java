@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class MesesComSwitchCase {
+public class MesesComSwitch {
    public static void main(String[] args) {
       Scanner in = new Scanner(System.in);
       System.out.print("Digite um nome de mês: ");

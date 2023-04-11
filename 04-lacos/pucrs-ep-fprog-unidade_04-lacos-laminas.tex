@@ -58,7 +58,6 @@
 	\item Familiarizar-se com os algoritmos comuns com laços
 	\item Entender laços aninhados
 	\item Implementar programas que leem e processam conjuntos de dados
-	\item Usar um computador para fazer simulações
 \end{itemize}
 \end{frame}
 
@@ -72,7 +71,6 @@
 	\item Sentinelas de Processamento
 	\item Algoritmos Comuns com Laços
 	\item Laços Aninhados
-	\item Aplicação: Números Aleatórios e Simulações
 	\item Resolução de Problemas: \emph{Storyboards}
 	\item Resumo
 \end{itemize}
@@ -1539,10 +1537,128 @@ Faça laços aninhados para imprimir:
 \end{frame}
 
 %=======================================================
-\section{Aplicação: Números Aleatórios e Simulações}
+\section{Resolução de Problemas: Storyboards (Esboços Sequenciais)}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{Aplicação: Números Aleatórios e Simulações}
+\begin{frame}\frametitle{Resolução de Problemas: \emph{Storyboards} (Esboços Sequenciais)}
+\begin{itemize}
+	\item Um storyboard (esboço sequencial) consiste numa sequência de desenhos anotados para cada etapa de uma sequência de ações
+	\item Trata-se de uma técnica útil para solução de problemas que permite modelar a interação com o usuário
+	\item Pode ajudar a responder:
+	\begin{itemize}
+		\item Qual informação o usuário deve fornecer e em que ordem?
+		\item Qual informação o programa deve mostrar e em que formato?
+		\item O que deve acontecer se houver um erro?
+		\item Quando o programa deve terminar?
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Exemplo de \emph{Storyboard}}
+\begin{itemize}
+	\item Objetivo: converter uma sequência de medidas
+	\begin{itemize}
+		\item Exigirá um laço e algumas variáveis
+		\item Deverá gerenciar uma conversão de cada vez através de um laço
+	\end{itemize}
+\begin{figure}[h]
+	\includegraphics[height=0.5\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-storyboards1.jpg}
+\end{figure}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{O que pode dar errado?}
+\begin{itemize}
+	\item Unidades de medidas desconhecidas
+	\begin{itemize}
+		\item Como centímetros e polegadas são digitados?
+		\item Que outras conversões estão disponíveis?
+	\end{itemize}
+	\item Solução: mostra uma lista de tipos de unidades aceitáveis
+\begin{figure}[h]
+	\includegraphics[height=0.15\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-storyboards2.jpg}
+\end{figure}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{O que mais pode dar errado?}
+\begin{itemize}
+	\item Como o usuário encerra o programa?
+\begin{figure}[h]
+	\includegraphics[height=0.5\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-storyboards3.jpg}
+\end{figure}
+	\item Storyboards ajudam a planejar um programa: conhecer os fluxos ajuda a estruturar o código
+\end{itemize}
+\end{frame}
+
+%=======================================================
+\section{Resumo}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Resumo (1)}
+\begin{itemize}
+	\item Há 3 tipos de laços:
+	\begin{itemize}
+		\item Laços \texttt{while}
+		\item Laços \texttt{for}
+		\item Laços \texttt{do}
+	\end{itemize}
+	\item Cada laço possui as seguintes seções:
+	\begin{itemize}
+		\item Inicialização (preparação das variáveis para iniciar o laço)
+		\item Condição (teste para verificar se o corpo do laço deve ser executado)
+		\item Atualização (alteração de alguma variável testada na condição)
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Resumo (2)}
+\begin{itemize}
+	\item Um laço executa instruções repetidamente enquanto uma condição for verdadeira
+	\item Errar o número de iterações em laço por uma unidade é um erro comum de programação
+	\begin{itemize}
+		\item Procure deixar os testes simples para evitar este tipo de erro.
+	\end{itemize}
+	\item O laço \texttt{for} é usado quando um valor varia de um ponto de partida até um ponto final com um incremento ou decremento constante
+	\item O laço \texttt{do} é apropriado quando o corpo do laço deve ser executado pelo menos uma vez
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Resumo (3)}
+\begin{itemize}
+	\item Um valor de sentinela consiste de um valor que determina o final de um conjunto de dados, mas que não faz parte deste conjunto
+	\item Você pode usar uma variável booleana para controlar um laço
+	\begin{itemize}
+		\item Defina a variável com \texttt{true} antes de entrar no laço, e então defina ela com \texttt{false} para sair do laço
+	\end{itemize}
+	\item Quando o corpo de um laço contiver outro laço, os laços são aninhados
+	\begin{itemize}
+		\item Um uso típico para laços aninhados é a impressão de uma tabela com linhas e colunas
+	\end{itemize}
+	\item Em uma simulação, o computador é usado para simular uma atividade
+	\begin{itemize}
+		\item Pode-se introduzir aleatoriedade chamando o gerador de números aleatórios
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%=======================================================
+\section{Tópicos Avançados}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Tópicos Avançados}
+\begin{itemize}
+	\item Números Aleatórios e Simulações
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Números Aleatórios e Simulações}
 \begin{itemize}
 	\item Jogos frequentemente usam números aleatórios para tornar as coisas mais interessantes
 	\begin{itemize}
@@ -1559,23 +1675,14 @@ Faça laços aninhados para imprimir:
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{\texttt{RandomDemo.java} {\tiny (HORSTMANN, 2013, p. 176)}}
-\begin{javacode}
-/**
-   This program prints ten random numbers between 0 and 1.
-*/
-public class RandomDemo {
-   public static void main(String[] args) {
-      for (int i = 1; i <= 10; i++) {
-         double r = Math.random();
-         System.out.println(r);
-      }
-   }
-}
-\end{javacode}
+\begin{frame}[fragile]\frametitle{Exemplo: \texttt{RandomDemo.java} {\tiny [Publicado em Horstmann (2013, p. 176)]}}
+\begin{itemize}
+	\item O método \texttt{Math.random()} pode ser usado para gerar números aleatórios no intervalo [0;1)
+\end{itemize}
+\scriptsize{\inputminted[bgcolor=cyan!10]{java}{src/RandomDemo.java}}
 \end{frame}
 
-%-------------------------------------------------------
+%-------------------------------------------------------	
 \begin{frame}[fragile]\frametitle{Resultado de \texttt{RandomDemo.java}}
 \begin{javacode}
 0.6513550469421886
@@ -1688,117 +1795,6 @@ Resultado:\\
 Estimate for pi: 3.1504
 \end{javacode}
 }
-\end{frame}
-
-%=======================================================
-\section{Resolução de Problemas: Storyboards (Esboços Sequenciais)}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Resolução de Problemas: \emph{Storyboards} (Esboços Sequenciais)}
-\begin{itemize}
-	\item Um storyboard (esboço sequencial) consiste numa sequência de desenhos anotados para cada etapa de uma sequência de ações
-	\item Trata-se de uma técnica útil para solução de problemas que permite modelar a interação com o usuário
-	\item Pode ajudar a responder:
-	\begin{itemize}
-		\item Qual informação o usuário deve fornecer e em que ordem?
-		\item Qual informação o programa deve mostrar e em que formato?
-		\item O que deve acontecer se houver um erro?
-		\item Quando o programa deve terminar?
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Exemplo de \emph{Storyboard}}
-\begin{itemize}
-	\item Objetivo: converter uma sequência de medidas
-	\begin{itemize}
-		\item Exigirá um laço e algumas variáveis
-		\item Deverá gerenciar uma conversão de cada vez através de um laço
-	\end{itemize}
-\begin{figure}[h]
-	\includegraphics[height=0.5\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-storyboards1.jpg}
-\end{figure}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{O que pode dar errado?}
-\begin{itemize}
-	\item Unidades de medidas desconhecidas
-	\begin{itemize}
-		\item Como centímetros e polegadas são digitados?
-		\item Que outras conversões estão disponíveis?
-	\end{itemize}
-	\item Solução: mostra uma lista de tipos de unidades aceitáveis
-\begin{figure}[h]
-	\includegraphics[height=0.15\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-storyboards2.jpg}
-\end{figure}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{O que mais pode dar errado?}
-\begin{itemize}
-	\item Como o usuário encerra o programa?
-\begin{figure}[h]
-	\includegraphics[height=0.5\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-storyboards3.jpg}
-\end{figure}
-	\item Storyboards ajudam a planejar um programa: conhecer os fluxos ajuda a estruturar o código
-\end{itemize}
-\end{frame}
-
-%=======================================================
-\section{Resumo}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Resumo (1)}
-\begin{itemize}
-	\item Há 3 tipos de laços:
-	\begin{itemize}
-		\item Laços \texttt{while}
-		\item Laços \texttt{for}
-		\item Laços \texttt{do}
-	\end{itemize}
-	\item Cada laço possui as seguintes seções:
-	\begin{itemize}
-		\item Inicialização (preparação das variáveis para iniciar o laço)
-		\item Condição (teste para verificar se o corpo do laço deve ser executado)
-		\item Atualização (alteração de alguma variável testada na condição)
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Resumo (2)}
-\begin{itemize}
-	\item Um laço executa instruções repetidamente enquanto uma condição for verdadeira
-	\item Errar o número de iterações em laço por uma unidade é um erro comum de programação
-	\begin{itemize}
-		\item Procure deixar os testes simples para evitar este tipo de erro.
-	\end{itemize}
-	\item O laço \texttt{for} é usado quando um valor varia de um ponto de partida até um ponto final com um incremento ou decremento constante
-	\item O laço \texttt{do} é apropriado quando o corpo do laço deve ser executado pelo menos uma vez
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Resumo (3)}
-\begin{itemize}
-	\item Um valor de sentinela consiste de um valor que determina o final de um conjunto de dados, mas que não faz parte deste conjunto
-	\item Você pode usar uma variável booleana para controlar um laço
-	\begin{itemize}
-		\item Defina a variável com \texttt{true} antes de entrar no laço, e então defina ela com \texttt{false} para sair do laço
-	\end{itemize}
-	\item Quando o corpo de um laço contiver outro laço, os laços são aninhados
-	\begin{itemize}
-		\item Um uso típico para laços aninhados é a impressão de uma tabela com linhas e colunas
-	\end{itemize}
-	\item Em uma simulação, o computador é usado para simular uma atividade
-	\begin{itemize}
-		\item Pode-se introduzir aleatoriedade chamando o gerador de números aleatórios
-	\end{itemize}
-\end{itemize}
 \end{frame}
 
 %=======================================================

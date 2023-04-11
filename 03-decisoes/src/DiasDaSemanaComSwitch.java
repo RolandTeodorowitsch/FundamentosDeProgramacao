@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class DiasDaSemanaComSwitchCase {
+public class DiasDaSemanaComSwitch {
    public static void main(String[] args) {
       Scanner in = new Scanner(System.in);
       System.out.print("Digite o valor do dia da semana: ");
