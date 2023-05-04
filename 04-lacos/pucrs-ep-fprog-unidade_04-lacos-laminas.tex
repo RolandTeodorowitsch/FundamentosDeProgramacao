@@ -37,7 +37,7 @@
 \title[\sc{Laços}]{Laços}
 \author[Roland Teodorowitsch]{Roland Teodorowitsch}
 \institute[FPROG - EP - PUCRS]{Fundamentos de Programação - Escola Politécnica - PUCRS}
-\date{24 de agosto de 2022}
+\date{4 de maio de 2023}
 
 \begin{document}
 \justifying
@@ -65,13 +65,12 @@
 \begin{frame}\frametitle{Conteúdos}
 \begin{itemize}
 	\item O Laço \texttt{while}
-	\item Resolução de Problemas: Teste de Mesa
+	\item Exercícios
 	\item O Laço \texttt{for}
 	\item O Laço \texttt{do}
 	\item Sentinelas de Processamento
 	\item Algoritmos Comuns com Laços
 	\item Laços Aninhados
-	\item Resolução de Problemas: \emph{Storyboards}
 	\item Resumo
 \end{itemize}
 \end{frame}
@@ -80,24 +79,130 @@
 \section{O Laço \texttt{while}}
 
 %-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Laços}
+\begin{itemize}
+	\item Um laço serve para repetir a execução de trechos de um programa\\
+	\item Laços executam instruções repetidamente enquanto uma condição for verdadeira\\
+	\item Exemplos de aplicações com laços\\
+	\begin{itemize}
+		\item Executar um processamento específico sobre um conjunto predefinido de dados\\\emph{\tiny Leia o raio de 10 círculos e mostre a área e a circunferência de cada círculo.}\\
+		\item Executar um processamento específico sobre um conjunto de dados cujo tamanho foi fornecido\\\emph{\tiny Leia quantos círculos serão processados, e a seguir leia o raio de cada círculo, calculando a sua área e circunferência.}\\
+		\item Executar um processamento específico sobre um conjunto indeterminado de dados\\\emph{\tiny Leia o raio de um círculo e mostre a sua área e a sua circunferência, repetindo esses passos enquanto o raio lido for maior do que zero.}\\
+		\item Executar alguns processamentos e algoritmos específicos\\\emph{\tiny Somatório, produtório, contagem, média, cálculo de juros compostos, etc.}\\
+		\item Realizar ações repetidas diversas dentro de aplicações\\\emph{\tiny Movimentar um objeto dentro de um jogo, imprimir tabelas com várias linhas, desenhar gráficos, executar simulações, etc.}\\
+		\item etc.\\	
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{O Laço \texttt{while}}
 \begin{itemize}
-	\item Exemplos de aplicações com laços
+	\item O comando \texttt{while} pode ser usado em Java para implementar um laço\\
+{\scriptsize
+\begin{javacode}
+while ( expressaoLogica ) {
+      // comandos
+}
+\end{javacode}
+}\\
+	\item \texttt{while} é composto por:\\
 	\begin{itemize}
-		\item Cálculo de juros compostos
-		\item Cálculo de um somatório
-		\item Cálculo de um produtório
-		\item Cálculo de média
-		\item Simulações, programas orientados a eventos, etc.
+		\item Teste de permanência (uma expressão lógica)\\
+		\item Comandos que serão executados repetidamente enquanto o teste for \texttt{true}\\
 	\end{itemize}
-	\item Cálculo de juros compostos (Unidade 1)
-\begin{verbatim}
-Inicie com um valor de ano igual a zero e um total de $10.000
-Repita o seguinte enquanto o total seja menor do que $20.000
-     Adicione 1 ao valor do ano
-     Multiplique o total por 1,05 (crescimento de 5%)
-Informe o último valor atribuído ao ano como resposta
-\end{verbatim}
+	\item Assim, para contar de 1 até 5, por exemplo, poderíamos fazer:\\
+{\scriptsize
+\begin{javacode}
+int i = 1;                    // valor inicial atribuído a uma variável
+while ( i <= 5 ) {            // testa se os comandos do laço serão executados ou não
+      System.out.println(i);  // comandos que serão repetidos
+      i = i + 1;              // atualização da variável de controle do laço
+}
+\end{javacode}
+}\\		
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Mais exemplos de contagem...}
+\begin{columns}[T]
+	\begin{column}{0.5\linewidth}
+\begin{itemize}
+	\item Contar de 10 até 50:\\
+{\scriptsize
+\begin{javacode}
+int i = 10;
+while ( i <= 50 ) {
+      System.out.println(i);
+      i = i + 1;
+}
+\end{javacode}
+}\\		
+	\item Contar de 5 até 50, de 5 em 5:\\
+{\scriptsize
+\begin{javacode}
+int i = 5;
+while ( i <= 50 ) {
+      System.out.println(i);
+      i = i + 5;
+}
+\end{javacode}
+}\\		
+\end{itemize}
+	\end{column}
+	\begin{column}{0.5\linewidth}
+\begin{itemize}
+	\item Contar de 10 até 1:\\
+{\scriptsize
+\begin{javacode}
+int i = 10;
+while ( i >= 1 ) {
+      System.out.println(i);
+      i = i - 1;
+}
+\end{javacode}
+}\\		
+	\item Contar de -10 até -100, de 2 em 2:\\
+{\scriptsize
+\begin{javacode}
+int i = -10;
+while ( i >= -100 ) {
+      System.out.println(i);
+      i = i - 2;
+}
+\end{javacode}
+}\\		
+\end{itemize}	
+	\end{column}
+\end{columns}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Mais exemplos (1)}
+\begin{itemize}
+	\item Leia o raio de 10 círculos e mostre a área e a circunferência de cada círculo.\\
+	{\tiny\inputminted[bgcolor=cyan!10]{java}{src/Circulo1.java}}\\
+	\item Se a condição do \texttt{while} nunca se tornar \texttt{false}, o laço será infinito!!!
+	\item Variáveis declaradas dentro do laço são criadas a cada iteração e NÃO existem fora do \texttt{while}
+	\item Recomenda-se atualizar a variável de controle do laço no final dos comandos
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Mais exemplos (2)}
+\begin{itemize}
+	\item 
+Leia quantos círculos serão processados, e a seguir leia o raio de cada círculo, calculando a sua área e circunferência.\\
+	{\tiny\inputminted[bgcolor=cyan!10]{java}{src/Circulo2.java}}\\
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Mais exemplos (3)}
+\begin{itemize}
+	\item Leia o raio de um círculo e mostre a sua área e a sua circunferência, repetindo esses passos enquanto o raio lido for maior do que zero.
+	{\tiny\inputminted[bgcolor=cyan!10]{java}{src/Circulo3.java}}\\
 \end{itemize}
 \end{frame}
 
@@ -111,69 +216,40 @@ Informe o último valor atribuído ao ano como resposta
 	\end{column}
 	\begin{column}{0.7\linewidth}
 		\begin{itemize}
-		\item Um laço executa instruções repetidamente enquanto uma condição for verdadeira
+		\item Cálculo de juros compostos (Unidade 1)
+{\tiny
+\begin{minted}[bgcolor=cyan!10]{text}
+Inicie com um valor de ano igual a zero e um total de $10.000
+Repita o seguinte enquanto o total seja menor do que $20.000
+     Adicione 1 ao valor do ano
+     Multiplique o total por 1,05 (crescimento de 5%)
+Informe o último valor atribuído ao ano como resposta
+\end{minted}
+}
+		\item Em Java:
+{\scriptsize
 \begin{javacode}
-while (balance < TARGET) {
-   year++;
-   double interest = balance * RATE/100;
-   balance = balance + interest;
+while (saldo < ALVO) {
+   ano++;
+   double juros = saldo * TAXA_DE_JUROS/100.0;
+   saldo = saldo + juros;
 }
 \end{javacode}
+}
 		\end{itemize}
 	\end{column}
 \end{columns}
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{Sintaxe do Comando \texttt{while}}
-\begin{figure}[h]
-	\includegraphics[height=0.65\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-sintaxe_while.png}
-\end{figure}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{\texttt{DoubleInvestment.java} {\tiny (HORSTMANN, 2013, p. 143)}}
+\begin{frame}[fragile]\frametitle{\texttt{DobrandoInvestimento.java}}
+\tiny{\inputminted[bgcolor=cyan!10]{java}{src/DobrandoInvestimento.java}}
 {\tiny
-\begin{javacode}
-/**
-   This program computes the time required to double an investment.
-*/
-public class DoubleInvestment {
-   public static void main(String[] args) {
-      final double RATE = 5;
-      final double INITIAL_BALANCE = 10000;
-      final double TARGET = 2 * INITIAL_BALANCE;
-      double balance = INITIAL_BALANCE;
-      int year = 0;
-      // Count the years required for the investment to double
-      while (balance < TARGET) {
-         year++;
-         double interest = balance * RATE / 100;
-         balance = balance + interest;
-      }
-      System.out.println("The investment doubled after "+ year + " years.");
-   }
+Resultado:
+\begin{minted}[bgcolor=cyan!10]{text}
+O valor investido dobra após 15 anos.
+\end{minted}
 }
-\end{javacode}
-~\\
-~\\
-\textbf{Resultado da execução:}\\
-\texttt{The investment doubled after 15 years.}
-}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Execução do Laço (1)}
-\begin{figure}[h]
-	\includegraphics[height=0.70\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-execucao_do_laco_1.png}
-\end{figure}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Execução do Laço (2)}
-\begin{figure}[h]
-	\includegraphics[height=0.50\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-execucao_do_laco_2.png}
-\end{figure}
 \end{frame}
 
 %-------------------------------------------------------
@@ -186,10 +262,10 @@ public class DoubleInvestment {
 \hline
 {\tiny
 \begin{minted}{java}
-i = 0; sum = 0;
-while (sum < 10) {
-   i++; sum = sum + i;
-   System.out.println(i+" "+sum);
+i = 0; soma = 0;
+while (soma < 10) {
+   i++; soma = soma + i;
+   System.out.println(i+" "+soma);
 }
 \end{minted}
 }
@@ -202,14 +278,14 @@ while (sum < 10) {
 4 10
 \end{verbatim}
 }
-& Quando \texttt{sum} for igual a $10$, a condição do laço será falsa, e o laço se encerra.\\
+& Quando \texttt{soma} for igual a $10$, a condição do laço será falsa, e o laço se encerra.\\
 \hline
 {\tiny
 \begin{minted}{java}
-i = 0; sum = 0;
-while (sum < 10) {
-   i++; sum = sum - i;
-   System.out.println(i+" "+sum);
+i = 0; soma = 0;
+while (soma < 10) {
+   i++; soma = soma - i;
+   System.out.println(i+" "+soma);
 }
 \end{minted}
 }
@@ -223,20 +299,20 @@ while (sum < 10) {
 ...
 \end{verbatim}
 }
-& Como \texttt{sum} nunca atinge $10$, isto consiste em um ``laço infinito''.\\
+& Como \texttt{soma} nunca atinge $10$, isto consiste em um ``laço infinito''.\\
 \hline
 {\tiny
 \begin{minted}{java}
-i = 0; sum = 0;
-while (sum < 0) {
-   i++; sum = sum - i;
-   System.out.println(i+" "+sum);
+i = 0; soma = 0;
+while (soma < 0) {
+   i++; soma = soma - i;
+   System.out.println(i+" "+soma);
 }
 \end{minted}
 }
 &
 (Nenhuma saída)
-& A condição \texttt{sum < 0} é falsa quando é testada pela primeira vez, e o laço nunca é executado.\\
+& A condição \texttt{soma < 0} é falsa quando é testada pela primeira vez, e o laço nunca é executado.\\
 \hline
   \end{tabular}
 \end{center}
@@ -252,10 +328,10 @@ while (sum < 0) {
     \textbf{Laço} & \textbf{Saída} & \textbf{Explicação} \\
 \hline
 \begin{minted}{java}
-i = 0; sum = 0;
-while (sum >= 10) {
-   i++; sum = sum + i;
-   System.out.println(i+" "+sum);
+i = 0; soma = 0;
+while (soma >= 10) {
+   i++; soma = soma + i;
+   System.out.println(i+" "+soma);
 }
 \end{minted}
 &
@@ -263,15 +339,15 @@ while (sum >= 10) {
 & O programador provavelmente pensou: ``Pare quando a soma for pelo menos $10$''. Entretanto a condição do laço controla quando o laço é executado, e não quando ele se encerra.\\
 \hline
 \begin{minted}{java}
-i = 0; sum = 0;
-while (sum < 10) ; {
-   i++; sum = sum + i;
-   System.out.println(i+" "+sum);
+i = 0; soma = 0;
+while (soma < 10) ; {
+   i++; soma = soma + i;
+   System.out.println(i+" "+soma);
 }
 \end{minted}
 &
 (Nenhuma saída e o programa nunca termina)
-& Observe que o ponto-e-vírgula após o teste do laço faz com que o corpo do laço corresponda a um comando vazio. O programa executará para sempre pois \texttt{sum < 0} e este valor não será atualizado no corpo do laço (comando vazio).\\
+& Observe que o ponto-e-vírgula após o teste do laço faz com que o corpo do laço corresponda a um comando vazio. O programa executará para sempre pois \texttt{soma < 0} e este valor não será atualizado no corpo do laço (comando vazio).\\
 \hline
   \end{tabular}
 \end{center}
@@ -279,28 +355,27 @@ while (sum < 10) ; {
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Erros Comuns (1)}
-Não pense: ``Já chegamos lá?''
+\begin{frame}[fragile]\frametitle{Erros Comuns: NÃO pense ``Já chegamos lá?''}
 \begin{itemize}
 	\item O corpo do laço somente será executado se a condição de teste for verdadeira
-	\item A lógica para ``Já chegamos lá?'' executaria o corpo do laço se o teste fosse falso
-	\item Se \texttt{bal} deve crescer até que alcance \texttt{TARGET}, qual versão executará o corpo do laço?
+	\item Então a lógica correta é ``Continuo executando o laço?''
+	\item Se \texttt{saldo} deve crescer até que alcance \texttt{OBJETIVO}, qual versão executará o corpo do laço corretamente?
 \begin{columns}[T]
 	\begin{column}{0.5\linewidth}
 \begin{javacode}
-while (bal < TARGET) {
-   year++;
-   interest = bal * RATE;
-   bal = bal + interest;
+while (saldo < OBJETIVO) {
+   ano++;
+   juros  = saldo * TAXA;
+   saldo = saldo + juros;
 }
 \end{javacode}
 	\end{column}
 	\begin{column}{0.5\linewidth}
 \begin{javacode}
-while (bal >= TARGET) {
-   year++;
-   interest = bal * RATE;
-   bal = bal + interest;
+while (saldo >= OBJETIVO) {
+   ano++;
+   juros = saldo * TAXA;
+   saldo = saldo + juros;
 }
 \end{javacode}
 	\end{column}
@@ -309,28 +384,26 @@ while (bal >= TARGET) {
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Erros Comuns (2)}
-Laços Infinitos
+\begin{frame}[fragile]\frametitle{Erros Comuns: laços infinitos}
 \begin{itemize}
 	\item O corpo do laço será executado até que a condição de teste se torne falsa
 	\item O que acontece se você se esquecer de atualizar a variável de teste?
 	\begin{itemize}
-		\item \texttt{bal} é a variável de teste (\texttt{TARGET} não é alterado)
+		\item \texttt{saldo} é a variável de teste (\texttt{OBJETIVO} é constante)
 		\item Seu programa ficará no laço para sempre! (ou até que você pare o programa)
 	\end{itemize}
 \begin{javacode}
-while (bal < TARGET) {
-   year++;
-   interest = bal * RATE;
-   // bal = bal + interest;
+while (saldo < OBJETIVO) {
+   ano	++;
+   juros = saldo * TAXA;
+   // saldo = saldo + juros;
 }
 \end{javacode}
 \end{itemize}
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Erros Comuns (3)}
-Erros de Limite
+\begin{frame}[fragile]\frametitle{Erros Comuns: erros de limite}
 \begin{itemize}
 	\item Uma variável do tipo contadora é frequentemente usada na condição de teste
 	\item A variável contadora pode iniciar em 0 ou 1 (programadores frequentemente iniciam contadores com 0)
@@ -339,11 +412,11 @@ Erros de Limite
 	\begin{column}{0.5\linewidth}
 \begin{javacode}
 // Inicia em 0, usa-se <
-int finger = 0;
-final int FINGERS = 5;
-while (finger < FINGERS) {
-   System.out.println(finger);
-   finger++;
+int dedo = 0;
+final int DEDOS = 5;
+while (dedo < DEDOS) {
+   System.out.println(dedo);
+   dedo++;
 }
 // 0,1,2,3,4
 \end{javacode}
@@ -351,11 +424,11 @@ while (finger < FINGERS) {
 	\begin{column}{0.5\linewidth}
 \begin{javacode}
 // Inicia em 1, usa-se <=
-int finger = 1;
-final int FINGERS = 5;
-while (finger <= FINGERS) {
-   System.out.println(finger);
-   finger++;
+int dedo = 1;
+final int DEDOS = 5;
+while (dedo <= DEDOS) {
+   System.out.println(dedo);
+   dedo++;
 }
 // 1,2,3,4,5
 \end{javacode}
@@ -379,30 +452,29 @@ while (finger <= FINGERS) {
 \end{itemize}
 \end{frame}
 
+%=======================================================
+\section{Exercícios}
+
 %-------------------------------------------------------
-\begin{frame}\frametitle{Exercícios}
-Faça laços em Java usando \texttt{while} para mostrar:
+\begin{frame}\frametitle{Exercícios (1)}	
 \begin{enumerate}
-	\item Os números inteiros de 100 a 200
-	\item Os números inteiros de -10 a -50
-	\item Os números pares entre \texttt{a} e \texttt{b} (com \texttt{a} $\ge$ \texttt{b})
-	\item As 10 primeiras potências de 2
-	\item Os elementos de uma progressão aritmética de \texttt{n} elementos que inicia em \texttt{a} e tem razão \texttt{r}
-	\item A soma dos elementos do item anterior
-	\item Os elementos de uma progressão geométrica de \texttt{n} elementos que inicia em \texttt{a} e tem razão \texttt{r}
-	\item A soma dos elementos do item anterior
+	\item Faça laços em Java usando \texttt{while} para mostrar:
+	\begin{enumerate}[a]	
+		\item Os números inteiros de 1 a 10, inclusive
+		\item Os números inteiros de 100 a 200, inclusive.
+		\item Os números inteiros de 10 a 1, inclusive, em ordem regressiva.
+		\item Os números inteiros de -10 a -50, inclusive.
+		\item Os números pares entre \texttt{a} e \texttt{b} (com \texttt{a} $\ge$ \texttt{b}).
+		\item As 10 primeiras potências de 2.
+	\end{enumerate}
 \end{enumerate}
 \end{frame}
 
-%=======================================================
-\section{Resolução de Problemas: Teste de Mesa}
-
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Teste de Mesa}
-Exemplo: Calcule a soma dos dígitos de um número (por exemplo, para 1729 o valor seria 1+7+2+9)
-\begin{itemize}
-	\item Faça colunas para as principais variáveis (\texttt{n}, \texttt{sum}, \texttt{digit})
-	\item Acompanhe a execução e mantenha os valores das variáveis atualizados na tabela
+\begin{frame}[fragile]\frametitle{Exercícios (2)}
+\begin{enumerate}
+	\setcounter{enumi}{1}
+	\item O código a seguir calcula a soma dos dígitos de um número (por exemplo, para 1729 o valor seria 1+7+2+9). Acompanhe a 	execução desse código, instrução por instrução, e mostre como os valores das variáveis \texttt{n}, \texttt{sum} e \texttt{digit} se alteram ao longo da execução.
 \begin{javacode}
 int n = 1729;
 int sum = 0;
@@ -413,28 +485,32 @@ while (n > 0) {
 }
 System.out.println(sum);
 \end{javacode}
-\end{itemize}
+\end{enumerate}
 \end{frame}
-
-%=======================================================
-\section{Exercícios}
-
+	
 %-------------------------------------------------------
-\begin{frame}\frametitle{Exercícios (1)}
-Escreva laços \texttt{while} em Java, declarando todas as variáveis utilizadas, para:
+\begin{frame}\frametitle{Exercícios (3)}
 \begin{enumerate}
-	\item Mostrar os valores de 1 até 10.
-	\item Mostrar os valores de 10 até 1, em ordem regressiva.
-	\item Calcular a soma dos valores de 1 até 20.
-	\item Calcular o fatorial de um número inteiro lido do terminal.
-	\item Ler 20 pares de valores (\texttt{a} e \texttt{b}) escrevendo qual é o maior valor.
-	\item Ler um número inteiro e escrever se ele é primo ou não.
+	\setcounter{enumi}{2}
+	\item Escreva laços \texttt{while} em Java, declarando todas as variáveis utilizadas, para:
+	\begin{enumerate}[a]
+		\item Ler 20 pares de valores (\texttt{a} e \texttt{b}) escrevendo qual é o maior valor.
+		\item Calcular a soma dos valores de 1 até 20.
+		\item Mostrar os elementos de uma progressão aritmética de \texttt{n} elementos que inicia em \texttt{a} e tem razão \texttt{r}.
+		\item Calcular a soma dos elementos do item anterior.
+		\item Mostrar os elementos de uma progressão geométrica de \texttt{n} elementos que inicia em \texttt{a} e tem razão \texttt{r}.
+		\item Calcular a soma dos elementos do item anterior.
+		\item Calcular o fatorial de um número inteiro lido do terminal.
+		\item Ler um número inteiro e escrever se ele é primo ou não.
+	\end{enumerate}
 \end{enumerate}
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Exercícios (2)}
-Faça o teste de mesa para o trecho de programa em Java a seguir, mostrando todas as alterações de valores nas variáveis declaradas e todas as saídas de terminal, e considerando que os valores lidos do teclado serão respectivamente 2, 4, 3, 2, 0, 2.\\
+\begin{frame}[fragile]\frametitle{Exercícios (4)}
+\begin{enumerate}
+	\setcounter{enumi}{3}
+	\item Faça o teste de mesa para o trecho de programa em Java a seguir, mostrando todas as alterações de valores nas variáveis declaradas e todas as saídas de terminal, e considerando que os valores lidos do teclado serão respectivamente 2, 4, 3, 2, 0, 2.\\
 {\scriptsize
 \begin{javacode}
 Scanner in = new Scanner(System.in);
@@ -454,6 +530,7 @@ while (x > 0) {
 }
 \end{javacode}
 }
+\end{enumerate}	
 \end{frame}
 
 %=======================================================
@@ -630,32 +707,7 @@ for (int ano = 1; ano <= numAnos; ano++) {
 
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{\texttt{Investimento.java}}
-{\tiny
-\begin{javacode}
-import java.util.Scanner;
-
-/**
-   Este programa imprime uma tabela mostrando o crescimento anual de um investimento.
-*/
-public class Investimento {
-   public static void main(String[] args) {
-      final double TAXA = 5.0;
-      final double SALDO_INICIAL = 10000;
-      double saldo = SALDO_INICIAL;
-
-      System.out.print("Quantos anos? ");
-      Scanner in = new Scanner(System.in);
-      int numAnos = in.nextInt();
-
-      for (int ano = 1; ano <= numAnos; ano++) {
-         double juros = saldo * TAXA / 100.0;
-         saldo = saldo + juros;
-         System.out.printf("ano %d: %.2f\n", ano, saldo);
-      }
-   }
-}
-\end{javacode}
-}
+\tiny{\inputminted[bgcolor=cyan!10]{java}{src/Investimento.java}}
 \end{frame}
 
 %-------------------------------------------------------
@@ -785,11 +837,11 @@ for ( x = in.nextInt() ; x > 0 ; x = in.nextInt() ) {
 \end{itemize}
 \begin{javacode}
 int i = 1;  // inicializacao
-final int FINGERS = 5;
+final int DEDOS = 5;
 do {
    // comandos...
    i++; // atualizacao
-}  while (i <= FINGERS);  // teste
+}  while (i <= DEDOS);  // teste
 \end{javacode}
 	\end{column}
 \end{columns}
@@ -859,12 +911,14 @@ do {
 		\item Quando não se sabe quantos itens há em uma lista, usa-se um caracter ou valor especial para sinalizar que não há mais itens
 		\item Para entradas de números positivos, é comum usar o valor -1:
 \begin{javacode}
-salary = in.nextDouble();
-while (salary != -1) {
-   sum = sum + salary;
-   count++;
-   salary = in.nextDouble();
-}
+int numFuncionarios = 0;
+double salario = in.nextDouble();
+double soma = 0.0;
+while (salario != -1) {
+   soma = soma + salario;
+   numFuncionarios++;
+   salario = in.nextDouble();
+}	
 \end{javacode}
 	\end{itemize}
 \end{itemize}
@@ -873,78 +927,30 @@ while (salary != -1) {
 %-------------------------------------------------------
 \begin{frame}\frametitle{Calculando a Média de um Conjunto Indeterminado de Valores}
 \begin{itemize}
-	\item Declare e inicialize uma variável \texttt{sum} com 0
-	\item Declare e inicialize uma variável \texttt{count} com 0
-	\item Declare e inicialize uma variável \texttt{input} com 0
+	\item Declare e inicialize uma variável \texttt{soma} com 0
+	\item Declare e inicialize uma variável \texttt{contagem} com 0
+	\item Declare e inicialize uma variável \texttt{entrada} com 0
 	\item Mostre uma mensagem solicitando que o usuário forneça os dados
 	\item Fique no laço até que o valor de sentinela seja fornecido
 	\begin{itemize}
-		\item Leia um valor e salve em \texttt{input}
-		\item Se \texttt{input} não for igual a -1
+		\item Leia um valor e salve em \texttt{entrada}
+		\item Se \texttt{entrada} não for igual a -1
 		\begin{itemize}
-			\item Adicione \texttt{input} em \texttt{sum}
-			\item Adicione 1 na variável \texttt{count}
+			\item Adicione \texttt{entrada} em \texttt{sum}
+			\item Adicione 1 na variável \texttt{contagem}
 		\end{itemize}
 	\end{itemize}
 	\item Tenha certeza de que pelo menos um valor for fornecido antes de fazer a divisão
 	\begin{itemize}
-		\item Divida \texttt{sum} por \texttt{count} e mostre o resultado
+		\item Divida \texttt{sum} por \texttt{contagem} e mostre o resultado
 	\end{itemize}
 	\item Fim	
 \end{itemize}
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{\texttt{SentinelDemo.java (1)} {\tiny (HORSTMANN, 2013, p. 158-159)}}
-{\tiny
-\begin{javacode}
-import java.util.Scanner;
-
-/**
-   This program prints the average of salary values that are terminated with a sentinel.
-*/
-
-public class SentinelDemo {
-   public static void main(String[] args) {
-      double sum = 0;
-      int count = 0;
-      double salary = 0;
-      System.out.print("Enter salaries, -1 to finish: ");
-      Scanner in = new Scanner(System.in);
-
-      // Process data until the sentinel is entered
-      while (salary != -1) {
-         salary = in.nextDouble();
-         if (salary != -1) {
-            sum = sum + salary;
-            count++;
-         }
-      }
-\end{javacode}
-}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{\texttt{SentinelDemo.java (2)} {\tiny (HORSTMANN, 2013, p. 158-159)}}
-{\footnotesize
-\begin{javacode}
-      // Compute and print the average
-      if (count > 0) {
-         double average = sum / count;
-         System.out.println("Average salary: " + average);
-      }
-      else {
-         System.out.println("No data");
-      }
-   }
-}
-\end{javacode}
-}
-~\\
-~\\
-Execução do programa:\\
-\texttt{Enter salaries, -1 to finish: \textbf{10 10 40 -1}\\
-Average salary: 20}
+\begin{frame}[fragile]\frametitle{\texttt{Sentinela.java}}
+\tiny{\inputminted[bgcolor=cyan!10]{java}{src/Sentinela.java}}
 \end{frame}
 
 %-------------------------------------------------------
@@ -952,15 +958,15 @@ Average salary: 20}
 \begin{itemize}
 	\item Uma variável booleana (frequentemente chamada de \emph{flag} pode ser usada para controlar um laço)
 \begin{javacode}
-System.out.print("Enter salaries, -1 to finish: ");
-boolean done = false;
-while (!done) {
-   value = in.nextDouble();
-   if (value == -1) {
-      done = true;
+System.out.print("Forneça um conjunto de valores (use -1 para terminar): ");
+boolean concluido = false;
+while (!concluido) {
+   double valor = in.nextDouble();
+   if (valor == -1) {
+      concluido = true;
    }
    else {
-      // Process value
+      // Processa o valor
    }
 }
 \end{javacode}
@@ -978,10 +984,10 @@ while (!done) {
 		\item Em caso de \texttt{true}, pode-se usar \texttt{in.nextDouble}
 	\end{itemize}
 \begin{javacode}
-System.out.print("Enter values, Q to quit: ");
+System.out.print("Forneça valores reais (digite Q para encerrar): ");
 while (in.hasNextDouble()) {
-   value = in.nextDouble();
-   // Process value
+   double valor = in.nextDouble();
+   // Processa o valor...
 }
 \end{javacode}
 \end{itemize}
@@ -1014,8 +1020,8 @@ while (in.hasNextDouble()) {
 \begin{javacode}
 double total = 0;
 while (in.hasNextDouble()) {
-   double input = in.nextDouble();
-   total = total + input;
+   double entrada = in.nextDouble();
+   total = total + entrada;
 }
 \end{javacode}
 \end{frame}
@@ -1029,8 +1035,8 @@ while (in.hasNextDouble()) {
 \begin{javacode}
 double produto = 1;
 while (in.hasNextDouble()) {
-   double input = in.nextDouble();
-   produto = produto * input;
+   double entrada = in.nextDouble();
+   produto = produto * entrada;
 }
 \end{javacode}
 \end{frame}
@@ -1039,21 +1045,21 @@ while (in.hasNextDouble()) {
 \begin{frame}[fragile]\frametitle{Valor Médio}
 \begin{itemize}
 	\item Faça o somatório dos valores
-	\item Inicialize \texttt{count} com 0, incrementando-a a cada valor lido
-	\item Verifique o valor de \texttt{conunt} antes da divisão!
+	\item Inicialize \texttt{contagem} com 0, incrementando-a a cada valor lido
+	\item Verifique o valor de \texttt{contagem} antes da divisão!
 \end{itemize}
 {\footnotesize
 \begin{javacode}
 double total = 0;
-int count = 0;
+int contagem = 0;
 while (in.hasNextDouble()) {
-   double input = in.nextDouble();
-   total = total + input;
-   count++;
+   double entrada = in.nextDouble();
+   total = total + entrada;
+   contagem++;
 }
-double average = 0;
-if (count > 0) {
-   average = total / count;
+if (contagem > 0) {
+   double media = total / contagem;
+   System.out.println("Media = " + media);
 }
 \end{javacode}
 }
@@ -1062,16 +1068,16 @@ if (count > 0) {
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{Contagem de Ocorrências}
 \begin{itemize}
-	\item Inicialize \texttt{count} com 0
+	\item Inicialize \texttt{contagem} com 0
 	\item Use um laço \texttt{for}
 	\item Incremente o contador a cada ocorrência
 \end{itemize}
 \begin{javacode}
-int upperCaseLetters = 0;
+int letrasMaiusculas = 0;
 for (int i = 0; i < str.length(); i++) {
    char ch = str.charAt(i);
    if (Character.isUpperCase(ch)) {
-      upperCaseLetters++;
+      letrasMaiusculas++;
    }
 }
 \end{javacode}
@@ -1114,13 +1120,13 @@ while (!found && position < str.length()) {
 \end{itemize}
 {\footnotesize
 \begin{javacode}
-boolean valid = false;
-double input;
-while (!valid) {
-   System.out.print("Please enter a positive value < 100: ");
-   input = in.nextDouble();
-   if (0 < input && input < 100) { valid = true; }
-   else { System.out.println("Invalid input."); }
+boolean valido = false;
+double entrada;
+while (!valido) {
+   System.out.print("Forneça um valor positivo < 100: ");
+   entrada = in.nextDouble();
+   if (0 < entrada && entrada < 100) { valido = true; }
+   else { System.out.println("Entrada inválida!"); }
 }
 \end{javacode}
 }
@@ -1141,11 +1147,11 @@ while (!valid) {
 	\begin{column}{0.5\linewidth}
 {\footnotesize
 \begin{javacode}
-double largest = in.nextDouble();
+double maior = in.nextDouble();
 while (in.hasNextDouble()) {
-   double input = in.nextDouble();
-   if (input > largest) {
-      largest = input;
+   double valor = in.nextDouble();
+   if (valor > maior) {
+      maior = valor;
    }
 }
 \end{javacode}
@@ -1154,11 +1160,11 @@ while (in.hasNextDouble()) {
 	\begin{column}{0.5\linewidth}
 {\footnotesize
 \begin{javacode}
-double smallest = in.nextDouble();
+double menor = in.nextDouble();
 while (in.hasNextDouble()) {
-   double input = in.nextDouble();
-   if (input < smallest) {
-      smallest = input;
+   double valor = in.nextDouble();
+   if (valor < menor) {
+      menor = valor;
    }
 }
 \end{javacode}
@@ -1180,12 +1186,12 @@ while (in.hasNextDouble()) {
 \end{itemize}
 %{\footnotesize
 \begin{javacode}
-double input = in.nextDouble();
+double entrada = in.nextDouble();
 while (in.hasNextDouble()) {
-   double previous = input;
-   input = in.nextDouble();
-   if (input == previous) { 
-      System.out.println("Duplicate input"); 
+   double anterior = entrada;
+   entrada = in.nextDouble();
+   if (entrada == anterior) { 
+      System.out.println("Entrada duplicada!"); 
    }
 }
 \end{javacode}
@@ -1251,41 +1257,12 @@ Codificação:
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{\texttt{PowerTable.java} {\tiny (HORSTMANN, 2013, p. 173-174)}}
-{\tiny
-\begin{javacode}
-/** This program prints a table of powers of x. */
-public class PowerTable {
-   public static void main(String[] args) {
-      final int NMAX = 4;
-      final double XMAX = 10;
-
-      // Print table header
-      for (int n = 1; n <= NMAX; n++) {
-         System.out.printf("%10d", n);
-      }
-      System.out.println();
-      for (int n = 1; n <= NMAX; n++) {
-         System.out.printf("%10s", "x ");
-      }
-      System.out.println();
-
-      // Print table body
-      for (double x = 1; x <= XMAX; x++) {
-         // Print table row
-         for (int n = 1; n <= NMAX; n++) {
-            System.out.printf("%10.0f", Math.pow(x, n));
-         }
-         System.out.println();
-      }
-   }
-}
-\end{javacode}
-}
+\begin{frame}[fragile]\frametitle{\texttt{TabelaDePotencias.java}}
+\tiny{\inputminted[bgcolor=cyan!10]{java}{src/TabelaDePotencias.java}}
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{Resultado de \texttt{PowerTable.java}}
+\begin{frame}\frametitle{Resultado de \texttt{TabelaDePotencias.java}}
 \begin{figure}[h]
 	\includegraphics[height=0.65\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-resultado_de_powertable.png}
 \end{figure}
@@ -1293,7 +1270,7 @@ public class PowerTable {
 
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{Exercício}
-Modifique o programa \texttt{PowerTable.java} para que a tabela seja impressa ``deitada'', ou seja, na primeira linha os valores para $x^1$, na segunda linha os valores para $x^2$, e assim por diante.
+Modifique o programa \texttt{TabelaDePotencias.java} para que a tabela seja impressa ``deitada'', ou seja, na primeira linha os valores para $x^1$, na segunda linha os valores para $x^2$, e assim por diante.
 \end{frame}
 
 %-------------------------------------------------------
@@ -1442,156 +1419,194 @@ for (i = 1; i <= 3 ; i++) {
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Exercício}
-{\scriptsize
-Faça laços aninhados para imprimir:
+\begin{frame}[fragile]\frametitle{Exercício: faça laços aninhados para imprimir os seguintes padrões}
+{\tiny
 \begin{columns}[T]
-	\begin{column}{0.34\linewidth}
+	\begin{column}{0.2\linewidth}
 \begin{enumerate}[a)]
-	\item
+	\item	
 \begin{verbatim}
-*....
-.*...
-..*..
-...*.
-....*
+*......
+.*.....
+..*....
+...*...
+....*..
+.....*.
+......*
+
 \end{verbatim}
 	\item
 \begin{verbatim}
-*****
-.****
-..***
-...**
-....*
+*******
+.******
+..*****
+...****
+....***
+.....**
+......*
+
 \end{verbatim}
 	\item
 \begin{verbatim}
-.....
-*....
-**...
-***..
-****.
+.......
+*......
+**.....
+***....
+****...
+*****..
+******.
 \end{verbatim}
 \end{enumerate}
 	\end{column}
-	\begin{column}{0.33\linewidth}
+	\begin{column}{0.2\linewidth}
 \begin{enumerate}[a)]
   \setcounter{enumi}{3}
 	\item
 \begin{verbatim}
-....*
-...*.
-..*..
-.*...
-*....
+......*
+.....*.
+....*..
+...*...
+..*....
+.*.....
+*......
+
 \end{verbatim}
 	\item
 \begin{verbatim}
-*****
-****.
-***..
-**...
-*....
+*******
+******.
+*****..
+****...
+***....
+**.....
+*......
+
 \end{verbatim}
 	\item
 \begin{verbatim}
-....*
-...**
-..***
-.****
-*****
+......*
+.....**
+....***
+...****
+..*****
+.******
+*******
 \end{verbatim}
 \end{enumerate}
 	\end{column}
-	\begin{column}{0.33\linewidth}
+	\begin{column}{0.2\linewidth}
 \begin{enumerate}[a)]
   \setcounter{enumi}{6}
 	\item
 \begin{verbatim}
-*****
-.***.
-..*..
-.....
-.....
+*******
+.*****.
+..***..
+...*...
+.......
+.......
+.......
+
 \end{verbatim}
 	\item
 \begin{verbatim}
-*...*
-.*.*.
-..*..
-.*.*.
-*...*
+*.....*
+.*...*.
+..*.*..
+...*...
+..*.*..
+.*...*.
+*.....*
+
 \end{verbatim}
 	\item
 \begin{verbatim}
-.....
-.....
-..*..
-.***.
-*****
+.......
+.......
+.......
+...*...
+..***..
+.*****.
+*******
 \end{verbatim}
 \end{enumerate}
 	\end{column}
-\end{columns}
+	\begin{column}{0.2\linewidth}
+\begin{enumerate}[a)]
+  \setcounter{enumi}{9}
+	\item
+\begin{verbatim}
+*******
+*.....*
+*.....*
+*.....*
+*.....*
+*.....*
+*******
+
+\end{verbatim}
+	\item
+\begin{verbatim}
+...*...
+...*...
+...*...
+*******
+...*...
+...*...
+...*...
+
+\end{verbatim}
+	\item
+\begin{verbatim}
+*..*..*
+.*.*.*.
+..***..
+*******
+..***..
+.*.*.*.
+*..*..*
+\end{verbatim}
+\end{enumerate}
+	\end{column}
+	\begin{column}{0.2\linewidth}
+\begin{enumerate}[a)]
+  \setcounter{enumi}{12}
+	\item
+\begin{verbatim}
+*......
+**.....
+*.*....
+*..*...
+*...*..
+*....*.
+*******
+
+\end{verbatim}
+	\item
+\begin{verbatim}
+......*
+.....**
+....*.*
+...*..*
+..*...*
+.*....*
+*******
+
+\end{verbatim}
+	\item
+\begin{verbatim}
+*******
+*....*.
+*...*..
+*..*...
+*.*....
+**.....
+*......
+\end{verbatim}
+\end{enumerate}
+	\end{column}\end{columns}
 }
-\end{frame}
-
-%=======================================================
-\section{Resolução de Problemas: Storyboards (Esboços Sequenciais)}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Resolução de Problemas: \emph{Storyboards} (Esboços Sequenciais)}
-\begin{itemize}
-	\item Um storyboard (esboço sequencial) consiste numa sequência de desenhos anotados para cada etapa de uma sequência de ações
-	\item Trata-se de uma técnica útil para solução de problemas que permite modelar a interação com o usuário
-	\item Pode ajudar a responder:
-	\begin{itemize}
-		\item Qual informação o usuário deve fornecer e em que ordem?
-		\item Qual informação o programa deve mostrar e em que formato?
-		\item O que deve acontecer se houver um erro?
-		\item Quando o programa deve terminar?
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Exemplo de \emph{Storyboard}}
-\begin{itemize}
-	\item Objetivo: converter uma sequência de medidas
-	\begin{itemize}
-		\item Exigirá um laço e algumas variáveis
-		\item Deverá gerenciar uma conversão de cada vez através de um laço
-	\end{itemize}
-\begin{figure}[h]
-	\includegraphics[height=0.5\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-storyboards1.jpg}
-\end{figure}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{O que pode dar errado?}
-\begin{itemize}
-	\item Unidades de medidas desconhecidas
-	\begin{itemize}
-		\item Como centímetros e polegadas são digitados?
-		\item Que outras conversões estão disponíveis?
-	\end{itemize}
-	\item Solução: mostra uma lista de tipos de unidades aceitáveis
-\begin{figure}[h]
-	\includegraphics[height=0.15\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-storyboards2.jpg}
-\end{figure}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{O que mais pode dar errado?}
-\begin{itemize}
-	\item Como o usuário encerra o programa?
-\begin{figure}[h]
-	\includegraphics[height=0.5\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-storyboards3.jpg}
-\end{figure}
-	\item Storyboards ajudam a planejar um programa: conhecer os fluxos ajuda a estruturar o código
-\end{itemize}
 \end{frame}
 
 %=======================================================
@@ -1654,6 +1669,8 @@ Faça laços aninhados para imprimir:
 \begin{frame}[fragile]\frametitle{Tópicos Avançados}
 \begin{itemize}
 	\item Números Aleatórios e Simulações
+	\item \emph{Storyboards} para resolução de problemas
+	\item Gráficos em Java
 \end{itemize}
 \end{frame}
 
@@ -1675,58 +1692,47 @@ Faça laços aninhados para imprimir:
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Exemplo: \texttt{RandomDemo.java} {\tiny [Publicado em Horstmann (2013, p. 176)]}}
+\begin{frame}[fragile]\frametitle{Números Aleatórios e Simulações: \texttt{RandomDemo.java}}
 \begin{itemize}
-	\item O método \texttt{Math.random()} pode ser usado para gerar números aleatórios no intervalo [0;1)
+	\item \texttt{Math.random()} pode ser usado para gerar números aleatórios no intervalo [0;1)
 \end{itemize}
-\scriptsize{\inputminted[bgcolor=cyan!10]{java}{src/RandomDemo.java}}
-\end{frame}
-
-%-------------------------------------------------------	
-\begin{frame}[fragile]\frametitle{Resultado de \texttt{RandomDemo.java}}
-\begin{javacode}
-0.6513550469421886
-0.920193662882893
-0.6904776061289993
-0.8862828776788884
-0.7730177555323139
-0.3020238718668635
-0.0028504531690907164
-0.9099983981705169
-0.1151636530517488
-0.1592258808929058
-\end{javacode}
+\begin{columns}[T]
+	\begin{column}{0.74\linewidth}
+		\scriptsize{\inputminted[bgcolor=cyan!10]{java}{src/RandomDemo.java}}
+	\end{column}
+	\begin{column}{0.26\linewidth}
+{\scriptsize
+Resultado:
+\begin{minted}[bgcolor=cyan!10]{text}
+0,30625248942272576000
+0,57255173336825820000
+0,38359344863509290000
+0,67094454250114250000
+0,46419930546834340000
+0,45408986890317440000
+0,18747367004920823000
+0,36019379208793400000
+0,02052469620947972000
+0,59019359111533320000
+\end{minted}
+}
+	\end{column}
+\end{columns}
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Simulando o Lançamento de Dados}
-\begin{columns}[T]
-	\begin{column}{0.7\linewidth}
+\begin{frame}[fragile]\frametitle{Números Aleatórios e Simulações: lançamento de dados}
 \begin{itemize}
-	\item Objetivo: obter valores inteiros aleatórios entre 1 e 6
-	\item \texttt{Dice.java} (HORSTMANN, 2013, p. 177)
-{\scriptsize
-\begin{javacode}
-/** This program simulates tosses of a pair of dice. */
-public class Dice {
-   public static void main(String[] args) {
-      for (int i = 1; i <= 10; i++) {
-         // Generate two random numbers between 1 and 6
-         int d1 = (int) (Math.random() * 6) + 1;
-         int d2 = (int) (Math.random() * 6) + 1;
-         System.out.println(d1 + " " + d2);
-      }
-   }
-}
-\end{javacode}
-}
+	\item Pode-se simular o lançamento de dados usando \texttt{Math.random()}
 \end{itemize}
+\begin{columns}[T]
+	\begin{column}{0.8\linewidth}
+		\scriptsize{\inputminted[bgcolor=cyan!10]{java}{src/Dados1.java}}
 	\end{column}
-	\begin{column}{0.3\linewidth}
-\begin{itemize}
-	\item Resultado de \texttt{Dice.java}:
+	\begin{column}{0.2\linewidth}
 {\scriptsize
-\begin{javacode}
+Resultado:
+\begin{minted}[bgcolor=cyan!10]{text}
 5 1
 2 1
 1 2
@@ -1737,23 +1743,30 @@ public class Dice {
 6 1
 6 3
 5 2
-\end{javacode}
+\end{minted}
 }
-\end{itemize}
 	\end{column}
 \end{columns}
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{O Método Monte Carlo}
+\begin{frame}[fragile]\frametitle{Números Aleatórios e Simulações: \texttt{Dados2.java}}
+\begin{itemize}
+	\item Também é possível usar a classe \texttt{Random}, que tem muitos métodos para gerar números aleatórios em diferentes formatos
+\scriptsize{\inputminted[bgcolor=cyan!10]{java}{src/Dados2.java}}
+\end{itemize}	
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Números Aleatórios e Simulações: o método de Monte Carlo}
 \begin{itemize}
 	\item Usado para encontrar soluções aproximadas para problemas que não podem ser resolvidos com precisão
 	\item Exemplo: aproximar o valor de PI usando áreas relativas de um círculo dentro de um quadrado
 	\begin{itemize}
 		\item Usa aritmética simples
-		\item Hits (Acertos) estão dentro do círculo
-		\item Tries são o número total de tentativas
-		\item Razão é 4 x Hits / Tries
+		\item Acertos estão dentro do círculo
+		\item Lançamentos são o número total de tentativas
+		\item Razão é 4 x Acertos / Lançamentos
 	\end{itemize}
 \begin{figure}[h]
 	\includegraphics[height=0.2\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-monte_carlo.png}
@@ -1762,47 +1775,226 @@ public class Dice {
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{\texttt{MonteCarlo.java} {\tiny (HORSTMANN, 2013, p. 178-179)}}
+\begin{frame}[fragile]\frametitle{Números Aleatórios e Simulações: \texttt{MonteCarlo.java}}
+\tiny{\inputminted[bgcolor=cyan!10]{java}{src/MonteCarlo.java}}
 {\tiny
-\begin{javacode}
-/**
-   This program computes an estimate of pi by simulating dart throws onto a square.
-*/
-public class MonteCarlo {
-   public static void main(String[] args) {
-      final int TRIES = 10000;
-      int hits = 0;
-      for (int i = 1; i <= TRIES; i++) {
-         // Generate two random numbers between -1 and 1
-         double r = Math.random();
-         double x = -1 + 2 * r; // Between -1 and 1
-         r = Math.random();
-         double y = -1 + 2 * r;
-         // Check whether the point lies in the unit circle
-         if (x * x + y * y <= 1) { hits++; }
-      }
-      /* The ratio hits / tries is approximately the same as the ratio
-         circle area / square area = pi / 4  */
-      double piEstimate = 4.0 * hits / TRIES;
-      System.out.println("Estimate for pi: " + piEstimate);
-   }
+Resultado:
+\begin{minted}[bgcolor=cyan!10]{text}
+Estimativa de pi: 3.1452	
+\end{minted}
 }
-\end{javacode}
-~\\
-~\\
-Resultado:\\
-\begin{javacode}
-Estimate for pi: 3.1504
-\end{javacode}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{\emph{Storyboards} para resolução de problemas}
+\begin{itemize}
+	\item Um storyboard (esboço sequencial) consiste numa sequência de desenhos anotados para cada etapa de uma sequência de ações
+	\item Trata-se de uma técnica útil para solução de problemas que permite modelar a interação com o usuário
+	\item Pode ajudar a responder:
+	\begin{itemize}
+		\item Qual informação o usuário deve fornecer e em que ordem?
+		\item Qual informação o programa deve mostrar e em que formato?
+		\item O que deve acontecer se houver um erro?
+		\item Quando o programa deve terminar?
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{\emph{Storyboards}: exemplo}
+\begin{itemize}
+	\item Objetivo: converter uma sequência de medidas
+	\begin{itemize}
+		\item Exigirá um laço e algumas variáveis
+		\item Deverá gerenciar uma conversão de cada vez através de um laço
+	\end{itemize}
+\begin{figure}[h]
+	\includegraphics[height=0.5\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-storyboards1.jpg}
+\end{figure}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{\emph{Storyboards}: o que pode dar errado?}
+\begin{itemize}
+	\item Unidades de medidas desconhecidas
+	\begin{itemize}
+		\item Como centímetros e polegadas são digitados?
+		\item Que outras conversões estão disponíveis?
+	\end{itemize}
+	\item Solução: mostra uma lista de tipos de unidades aceitáveis
+\begin{figure}[h]
+	\includegraphics[height=0.15\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-storyboards2.jpg}
+\end{figure}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{\emph{Storyboards}: o que mais pode dar errado?}
+\begin{itemize}
+	\item Como o usuário encerra o programa?
+\begin{figure}[h]
+	\includegraphics[height=0.5\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-storyboards3.jpg}
+\end{figure}
+	\item Storyboards ajudam a planejar um programa: conhecer os fluxos ajuda a estruturar o código
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Gráficos em Java}
+\begin{itemize}
+	\item Na sequêncica aparecem algumas dicas sobre como criar programas em Java que utilizam formas geométricas básicas
+	\item O objetivo é apenas ter um programa com uma estrutura simples a partir da qual se possa desenhar algumas formas geométricas
+	\item NÃO se pretende aprofundar a discussão sobre as classes usadas para criar e controlar janelas em uma \emph{Graphic User Interface} (GUI)
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Gráficos em Java: no método \texttt{main}}
+\begin{itemize}
+	\item Inicia-se criando um objeto chamado \texttt{frame} da classe \texttt{JFrame}
+	\item Um \texttt{JFrame} corresponde a uma moldura dentro da qual se podem colocar ou desenhar outros componentes (no exemplo a seguir, a moldura ou janela será de 400 por 400 \emph{pixels})
+	\item Para este \emph{frame}, define-se então o tamanho (chamada ao método \texttt{setSize}) e a operação de fechamento padrão (chamada ao método \texttt{setDefaultCloseOperation})
+	\item Em seguida cria-se um componente (\texttt{JComponent}), definindo para este componente um método para desenhar a janela (basicamente este método, que se chama \texttt{paintComponent}, chama o método \texttt{draw}, que será responsável por desenhar a janela)
+	\item Adiciona-se o componente ao \emph{frame} (chamada de método \texttt{add})
+	\item E, por fim, torna-se o frame \emph{visível} (chamada de método \texttt{setVisible})
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Gráficos em Java: no método \texttt{draw}}
+\begin{itemize}
+	\item É este método que efetivamente desenha as figuras geométricas na janela (e deve ser declarado como \texttt{static} para poder ser chamado a partir de \texttt{main})
+	\item O método \texttt{draw} tem como parâmetro um objeto da classe \texttt{Graphics}
+	\item A classe \texttt{Graphics} possui uma série de métodos com os quais se pode desenhar diferentes figuras geométricas (retângulos, elipses, segmentos de reta, etc.)
+	\item Pode-se considerar que os objetos da classe \texttt{Graphics} funcionam de forma semelhante a \texttt{System.out}, porém desenhando figuras em um \emph{frame} e não textos em um terminal
+	\item No exemplo a seguir, o método \texttt{setColor} define a cor padrão de impressão como sendo azul, e \texttt{fillRect} é usado para desenhar duas fileiras com quadrados preenchidos de forma alternada
+	\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Gráficos em Java: exemplo}
+\begin{itemize}
+	\item O exemplo a seguir desenha duas fileiras de retângulos alternados em uma janela
+\begin{figure}[h]	
+	\includegraphics[height=0.6\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-exemplo.jpg}
+\end{figure}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Gráficos em Java: \texttt{LinhasDeQuadrados.java} {\tiny [Adaptado de Horstmann (2013, p. 180-181)]}}
+\tiny{\inputminted[bgcolor=cyan!10]{java}{src/LinhasDeQuadrados.java}}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Gráficos em Java: alguns métodos de \texttt{Graphics} (1)}
+{\scriptsize
+\begin{center}
+  \begin{tabular}{|p{6cm}|p{3cm}|p{4cm}|}
+\hline
+    \textbf{Método} & \textbf{Resultado} & \textbf{Explicação} \\
+\hline
+\texttt{g.drawRect(x, y, width, height)}
+&
+\begin{figure}[h]
+	\includegraphics[height=0.1\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-retangulo.png}
+\end{figure}
+& \texttt{(x, y)} é o canto superior esquerdo.\\
+\hline
+\texttt{g.drawOval(x, y, width, height)}
+&
+\begin{figure}[h]
+	\includegraphics[height=0.1\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-elipse.png}
+\end{figure}
+& \texttt{(x, y)} é o canto superior esquerdo do retângulo que limita a elipse. Para desenhar um cículo usa-se o mesmo valor para \texttt{width} e \texttt{height}.\\
+\hline
+\texttt{g.fillRect(x, y, width, height)}
+&
+\begin{figure}[h]
+	\includegraphics[height=0.1\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-retangulo_preenchido.png}
+\end{figure}
+& O retângulo é desenhado preenchido.\\
+\hline
+  \end{tabular}
+\end{center}
 }
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Gráficos em Java: alguns métodos de \texttt{Graphics} (2)}
+{\scriptsize
+\begin{center}
+  \begin{tabular}{|p{6cm}|p{3cm}|p{4cm}|}
+\hline
+    \textbf{Método} & \textbf{Resultado} & \textbf{Explicação} \\
+\hline
+\texttt{g.fillOval(x, y, width, height)}
+&
+\begin{figure}[h]
+	\includegraphics[height=0.1\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-elipse_preenchida.png}
+\end{figure}
+& A elipse é desenhada preenchida.\\
+\hline
+\texttt{g.drawLine(x1, y1, x2, y2)}
+&
+\begin{figure}[h]
+	\includegraphics[height=0.1\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-reta.png}
+\end{figure}
+& \texttt{(x1, y1)} e \texttt{(x2, y2)} são os pontos inicial e final de um segmento de reta.\\
+\hline
+\texttt{g.drawString("Message", x, y)}
+&
+\begin{figure}[h]
+	\includegraphics[height=0.1\paperheight,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-message.png}
+\end{figure}
+	& \texttt{(x, y)} é o ponto base (\emph{basepoint}).\\
+\hline
+  \end{tabular}
+\end{center}
+}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Gráficos em Java: alguns métodos de \texttt{Graphics} (3)}
+{\scriptsize
+\begin{center}
+  \begin{tabular}{|p{6cm}|p{3cm}|p{4cm}|}
+\hline
+    \textbf{Método} & \textbf{Resultado} & \textbf{Explicação} \\
+\hline
+\texttt{g.setColor(color)}
+&
+A partir deste ponto, os métodos para desenhar ou desenhar preenchido usarão a cor selecionada.
+& Use \texttt{Color.RED}, \texttt{Color.GREEN}, \texttt{Color.BLUE} e assim por diante.\\
+\hline
+  \end{tabular}
+\end{center}
+}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Gráficos em Java: exercícios}
+\begin{enumerate}
+	\item Escreva uma aplicação gráfica em Java para desenhar a seguinte face:
+	\begin{figure}[h]
+		\includegraphics[height=2cm,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-exercicio_1.png}
+	\end{figure}
+	{\tiny Fonte: Horstmann (2013, p. 197)}
+	\item Escreva uma aplicação gráfica em Java para desenhar uma espiral retangular como a mostrada na figura a seguir:
+	\begin{figure}[h]
+		\includegraphics[height=2cm,center]{pucrs-ep-fprog-unidade_04-lacos-laminas-exercicio_2.png}
+	\end{figure}
+	{\tiny Fonte: Horstmann (2013, p. 197)}
+\end{enumerate}
 \end{frame}
 
 %=======================================================
 \section{Referências}
 
-%-------------------------------------------------------
+%-------------------------------------------------------	
 \begin{frame}\frametitle{Referências}
-\noindent{HORSTMANN, C. \textbf{Java for Everyone – Late Objetct}. 2. ed. Hoboken: Wiley, 2013. xxxiv, 589 p.}
+\noindent{HORSTMANN, C. \textbf{Java for Everyone – Late Objects}. 2. ed. Hoboken: Wiley, 2013. xxxiv, 589 p.}
 \end{frame}
 
 %=======================================================
