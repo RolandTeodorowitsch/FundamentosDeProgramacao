@@ -1,6 +1,7 @@
 PDF =	\
 	pucrs-ep-fprog-unidade_05-metodos-laminas.pdf \
 	pucrs-ep-fprog-unidade_05-metodos-lista_de_exercicios.pdf \
+	pucrs-ep-fprog-unidade_05-metodos-lista_de_exercicios_2.pdf \
 	pucrs-ep-fprog-unidade_05-metodos-trabalho_1.pdf
 
 all:	$(PDF)

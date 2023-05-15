@@ -19,6 +19,8 @@
 \usecolortheme{orchid}
 \usefonttheme[onlymath]{serif}
 
+\newcommand\setItemnumber[1]{\setcounter{enumi}{\numexpr#1-1\relax}}
+
 \AtBeginSection[]{
   \begin{frame}
   \vfill
@@ -37,7 +39,7 @@
 \title[\sc{Métodos}]{Métodos}
 \author[Roland Teodorowitsch]{Roland Teodorowitsch}
 \institute[FPROG - EP - PUCRS]{Fundamentos de Programação - Escola Politécnica - PUCRS}
-\date{26 de outubro de 2022}
+\date{15 de maio de 2023}
 
 \begin{document}
 \justifying
@@ -64,44 +66,44 @@
 %-------------------------------------------------------
 \begin{frame}\frametitle{Conteúdos}
 \begin{itemize}
-	\item Métodos como Caixas Pretas
+	\item Definição
 	\item Implementando Métodos
 	\item Passagem de Parâmetros
 	\item Retorno de Valores
 	\item Métodos sem Retorno de Valores
-	\item Solução de Problemas
-	\begin{itemize}
-		\item Reutilização de Métodos
-		\item Refinamento Passo-a-passo
-	\end{itemize}
+	\item Exercícios	
+	\item Reutilização de Métodos
 	\item Escopo de Variáveis
 	\item Métodos Recursivos
+	\item Tópicos Avançacos
 \end{itemize}
 \end{frame}
 
 %=======================================================
-\section{Métodos como Caixas Pretas}
+\section{Definição}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Métodos como Caixas Pretas}
+\begin{frame}[fragile]\frametitle{O que é um Método?}
 \begin{itemize}
 	\item Um método é uma sequência de instruções com um nome
+	\item Trata-se de um bloco de código que executa determinada tarefa e que foi isolado e identificado
+	\item Desta forma, um método pode ser usado em muitos pontos do programa
 	\begin{itemize}
 		\item Você declara um método definindo um bloco de código com nome
 \begin{javacode}
 public static void main(String[] args) {
-  double result = Math.pow(2, 3);
-  . . .
+  double resultado = Math.pow(2, 3);
+  // ...
 }
 \end{javacode}
 		\item Você chama o método de forma a executar as suas instruções
 	\end{itemize}
-	\item Um método empacota uma computação formada por múltiplos passos em uma forma que pode ser facilmente entendida e reutilizada.
+	\item Um método empacota uma computação formada por múltiplos passos em uma forma que pode ser facilmente entendida e reutilizada
 \end{itemize}
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{O que é um Método?}
+\begin{frame}\frametitle{Métodos}
 \begin{itemize}
 	\item Você já utilizou alguns métodos:
 	\begin{itemize}
@@ -131,7 +133,7 @@ public static void main(String[] args) {
 {\scriptsize
 \begin{javacode}
 public static void main(String[] args) {
-  double result = Math.pow(2, 3);
+  double resultado = Math.pow(2, 3);
   ...
 }
 \end{javacode}
@@ -161,15 +163,15 @@ public static void main(String[] args) {
 {\scriptsize
 \begin{javacode}
 public static void main(String[] args) {
-  double result = Math.pow(2,3);
-  . . .
+  double resultado = Math.pow(2,3);
+  // ...
 }
 \end{javacode}
 }
 		\begin{itemize}
 			\item \texttt{main} ``passa'' dois argumentos (2 e 3) para \texttt{Math.pow}
 			\item \texttt{Math.pow} calcula e retorna o valor 8 para \texttt{main}
-			\item \texttt{main} armazena o valor de retorno na variável \texttt{result}
+			\item \texttt{main} armazena o valor de retorno na variável \texttt{resultado}
 		\end{itemize}
 	\end{column}
 	\begin{column}{0.5\linewidth}
@@ -214,13 +216,13 @@ public static void main(String[] args) {
 	\end{itemize}
 	\item Quando se escreve um método:
 	\begin{itemize}
-		\item Escolha um nome para o método (\texttt{cubeVolume})
-		\item Declare uma variável para cada argumento de entrada \texttt{(double sideLength)}
+		\item Escolha um nome para o método (\texttt{volumeCubo})
+		\item Declare uma variável para cada argumento de entrada \texttt{(double lado)}
 		\item Determine o tipo do valor retornado (\texttt{double})
 		\item Adicione modificadores tais como \texttt{public static}
 	\end{itemize}
 \begin{javacode}
-public static double cubeVolume(double sideLength)
+public static double volumeCubo(double lado)
 \end{javacode}
 \end{itemize}
 \end{frame}
@@ -235,9 +237,9 @@ public static double cubeVolume(double sideLength)
 		\item O método também deve retornar o valor calculado
 	\end{itemize}
 \begin{javacode}
-public static double cubeVolume(double sideLength) {
-  double volume = sideLength * sideLength * sideLength;
-  return volume;
+public static double volumeCubo(double lado) {
+   double volume = lado * lado * lado;
+   return volume;
 }
 \end{javacode}
 \end{itemize}
@@ -246,15 +248,15 @@ public static double cubeVolume(double sideLength) {
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{Fora do Método}
 \begin{itemize}
-	\item Os valores retornados por \texttt{cubeVolume} são armazenados em variáveis locais dentro de \texttt{main}
+	\item Os valores retornados por \texttt{volumeCubo} são armazenados em variáveis locais dentro de \texttt{main}
 	\item Os resultados são mostrados
 {\scriptsize
 \begin{javacode}
 public static void main(String[] args) {
-   double result1 = cubeVolume(2);
-   double result2 = cubeVolume(10);
-   System.out.println("A cube of side length 2 has volume "  + result1);
-   System.out.println("A cube of side length 10 has volume " + result2);
+   double lado1 = 2.0,  volume1 = volumeCubo(lado1);
+   double lado2 = 10.0, volume2 = volumeCubo(lado2);
+   System.out.printf("Um cubo com lado %.1f tem volume %.1f.\n",lado1,volume1);
+   System.out.printf("Um cubo com lado %.1f tem volume %.1f.\n",lado2,volume2);
 }
 \end{javacode}
 }
@@ -269,40 +271,6 @@ public static void main(String[] args) {
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{\texttt{Cubes.java} {\tiny (HORSTMANN, 2013, p. 206)}}
-{\tiny
-\begin{javacode}
-/**
-   This program computes the volumes of two cubes.
-*/
-public class Cubes {
-   public static void main(String[] args) {
-      double result1 = cubeVolume(2);
-      double result2 = cubeVolume(10);
-      System.out.println("A cube with side length 2 has volume " + result1);
-      System.out.println("A cube with side length 10 has volume " + result2);
-   }
-
-   /**
-      Computes the volume of a cube.
-      @param sideLength the side length of the cube
-      @return the volume
-   */
-   public static double cubeVolume(double sideLength) {
-      double volume = sideLength * sideLength * sideLength;
-      return volume;
-   }
-}
-\end{javacode}
-~\\
-~\\
-\textbf{Resultado da execução:}\\
-\texttt{A cube with side length 2 has volume 8\\
-A cube with side length 10 has volume 1000\\}
-}
-\end{frame}
-
-%-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{Comentários de Métodos}
 \begin{itemize}
 	\item Escreva um comentário Javadoc acima de cada método
@@ -314,14 +282,26 @@ A cube with side length 10 has volume 1000\\}
 	\end{itemize}
 	\item Termine com \texttt{*/}
 \begin{javacode}
-/**
-  Computes the volume of a cube.
-  @param sideLength the side length of the cube
-  @return the volume
+/** 
+  Calcula o volume de um cubo.
+  @param lado Comprimento do lado do cubo.
+  @return O volume do cubo.
 */
-public static double cubeVolume(double sideLength)
+public static double volumeCubo(double lado) {
 \end{javacode}
 \end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{\texttt{Cubos.java}}
+\tiny{\inputminted[bgcolor=cyan!10]{java}{src/Cubos.java}}
+{\tiny
+Resultado:
+\begin{minted}[bgcolor=cyan!10]{text}
+Um cubo com lado 2,0 tem volume 8,0.
+Um cubo com lado 10,0 tem volume 1000,0.
+\end{minted}
+}
 \end{frame}
 
 %=======================================================
@@ -363,17 +343,17 @@ public static double cubeVolume(double sideLength)
 {\tiny
 \begin{javacode}
 public static void main(String[] args) {
-  double result1 = cubeVolume(2);
-  . . . 
+  double resultado1 = volumeCubo(2);
+  // ...
 }
 \end{javacode}
 \begin{figure}[h]
 	\includegraphics[height=0.12\paperheight,center]{pucrs-ep-fprog-unidade_05-metodos-laminas-passo_passagem_de_parametros_1.png}
 \end{figure}
 \begin{javacode}
-public static double cubeVolume(double sideLength) {
-  double volume = sideLength * sideLength * sideLength;
-  return volume;
+public static double volumeCubo(double lado) {
+   double volume = lado * lado * lado;
+   return volume;
 }
 \end{javacode}
 \begin{figure}[h]
@@ -381,8 +361,8 @@ public static double cubeVolume(double sideLength) {
 \end{figure}
 \begin{javacode}
 public static void main(String[] args) {
-  double result1 = cubeVolume(2);
-  . . . 
+  double resultado1 = volumeCubo(2);
+  // ...
 }
 \end{javacode}
 }
@@ -398,13 +378,13 @@ Erro comum = tentar modificar argumentos
 \begin{javacode}
 public static void main(String[] args) {
   double total = 10;
-  addTax(total, 7.5); 
+  adicionaJuros(total, 7.5); 
 }
 
-public static int addTax(double price, double rate) {
-  double tax = price * rate / 100;
-  price = price + tax; // NAO tem efeito fora do metodo
-  return tax;
+public static double adicionaJuros(double valor, double taxa) {
+  double juros = valor * taxa / 100;
+  preco = preco + juros; // NAO tem efeito fora do metodo
+  return juros;
 }
 \end{javacode}
 }
@@ -429,9 +409,9 @@ public static int addTax(double price, double rate) {
 		\item O valor de retorno pode ser uma constante, uma variável ou o cálculo de uma expressão, mas precisa corresponder ao tipo de retorno declarado
 	\end{itemize}
 \begin{javacode}
-public static double cubeVolume (double sideLength) {
-  double volume = sideLength * sideLength * sideLength;
-  return volume;
+public static double volumeCubo(double lado) {
+   double volume = lado * lado * lado;
+   return volume;
 }
 \end{javacode}
 \end{itemize}
@@ -446,11 +426,11 @@ public static double cubeVolume (double sideLength) {
 	\item Cada ramo de execução deve possuir um comando \texttt{return}
 {\scriptsize
 \begin{javacode}
-public static double cubeVolume(double sideLength) {
-  if (sideLength < 0) { 
+public static double volumeCubo(double lado) {
+  if (lado < 0) { 
     return 0; 
   }
-  return sideLength * sideLength * sideLength;
+  return lado * lado * lado;
 }
 \end{javacode}
 }
@@ -574,7 +554,7 @@ Implemente métodos para os seguintes casos:
 
 \begin{comment}
 %-------------------------------------------------------
-\begin{frame}\frametitle{Exercícios (2)}
+\begin{frame}\frameScoperScopertitle{Exercícios (2)}
 \begin{itemize}
 	\item Implemente um método \texttt{multInt(int a, int b)} para calcular \texttt{a} multiplicado por \texttt{b} usando apenas somas sucessivas.
 	\item Implemente um método \texttt{powInt(int a, int b)} para calcular \texttt{a} elevado na potência \texttt{b} usando apenas multiplicações sucessivas. Use o método \texttt{multInt}.
@@ -584,10 +564,10 @@ Implemente métodos para os seguintes casos:
 \end{comment}
 
 %=======================================================
-\section{Solução de Problemas: Reutilização de Métodos}
+\section{Reutilização de Métodos}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Solução de Problemas: Reutilização de Métodos}
+\begin{frame}[fragile]\frametitle{Reutilização de Métodos}
 \begin{itemize}
 	\item Procure código ``repetido''
 	\begin{itemize}
@@ -641,211 +621,6 @@ int minutos = leiaValoresNoIntervalo(in,0,59);
 \end{frame}
 
 %=======================================================
-\section{Solução de Problemas: Refinamento Passo-a-passo}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Solução de Problemas: Refinamento Passo-a-passo}
-\begin{itemize}
-	\item Refinamento de passos
-	\begin{itemize}
-		\item Para resolver uma tarefa difícil, decomponha ela em tarefas mais simples
-		\item Então continue decompondo as tarefas simples em tarefas cada vez mais simples, até que você chegue a tarefas que você saiba como resolver
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Exemplo: Quer Tomar Café?}
-\begin{itemize}
-	\item Se você tiver que fazer um café, há duas opçôes:
-	\begin{itemize}
-		\item Faça um café instantâneo
-		\item Passe um café
-	\end{itemize}
-\begin{figure}[h]
-	\includegraphics[height=0.50\paperheight,center]{pucrs-ep-fprog-unidade_05-metodos-laminas-get_coffe_1.png}
-\end{figure}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Café Instantâneo}
-\begin{columns}[T]
-	\begin{column}{0.3\linewidth}
-		\begin{itemize}
-		\item Há duas formas de ferver a água:
-		\begin{itemize}
-			\item Use o microonddas
-			\item Use uma chaleira no fogão
-		\end{itemize}
-		\end{itemize}
-	\end{column}
-	\begin{column}{0.7\linewidth}\begin{figure}[h]
-	\includegraphics[height=0.65\paperheight,center]{pucrs-ep-fprog-unidade_05-metodos-laminas-get_coffe_2.png}
-\end{figure}
-	\end{column}
-\end{columns}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Café Passado}
-\begin{columns}[T]
-	\begin{column}{0.3\linewidth}
-		\begin{itemize}
-		\item Considerando o uso de uma cafeteira:
-		\begin{itemize}
-			\item Adicione água
-			\item Adicione o filtro
-			\item Moa o café
-			\begin{itemize}
-				\item Adicione os grãos no moedor
-				\item Moa por 60 segundos
-			\end{itemize}
-			\item Encha o filtro com o café moído
-			\item Ligue a máquina de café
-		\end{itemize}
-		\end{itemize}
-	\end{column}
-	\begin{column}{0.7\linewidth}\begin{figure}[h]
-	\includegraphics[height=0.65\paperheight,center]{pucrs-ep-fprog-unidade_05-metodos-laminas-get_coffe_3.png}
-\end{figure}
-	\end{column}
-\end{columns}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Exemplo de Refinamento de Passos}
-\begin{itemize}
-	\item Quando se preenche um cheque, costuma-se preencher o valor total tanto no formato numérico (R\$274,15) quanto no formato textual (duzentos e setenta e quatro reais e quinze centavos). Escreva um programa para transformar um número em um texto.
-	\item Mesmo que pareça difícil, pode-se iniciar fazendo algumas \textbf{simplificações} para a seguir \textbf{decompor} o problema
-	\begin{itemize}
-		\item Inicialmente separe a parte inteira (valor em reais sem centavos) e considere apenas valores de 0 até 999
-		\item Analise a questão dígito por dígito: isole os dígitos para centenas, dezenas e unidades
-		\item Você vai precisar de um método para resolver o problema (por exemplo, \texttt{numeroPorExtenso})
-		\item Este método poderá usar métodos para cada tipo de dígito: \texttt{nomeCentena}, \texttt{nomeDezena} e \texttt{nomeUnidade}
-		\item \textbf{Identifique e resolva as situações gerais, depois trate os casos específicos!}
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Tratando Centenas}
-\begin{itemize}
-	\item Método \texttt{nomeCentena}:
-	\begin{itemize}
-		\item Identifique todas as palavras envolvidas e também situações em que elas serão utilizadas
-		\item Se não houver centena, não há nada a fazer
-		\item Se a centena for igual a 1, há duas possibilidades
-		\begin{itemize}
-			\item Sem resto, a palavra é ``cem''
-			\item Havendo resto, o texto deverá ser ``cento e ''
-		\end{itemize}
-		\item Para as outras centenas, os textos são bem comportados: ``duzentos'', ``trezentos'', ``quatrocentos'', etc.
-		\begin{itemize}
-			\item Havendo resto, após o texto deverá ser acrescentado `` e ''
-		\end{itemize}
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Tratando Dezenas}
-\begin{itemize}
-	\item Método \texttt{nomeDezena}:
-	\begin{itemize}
-		\item Identifique todas as palavras envolvidas e também situações em que elas serão utilizadas
-		\item Se não houver dezena, não há nada a fazer
-		\item Se a dezena for igual a 1, dezena e resto devem ser tratados de forma unificada, então é melhor fazer isto no método das unidades
-		\item Para as outras dezenas, os textos são bem comportados: ``vinte'', ``trinta'', ``quarenta'', etc.
-		\begin{itemize}
-			\item Havendo resto, após o texto deverá ser acrescentado `` e ''
-		\end{itemize}
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Tratando Unidades}
-\begin{itemize}
-	\item Método \texttt{nomeUnidade}:
-	\begin{itemize}
-		\item Identifique todas as palavras envolvidas e também situações em que elas serão utilizadas
-		\item Se não houver unidade, não há nada a fazer
-		\item Se houver unidade, os textos são: ``um'', ``dois'', ``tres'', ``quatro'', etc.
-		\item Este método também tratará as dezenas como se fossem unidades, portanto, também haverá textos para: ``dez'', ``onze'', ``doze'', ``treze'', ``catorze'', etc.
-	\end{itemize}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Tratando o Zero}
-\begin{itemize}
-	\item 0 (``zero'') é um caso especial e deve ser tratado à parte
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Escreva Pseudocódigo}
-{\tiny
-\begin{verbatim}
-numero = n (numero a ser convertido)
-texto  = "" (texto correspondente ao numero)
-se numero for 0 entao texto = "zero"
-senao
-inicio
-  // calcula numero de centenas, dezenas e unidades
-  centenas = numero / 100
-  restoCentenas = numero % 100
-  dezenas = restoCentenas / 10
-  unidades = restoCentenas % 10
-
-  // trata dezenas como unidades
-  se dezenas for igual a 1
-  entao inicio
-          dezenas = 0
-          unidades = unidades + 10
-        fim
-
-  // gera resultado
-  texto = nomeCentena(centenas,restoCentenas) + nomeDezena(dezenas,unidades) + nomeUnidade(unidades)
-fim
-\end{verbatim}
-}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Planeje os Métodos}
-\begin{itemize}
-	\item \texttt{main} chama \texttt{numeroPorExtenso}
-	\item \texttt{numeroPorExtenso} faz todo o trabalho retornando um \texttt{String}
-	\item \texttt{numeroPorExtenso} usa os métodos \texttt{nomeCentena}, \texttt{nomeDezena} e \texttt{nomeUnidade}
-	\item \texttt{nomeCentena} recebe o número de centenas e o resto, retornando um \texttt{String}
-	\item \texttt{nomeDezena} recebe o número de dezenas e o resto, retornando um \texttt{String}
-	\item \texttt{nomeUnidade} recebe o número de unidades, retornando um \texttt{String}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Dicas de Programação}
-\begin{itemize}
-	\item Mantenha os métodos pequenos: se ficarem maiores do que uma página, quebre eles em submétodos
-	\item Execute seus métodos manualmente, mostrando a evolução da alteração das variáveis
-	\begin{itemize}
-		\item Use linhas para cada passo e reserve colunas para as variáveis importantes 
-	\end{itemize}
-\begin{figure}[h]
-	\includegraphics[height=0.15\paperheight,center]{pucrs-ep-fprog-unidade_05-metodos-laminas-teste_de_mesa.png}
-\end{figure}
-	\item Use métodos incompletos, com conteúdo provisório, que retornam valores ``fictícios'' durante o desenvolvimento
-\begin{javacode}
-public static String nomeUnidade(int unidades) {
-   return "unidade";
-}
-\end{javacode}
-\end{itemize}
-\end{frame}
-
-%=======================================================
 \section{Escopo de Variáveis}
 
 %-------------------------------------------------------
@@ -878,18 +653,18 @@ public static String nomeUnidade(int unidades) {
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{Exemplo de Escopo}
 \begin{itemize}
-	\item \texttt{sum} é uma variável local em \texttt{main}
-	\item \texttt{square} é visível apenas dentro do bloco do laço \texttt{for}
+	\item \texttt{soma} é uma variável local em \texttt{main}
+	\item \texttt{quadrado} é visível apenas dentro do bloco do laço \texttt{for}
 	\item \texttt{i} é visível apenas dentro do laço \texttt{for}
 \begin{javacode}
 public static void main(String[] args) { // ESCOPOS:
-  int sum = 0;                           // sum
-  for (int i = 1; i <= 10; i++)  {       // sum, i
-    int square = i * i;                  // sum, i, square
-    sum = sum + square;                  // sum, i, square
-  }                                      // sum
-  System.out.println(sum);               // sum
-}                                        //
+  int soma = 0;                          // soma
+  for (int i = 1; i <= 10; i++)  {       // soma, i
+    int quadrado = i * i;                // soma, i, quadrado
+    soma = soma + quadrado;              // soma, i, quadrado
+  }                                      // soma
+  System.out.println(soma);              // soma
+}
 \end{javacode}
 \end{itemize}
 \end{frame}
@@ -899,18 +674,18 @@ public static void main(String[] args) { // ESCOPOS:
 \begin{itemize}
 	\item Variáveis declaradas dentro de um método \textbf{não} são visíveis a outros métodos
 	\begin{itemize}
-		\item \texttt{sideLength} é local do método \texttt{main}
+		\item \texttt{lado} é local do método \texttt{main}
 		\item Usá-la fora do método causará um erro de compilação
 	\end{itemize}
 \begin{javacode}
 public static void main(String[] args) {
-  double sideLength = 10;
-  int result = cubeVolume();
-  System.out.println(result);
+  double lado = 10;
+  double resultado = volumeCubo();
+  System.out.println(resultado);
 }
 
-public static double cubeVolume() {
-  return sideLength * sideLength * sideLength; // ERROR
+public static double volumeCubo() {
+  return lado * lado * lado; // ERRO!
 }
 \end{javacode}
 \end{itemize}
@@ -921,18 +696,18 @@ public static double cubeVolume() {
 \begin{itemize}
 	\item Variáveis declaradas dentro de um método \textbf{não} são visíveis a outros métodos
 	\begin{itemize}
-		\item \texttt{result} é local de \texttt{square} e \texttt{result} também é local em \texttt{main}
+		\item \texttt{resultado} é local de \texttt{quadrado} e \texttt{resultado} também é local em \texttt{main}
 		\item São duas variáveis diferentes que não se sobrepõem
 	\end{itemize}
 \begin{javacode}
-public static int square(int n) {
-  int result = n * n;
-  return result;
+public static int quadrado(int n) {
+  int resultado = n * n;
+  return resultado;
 }
 
 public static void main(String[] args) {
-  int result = square(3) + square(4);
-  System.out.println(result);
+  int resultado = quadrado(3) + quadrado(4);
+  System.out.println(resultado);
 }
 \end{javacode}
 \end{itemize}
@@ -948,14 +723,14 @@ public static void main(String[] args) {
 	\end{itemize}
 \begin{javacode}
 public static void main(String[] args) {
-  int sum = 0;
+  int soma = 0;
   for (int i = 1; i <= 10; i++) {
-    sum = sum + i;
+    soma = soma + i;
   }
   for (int i = 1; i <= 10; i++) {
-    sum = sum + i * i;
+    soma = soma + i * i;
   }
-  System.out.println(sum);
+  System.out.println(soma);
 }
 \end{javacode}
 \end{itemize}
@@ -970,13 +745,13 @@ public static void main(String[] args) {
 		\item O compilador vai reclamar quando a variável \texttt{n} for declarada no escopo do bloco
 	\end{itemize}
 \begin{javacode}
-public static int sumOfSquares(int n) { // ESCOPOS:
-  int sum = 0;                          // n
-  for (int i = 1; i <= n; i++) {        // n
-    int n = i * i; /* ERRO */           // n, n
-    sum = sum + n;                      // n, n
-  }                                     // n
-  return sum;                           // n
+public static int somaDeQuadrados(int n) { // ESCOPOS:
+  int soma = 0;                            // n
+  for (int i = 1; i <= n; i++) {           // n
+    int n = i * i; /* ERRO */              // n, n
+    soma = soma + n;                       // n, n
+  }                                        // n
+  return soma;                             // n
 }
 \end{javacode}
 \end{itemize}
@@ -987,20 +762,20 @@ public static int sumOfSquares(int n) { // ESCOPOS:
 \begin{itemize}
 	\item Variáveis globais e locais (de métodos) podem se sobrepor
 	\begin{itemize}
-		\item A variável local \texttt{same} será usada no seu contexto local
-		\item Não há acesso à variável global \texttt{same} quando \texttt{same} local estiver em seu escopo
+		\item A variável local \texttt{mesma} será usada no seu contexto local
+		\item Não há acesso à variável global \texttt{mesma} quando \texttt{mesma} local estiver em seu escopo
 	\end{itemize}
 {\scriptsize
 \begin{javacode}
-public class Scoper {                       // ESCOPOS:
-  public static int same; /* global */      // same
-  public static void main(String[] args) {  // same
-    int same = 0; /* local */               // same, same
-    for (int i = 1; i <= 10; i++) {         // same, same
-      int square = i * i;                   // same, same
-      same = same + square;                 // same, same
-    }                                       // same, same
-    System.out.println(same);               // same
+public class Escopo {                       // ESCOPOS:
+  public static int mesma; /* global */     // mesma
+  public static void main(String[] args) {  // mesma
+    int mesma = 0; /* local */              // mesma, mesma
+    for (int i = 1; i <= 10; i++) {         // mesma, mesma
+      int quadrados = i * i;                // mesma, mesma
+      mesma = mesma + quadrados;            // mesma, mesma
+    }                                       // mesma, mesma
+    System.out.println(mesma);              // mesma
   }
 }
 \end{javacode}
@@ -1064,12 +839,12 @@ public class Teste1 {
 
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{Exercício 2}
-For each of the variables in the following program, indicate the scope. Then determine what the program prints, without actually running the program. (HORSTMANN, 2013, p. 237)
+Indique o escopo de cada uma das variáveis do programa abaixo. Determine o que o programa imprimirá, sem executá-lo no computador (HORSTMANN, 2013, p. 237).
 \begin{columns}[T]
 	\begin{column}{0.5\linewidth}
 {\scriptsize
 \begin{javacode}
-public class Sample {
+public class Exemplo {
 
     public static void main(String[] args) {
         int i = 10;
@@ -1121,6 +896,12 @@ public class Sample {
 \end{frame}
 
 %-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Exemplo: Fatorial (Versões NÃO Recursiva e Recusiva)}
+\pause
+{\scriptsize\inputminted[bgcolor=cyan!10]{java}{src/Fatorial.java}}	
+\end{frame}
+
+%-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{Exemplo: Triângulo Recursivo}
 \begin{columns}[T]
 	\begin{column}{0.5\linewidth}
@@ -1128,17 +909,8 @@ public class Sample {
     \scriptsize
 	\item O médoto chama a si mesmo (e não mostra nada) até que \texttt{tam} seja menor do que $1$
 	\item Neste caso, ele usa o comando \texttt{return} e todas as iterações anteriores imprimem os seus resultados: 1, 2, 3, 4
-\begin{javacode}
-public static void triangulo(int tam) {
-  if (tam < 1)
-     return;
-  triangulo(tam - 1);
-  for (int i = 0; i < tam; i++)
-    System.out.print("*");
-  System.out.println();
-}
-\end{javacode}
-\end{itemize}
+\tiny{\inputminted[bgcolor=cyan!10]{java}{src/Triangulo.java}}
+	\end{itemize}
 	\end{column}
 	\begin{column}{0.5\linewidth}
 {\scriptsize
@@ -1179,30 +951,46 @@ public static void triangulo(int tam) {
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{Exercício 1}
-Implemente funções recursivas para:
+\begin{frame}\frametitle{Exercícios (1-2)}
 \begin{enumerate}
-	\item Fatorial de $n$
-    \begin{itemize}
-        \item $fatorial(0) = 1$
-        \item $fatorial(1) = 1$
-        \item $fatorial(n) = n \times fatorial(n-1)$
-    \end{itemize}
-	\item Número de Fibonacci de ordem $n$
-	\begin{itemize}
-        \item $fibonacci(0) = 0$
-        \item $fibonacci(1) = 1$
-        \item $fibonacci(n) = fibonacci(n-1) + fibonacci(n-2)$
-    \end{itemize}
-	\item Imprimir os números inteiros de 1 até $n$, inclusive.
-	\item Imprimir os números inteiros de $n$ até 1, inclusive.
+	\item O número de Fibonacci de ordem \texttt{n} pode ser definido como a soma dos dois números de Fibonacci anteriores. Ou seja:\\
+\texttt{Fibonacci(n) = Fibonacci(n-1) + Fibonacci(n-2)}\\
+e, por definição, \texttt{Fibonacci(1) = 0} e \texttt{Fibonacci(2) = 1}.\\
+Implemente, em Java:
+\begin{itemize}
+\item Um método NÃO recursivo que recebe \texttt{n}, calculando e retornando o número de Fibonacci de ordem \texttt{n};
+\item Um método recursivo que recebe \texttt{n}, calculando e retornando o número de Fibonacci de ordem \texttt{n}.
+\end{itemize}
+	\item Considerando a implementação recursiva dos números de Fibonacci,  caso seja necessário usar esse método para calcular o número de Fibonacci de ordem 7, identifique:
+\begin{itemize}
+\item Quantas vezes o método fibonacci recursivo será chamado?
+\item Quantas vezes o método fibonacci recursivo será chamado para \texttt{n} valendo 5?
+\end{itemize}
+\end{enumerate}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Exercícios (3-5)}
+\begin{enumerate}
+        \setcounter{enumi}{2}
+	\item Implemente um método recursivo em Java que recebe \texttt{n} (inteiro e maior ou igual a 1) e que imprima os números inteiros de 1 até \texttt{n}, inclusive.
+	\item Implemente um método recursivo em Java que recebe \texttt{n} (inteiro e maior ou igual a 1) e que imprima os números inteiros de \texttt{n} até 1, inclusive.
+	\item Dado um valor inteiro e positivo (\texttt{n}), o valor da constante de \emph{Euler} poder ser calculando com precisão diretamente proporcional a \texttt{n} através da fórmula:
+\[ E = \frac{1}{0!} + \frac{1}{1!} + \frac{1}{2!}+ \frac{1}{3!} + ... + \frac{1}{n!}\]
+Implemente, em Java:
+\begin{itemize}
+\item Um método NÃO recursivo que recebe \texttt{n}, retornando o valor de \emph{Euler} calculado usando a fórmula acima;
+\item Um método recursivo que recebe \texttt{n}, retornando o valor de \emph{Euler} calculado usando a fórmula acima.
+\end{itemize}
 	%\item Imprimir os números inteiros de $a$ até $b$, com incremento $r$, considerando $a \leqslant b$ e $r > 0$.
 \end{enumerate}
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Exercício 2}
-Considere o programa em Java a seguir e mostre o que será impresso, respeitando a ordem de execução.
+\begin{frame}[fragile]\frametitle{Exercício (6)}
+\begin{enumerate}
+        \setcounter{enumi}{5}
+	\item Considere o programa em Java a seguir e mostre o que será impresso, respeitando a ordem de execução.
 \begin{columns}[T]
 	\begin{column}{0.5\linewidth}
 {\tiny
@@ -1250,6 +1038,7 @@ public class Teste2 {
 }
 	\end{column}
 \end{columns}
+\end{enumerate}
 \end{frame}
 
 %=======================================================
@@ -1312,27 +1101,240 @@ public class Teste2 {
 \section{Exercícios}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Exercício 1}
-{\scriptsize
-Escreva os seguintes metodos em Java e teste-os em um método main():
-\begin{itemize}
-\item \texttt{double smallest(double x, double y, double z)}, retornando o menor valor entre todos os argumentos (por exemplo, \texttt{smallest(0,-1, 3.45)} retorna \texttt{-1.0000})
-\item \texttt{double average(double x, double y, double z)}, retornando o valor medio de todos os argumentos (por exemplo, \texttt{average(1, 2, 6)} retorna \texttt{3.0000})
-\item \texttt{boolean allTheSame(double x, double y, double z)}, retornando \texttt{true} se todos forem iguais, ou \texttt{false} em caso contrario (por exemplo, \texttt{allTheSame(1,1,1)} retorna \texttt{true} e \texttt{allTheSame(2,2,2.1)} retorna \texttt{false})
-\item \texttt{boolean allDifferent(double x, double y, double z)}, retornando \texttt{true} se todos forem diferentes, ou \texttt{false} em caso contrario (por exemplo, \texttt{allDifferent(1,2,3)} retorna \texttt{true} e \texttt{allDifferent(1,1,2)} retorna \texttt{false})
-\item \texttt{boolean sorted(double x, double y, double z)}, retornando \texttt{true} se os argumentos estiverem ordenados (\texttt{x}$\leqslant$\texttt{y}$\leqslant$\texttt{z}), ou \texttt{false} em caso contrario (por exemplo, \texttt{sorted(1,3,5)} retorna \texttt{true} e \texttt{sorted(1,3,2)} retorna \texttt{false})
-\item \texttt{int firstDigit(int n)}, retornando o primeiro digito do argumento (por exemplo, \texttt{firstDigit(1729)} retorna \texttt{1})
-\item \texttt{int lastDigit(int n)}, retornando o ultimo digito do argumento (por exemplo, \texttt{lastDigit(1729)} retorna \texttt{9})
-\item \texttt{int digits(int n)}, retornando o numero de digitos do argumento (por exemplo, \texttt{digits(1729)} retorna \texttt{4})
-\end{itemize}
-}
+\begin{frame}[fragile]\frametitle{Exercícios 1}
+\begin{enumerate}
+	\item Escreva os seguintes metodos em Java e teste-os em um método main():
+	\begin{itemize}
+		\scriptsize
+		\item \texttt{double smallest(double x, double y, double z)}, retornando o menor valor entre todos os argumentos (por exemplo, \texttt{smallest(0,-1, 3.45)} retorna \texttt{-1.0000})
+		\item \texttt{double average(double x, double y, double z)}, retornando o valor medio de todos os argumentos (por exemplo, \texttt{average(1, 2, 6)} retorna \texttt{3.0000})
+		\item \texttt{boolean allTheSame(double x, double y, double z)}, retornando \texttt{true} se todos forem iguais, ou \texttt{false} em caso contrario (por exemplo, \texttt{allTheSame(1,1,1)} retorna \texttt{true} e \texttt{allTheSame(2,2,2.1)} retorna \texttt{false})
+		\item \texttt{boolean allDifferent(double x, double y, double z)}, retornando \texttt{true} se todos forem diferentes, ou \texttt{false} em caso contrario (por exemplo, \texttt{allDifferent(1,2,3)} retorna \texttt{true} e \texttt{allDifferent(1,1,2)} retorna \texttt{false})
+		\item \texttt{boolean sorted(double x, double y, double z)}, retornando \texttt{true} se os argumentos estiverem ordenados (\texttt{x}$\leqslant$\texttt{y}$\leqslant$\texttt{z}), ou \texttt{false} em caso contrario (por exemplo, \texttt{sorted(1,3,5)} retorna \texttt{true} e \texttt{sorted(1,3,2)} retorna \texttt{false})
+		\item \texttt{int firstDigit(int n)}, retornando o primeiro digito do argumento (por exemplo, \texttt{firstDigit(1729)} retorna \texttt{1})
+		\item \texttt{int lastDigit(int n)}, retornando o ultimo digito do argumento (por exemplo, \texttt{lastDigit(1729)} retorna \texttt{9})
+		\item \texttt{int digits(int n)}, retornando o numero de digitos do argumento (por exemplo, \texttt{digits(1729)} retorna \texttt{4})
+	\end{itemize}
+\end{enumerate}
 \end{frame}
 
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{Exercício 2}
-Implemente em Java dois métodos, um não recursivo e outro recursivo, que recebam um valor inteiro n e retornem o valor real correspondente ao n-ésimo número harmônico.
+\begin{enumerate}
+        \setcounter{enumi}{1}
+	\item Implemente em Java dois métodos, um não recursivo e outro recursivo, que recebam um valor inteiro n e retornem o valor real correspondente ao n-ésimo número harmônico.
 O número. O n-ésimo número harmônico, H(n), com n maior ou igual a 1, pode ser calculado da seguinte forma:
 \[ H(n) = 1 + \frac{1}{2} + \frac{1}{3} +\frac{1}{4} + ... + \frac{1}{n}\]
+\end{enumerate}
+\end{frame}
+
+%=======================================================
+\section{Tópicos Avançados}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Tópicos Avançados}
+\begin{itemize}
+	\item Refinamento de passos
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Refinamento de Passos}
+\begin{itemize}
+	\item Para resolver uma tarefa difícil, decomponha ela em tarefas mais simples
+	\item Então continue decompondo as tarefas simples em tarefas cada vez mais simples, até que você chegue a tarefas que você saiba como resolver
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Refinamento de Passos: Quer Tomar Café? (Exemplo)}
+\begin{itemize}
+	\item Se você tiver que fazer um café, há duas opçôes:
+	\begin{itemize}
+		\item Faça um café instantâneo
+		\item Passe um café
+	\end{itemize}
+\begin{figure}[h]
+	\includegraphics[height=0.50\paperheight,center]{pucrs-ep-fprog-unidade_05-metodos-laminas-get_coffe_1.png}
+\end{figure}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Refinamento de Passos: Café Instantâneo}
+\begin{columns}[T]
+	\begin{column}{0.3\linewidth}
+		\begin{itemize}
+		\item Há duas formas de ferver a água:
+		\begin{itemize}
+			\item Use o microondas
+			\item Use uma chaleira no fogão
+		\end{itemize}
+		\end{itemize}
+	\end{column}
+	\begin{column}{0.7\linewidth}\begin{figure}[h]
+	\includegraphics[height=0.65\paperheight,center]{pucrs-ep-fprog-unidade_05-metodos-laminas-get_coffe_2.png}
+\end{figure}
+	\end{column}
+\end{columns}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Refinamento de Passos: Café Passado}
+\begin{columns}[T]
+	\begin{column}{0.3\linewidth}
+		\begin{itemize}
+		\item Considerando o uso de uma cafeteira:
+		\begin{itemize}
+			\item Adicione água
+			\item Adicione o filtro
+			\item Moa o café
+			\begin{itemize}
+				\item Adicione os grãos no moedor
+				\item Moa por 60 segundos
+			\end{itemize}
+			\item Encha o filtro com o café moído
+			\item Ligue a máquina de café
+		\end{itemize}
+		\end{itemize}
+	\end{column}
+	\begin{column}{0.7\linewidth}\begin{figure}[h]
+	\includegraphics[height=0.65\paperheight,center]{pucrs-ep-fprog-unidade_05-metodos-laminas-get_coffe_3.png}
+\end{figure}
+	\end{column}
+\end{columns}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Refinamento de Passos: Exemplo}
+\begin{itemize}
+	\item Quando se preenche um cheque, costuma-se preencher o valor total tanto no formato numérico (R\$274,15) quanto no formato textual (duzentos e setenta e quatro reais e quinze centavos). Escreva um programa para transformar um número em um texto.
+	\item Mesmo que pareça difícil, pode-se iniciar fazendo algumas \textbf{simplificações} para a seguir \textbf{decompor} o problema
+	\begin{itemize}
+		\item Inicialmente separe a parte inteira (valor em reais sem centavos) e considere apenas valores de 0 até 999
+		\item Analise a questão dígito por dígito: isole os dígitos para centenas, dezenas e unidades
+		\item Você vai precisar de um método para resolver o problema (por exemplo, \texttt{numeroPorExtenso})
+		\item Este método poderá usar métodos para cada tipo de dígito: \texttt{nomeCentena}, \texttt{nomeDezena} e \texttt{nomeUnidade}
+		\item \textbf{Identifique e resolva as situações gerais, depois trate os casos específicos!}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Refinamento de Passos: Tratando Centenas}
+\begin{itemize}
+	\item Método \texttt{nomeCentena}:
+	\begin{itemize}
+		\item Identifique todas as palavras envolvidas e também situações em que elas serão utilizadas
+		\item Se não houver centena, não há nada a fazer
+		\item Se a centena for igual a 1, há duas possibilidades
+		\begin{itemize}
+			\item Sem resto, a palavra é ``cem''
+			\item Havendo resto, o texto deverá ser ``cento e ''
+		\end{itemize}
+		\item Para as outras centenas, os textos são bem comportados: ``duzentos'', ``trezentos'', ``quatrocentos'', etc.
+		\begin{itemize}
+			\item Havendo resto, após o texto deverá ser acrescentado `` e ''
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Refinamento de Passos: Tratando Dezenas}
+\begin{itemize}
+	\item Método \texttt{nomeDezena}:
+	\begin{itemize}
+		\item Identifique todas as palavras envolvidas e também situações em que elas serão utilizadas
+		\item Se não houver dezena, não há nada a fazer
+		\item Se a dezena for igual a 1, dezena e resto devem ser tratados de forma unificada, então é melhor fazer isto no método das unidades
+		\item Para as outras dezenas, os textos são bem comportados: ``vinte'', ``trinta'', ``quarenta'', etc.
+		\begin{itemize}
+			\item Havendo resto, após o texto deverá ser acrescentado `` e ''
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Refinamento de Passos: Tratando Unidades}
+\begin{itemize}
+	\item Método \texttt{nomeUnidade}:
+	\begin{itemize}
+		\item Identifique todas as palavras envolvidas e também situações em que elas serão utilizadas
+		\item Se não houver unidade, não há nada a fazer
+		\item Se houver unidade, os textos são: ``um'', ``dois'', ``tres'', ``quatro'', etc.
+		\item Este método também tratará as dezenas como se fossem unidades, portanto, também haverá textos para: ``dez'', ``onze'', ``doze'', ``treze'', ``catorze'', etc.
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Refinamento de Passos: Tratando o Zero}
+\begin{itemize}
+	\item 0 (``zero'') é um caso especial e deve ser tratado à parte
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Refinamento de Passos: Escreva Pseudocódigo}
+{\tiny
+\begin{verbatim}
+numero = n (numero a ser convertido)
+texto  = "" (texto correspondente ao numero)
+se numero for 0 entao texto = "zero"
+senao
+inicio
+  // calcula numero de centenas, dezenas e unidades
+  centenas = numero / 100
+  restoCentenas = numero % 100
+  dezenas = restoCentenas / 10
+  unidades = restoCentenas % 10
+
+  // trata dezenas como unidades
+  se dezenas for igual a 1
+  entao inicio
+          dezenas = 0
+          unidades = unidades + 10
+        fim
+
+  // gera resultado
+  texto = nomeCentena(centenas,restoCentenas) + nomeDezena(dezenas,unidades) + nomeUnidade(unidades)
+fim
+\end{verbatim}
+}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Refinamento de Passos: Planeje os Métodos}
+\begin{itemize}
+	\item \texttt{main} chama \texttt{numeroPorExtenso}
+	\item \texttt{numeroPorExtenso} faz todo o trabalho retornando um \texttt{String}
+	\item \texttt{numeroPorExtenso} usa os métodos \texttt{nomeCentena}, \texttt{nomeDezena} e \texttt{nomeUnidade}
+	\item \texttt{nomeCentena} recebe o número de centenas e o resto, retornando um \texttt{String}
+	\item \texttt{nomeDezena} recebe o número de dezenas e o resto, retornando um \texttt{String}
+	\item \texttt{nomeUnidade} recebe o número de unidades, retornando um \texttt{String}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Refinamento de Passos: Dicas de Programação}
+\begin{itemize}
+	\item Mantenha os métodos pequenos: se ficarem maiores do que uma página, quebre eles em submétodos
+	\item Execute seus métodos manualmente, mostrando a evolução da alteração das variáveis
+	\begin{itemize}
+		\item Use linhas para cada passo e reserve colunas para as variáveis importantes 
+	\end{itemize}
+\begin{figure}[h]
+	\includegraphics[height=0.15\paperheight,center]{pucrs-ep-fprog-unidade_05-metodos-laminas-teste_de_mesa.png}
+\end{figure}
+	\item Use métodos incompletos, com conteúdo provisório, que retornam valores ``fictícios'' durante o desenvolvimento
+\begin{javacode}
+public static String nomeUnidade(int unidades) {
+   return "unidade";
+}
+\end{javacode}
+\end{itemize}
 \end{frame}
 
 %=======================================================
@@ -1341,6 +1343,7 @@ O número. O n-ésimo número harmônico, H(n), com n maior ou igual a 1, pode s
 %-------------------------------------------------------
 \begin{frame}\frametitle{Referências}
 \noindent{HORSTMANN, C. \textbf{Java for Everyone – Late Objects}. 2. ed. Hoboken: Wiley, 2013. xxxiv, 589 p.}
+s
 \end{frame}
 
 %=======================================================
