@@ -1,10 +1,8 @@
 import java.util.Scanner;
 /**  Programa para calcular a divisão de despesas de uma festa entre amigos. */
 public class DivisaoDeDespesas {
-  /**
-     Metodo inicial.
-     @param args Argumentos da linha de comandos (NÃO utilizado).
-  */
+  /** Metodo inicial.
+      @param args Argumentos da linha de comandos (NÃO utilizado). */
   public static void main(String[] args) {
      Scanner in = new Scanner(System.in);
      System.out.print("Numero de pessoas? ");                    int numPes = in.nextInt();

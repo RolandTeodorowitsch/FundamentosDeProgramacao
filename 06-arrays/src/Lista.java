@@ -1,11 +1,7 @@
-/**
-   Programa que mostra os elementos de uma lista em determinado formato.
-*/
+/** Programa que mostra os elementos de uma lista em determinado formato. */
 public class Lista {
-  /** 
-     Metodo inicial.
-     @param args Argumentos da linha de comandos (NÃO utilizado).
-  */
+  /**  Metodo inicial.
+       @param args Argumentos da linha de comandos (NÃO utilizado). */
   public static void main(String[] args) {
     String[] frutas = {"ABACATE", "BANANA", "CARAMBOLA", "FIGO", "JABUTICABA"};
     for (int i=0; i<frutas.length; ++i) {

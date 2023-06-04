@@ -51,7 +51,7 @@ rectangle ([xshift=5mm]frame.north west);\end{tcbclipinterior}}}
 \end{comment}
 \author[Roland Teodorowitsch]{Roland Teodorowitsch}
 \institute[FPROG - EP - PUCRS]{Fundamentos de Programação - Escola Politécnica - PUCRS}
-\date{22 de maio de 2023}
+\date{3 de junho de 2023}
 
 \begin{document}
 \justifying
@@ -84,18 +84,15 @@ rectangle ([xshift=5mm]frame.north west);\end{tcbclipinterior}}}
 	\item \emph{Arrays}
 	\item Algoritmos Comuns para \emph{Arrays}
 	\item Usando \emph{Arrays} com Métodos
-	\item Tópicos Especiais
-	\item Solução de Problemas
-	\begin {itemize}
-		\item Combinando Algoritmos
-		\item Usando Objetos Reais
-	\end{itemize}
+	\item Algoritmos Especiais
+	\item Combinando Algoritmos
 	\item \emph{Arrays} Bidimensionais
 %	\item \emph{Array Lists}
-	\item Argumentos da Linha de Comando
+	\item Argumentos da Linha de Comandos
+	\item Exercícios
 	\item Sumário
-	\item Humor
 	\item Tópicos complementares
+	\item Humor
 	\item Referências
 \end{itemize}
 \end{frame}
@@ -920,7 +917,7 @@ while (in.hasNextDouble() && tamanhoAtual < entradas.length) {
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{Exercícios 2-3}
+\begin{frame}\frametitle{Exercício 2}
 \begin{enumerate}
 \setcounter{enumi}{1}
 \item Considere um \emph{array} parcialmente preenchido\\
@@ -928,7 +925,6 @@ while (in.hasNextDouble() && tamanhoAtual < entradas.length) {
 com valores até\\
 \texttt{int tamAtual;}\\
 E escreva um trecho de programa em Java para eliminar todos os valores zero deste \emph{array}, sem criar um novo \emph{array}.
-\item Considere um \emph{array} de inteiros chamado \texttt{valores} e escreva um programa em Java para inverter este \emph{array} (ou seja, troca o primeiro elemento pelo último, o segundo pelo penúltimo, e assim sucessivamente).
 \end{enumerate}
 \end{frame}
 
@@ -1001,10 +997,10 @@ E escreva um trecho de programa em Java para eliminar todos os valores zero dest
 \end{frame}
 
 %=======================================================
-\section{Tópicos Especiais}
+\section{Algoritmos Especiais}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Tópico Especial: Ordenação de \emph{Arrays}}
+\begin{frame}[fragile]\frametitle{Ordenação de \emph{Arrays}}
 \begin{itemize}
 	\item Quando se armazena valores em um \emph{array}, pode-se:
 	\begin{itemize}
@@ -1029,20 +1025,20 @@ Arrays.sort(values, 0, currentSize);  // Parcialm. preen.
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{Tópico Especial: Algoritmos de Ordenação}
+\begin{frame}\frametitle{Algoritmos de Ordenação}
 \begin{itemize}
 	\item Alguns dos algoritmos de ordenação mais conhecidos são:
 	\begin{itemize}
 		\item \emph{Bubble Sort}: percorre os dados comparando os elementos da posição i com a posição i+1, e, se o primeiro for maior do que o segundo, inverte eles; simples; pouco eficiente
 		\item \emph{Selection Sort}: procura o menor elemento e coloca na primeira posição, depois procura o segundo menor e coloca na segunda posição, e assim sucessivamente
-		\item \emph{Insertion Sort}: percorre os dados da segunda posição até o final, procurando onde o elemento se encaixaria no conjunto à esquerda da posição atual (que já está ordenado); é simples e eficiente quando aplicado a pequenas listas
+		%\item \emph{Insertion Sort}: percorre os dados da segunda posição até o final, procurando onde o elemento se encaixaria no conjunto à esquerda da posição atual (que já está ordenado); é simples e eficiente quando aplicado a pequenas listas
 		\item \emph{Quick Sort}: escolhe um pivô e organiza os dados de forma que à esquerda do pivô estejam todos os valores menores do que ele, e à direita, todos os valores maiores do que o pivô, organizando a seguir as duas metades (recursivamente); é considerado o algoritmo de ordenação mais eficiente
 	\end{itemize}
 \end{itemize}
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{Tópico Especial: Pesquisa}
+\begin{frame}\frametitle{Pesquisa}
 \begin{itemize}
 	\item Já vimos um método de \textbf{pesquisa linear}
 	\begin{itemize}
@@ -1139,7 +1135,7 @@ else
 \end{frame}
 
 %=======================================================
-\section{Solução de Problemas: Combinando Algoritmos}
+\section{Combinando Algoritmos}
 
 %-------------------------------------------------------
 \begin{frame}\frametitle{Combinando Algoritmos}
@@ -1148,7 +1144,7 @@ else
 	\item Por exemplo, para os seguintes valores:\\ \texttt{8    7    8.5    9.5    7     5    10}\\o escore final será \texttt{50}.
 \end{itemize}
 \end{frame}
-
+	
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{Abordagem}
 \begin{itemize}
@@ -1173,79 +1169,7 @@ System.out.println("Final score: " + total);
 \end{frame}
 
 %=======================================================
-\section{Solução de Problemas: Usando Objetos Reais}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Usando Objetos Reais}
-\begin{itemize}
-	\item Considere o seguinte problema: você tem um \emph{array} cujo tamanho é par, e você deve trocar a primeira metade com a segunda metade
-	\item Por exemplo, para um \emph{array} de 8 posições
-\begin{figure}[h]
-	\includegraphics[height=0.15\paperheight,center]{pucrs-ep-fprog-unidade_06-arrays-laminas-troca_metades.png}
-\end{figure}
-	\item Uma técnica bastante útil para ajudar no desenvolvimento de algoritmos é usar objetos reais
-	\item Pode-se, por exemplo, usar uma linha de objetos (moedas, cartas, pequenos brinquedos, peças de um jogo, etc.) para representar um \emph{array} e assim estudar operações necessárias na implementação de um algoritmo
-\begin{figure}[h]
-	\includegraphics[height=0.1\paperheight,center]{pucrs-ep-fprog-unidade_06-arrays-laminas-moedas.png}
-\end{figure}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Manipulando Objetos Reais}
-\begin{itemize}
-	\item Para resolver o problema proposto, os movimentos (operações) seriam::
-\begin{figure}[h]
-	\includegraphics[height=0.50\paperheight,center]{pucrs-ep-fprog-unidade_06-arrays-laminas-algoritmo_com_moedas.png}
-\end{figure}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Criando o Algoritmo}
-\begin{itemize}
-	\item É importante identificar:
-	\begin{itemize}
-		\item Quantas trocas serão necessárias?
-		\item Quais os índices dos elementos que deverão ser trocados?
-	\end{itemize}
-	\item Estas informações devem estar relacionadas ao tamanho do \emph{array}
-	\item Algoritmo:
-\begin{figure}[h]
-	\includegraphics[height=0.3\paperheight,center]{pucrs-ep-fprog-unidade_06-arrays-laminas-algoritmo_final.png}
-\end{figure}
-\end{itemize}
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}\frametitle{Exercício}
-Escreva um método em Java que troque a primeira metade de um \emph{array} de inteiros pela sua segunda metade. Caso o tamanho do \emph{array} seja ímpar, o método não deve fazer nada com o \emph{array}.
-\end{frame}
-
-%-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Exercício (Solução)}
-Escreva um método em Java que troque a primeira metade de um \emph{array} de inteiros pela sua segunda metade. Caso o tamanho do \emph{array} seja ímpar, o método não deve fazer nada com o \emph{array}.\\
-{\scriptsize
-\begin{javacode}
-public static void trocaMetades(int[] vetor) {
-   int tam = vetor.length;
-   if ( tam % 2 == 0 ) {
-      tam = tam / 2;
-      int j = tam;
-      for (int i=0; i < tam; ++i) {
-         int aux = vetor[i];
-         vetor[i] = vetor[j];
-         vetor[j] = aux;
-         j++;
-      }
-   }
-}
-\end{javacode}
-}
-\end{frame}
-
-%=======================================================
-\section{Arrays Bidimensionais}
+\section{\emph{Arrays} Bidimensionais}
 
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{\emph{Arrays} Bidimensionais}
@@ -1454,7 +1378,7 @@ public class Medals {
 		\item Para obter o número de colunas de uma linha, deve-se usar o \texttt{length} para a linha
 {\scriptsize
 \begin{javacode}
-int mat[][] = new int[2][3];
+int[][] mat = new int[2][3];
 System.out.println(mat.length);    // 2
 System.out.println(mat[0].length); // 3
 System.out.println(mat[1].length); // 3
@@ -1470,7 +1394,7 @@ System.out.println(mat[1].length); // 3
 	\item Pode-se criar um \emph{array} com dimensões ``irregulares'' (cada linha com um número variável de elementos)
 {\scriptsize
 \begin{javacode}
-int mat[][] = new int[2][];
+int[][] mat = new int[2][];
 mat[0] = new int[3];
 mat[1] = new int[4];
 System.out.println(mat.length);    // 2
@@ -1482,31 +1406,18 @@ System.out.println(mat[1].length); // 4
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{Exercício 1}
-Considere matrizes de inteiros com \texttt{l} linhas e \texttt{c} colunas e implemente métodos para:
-\begin{enumerate}[a)]
-	\item Ler todos os elementos da matriz
-	\item Escrever todos os elementos da matriz
-	\item Trocar a linha i1 pela linha i2 da matriz
-	\item Trocar a coluna c1 pela coluna c2 da matriz
-	\item Inicializar todos os elementos da matriz com valores aleatórios
-\end{enumerate}
+\begin{frame}[fragile]\frametitle{Exercício (1/2)}
+\begin{itemize}
+	\item Implemente uma classe chamada \texttt{Matriz} com uma biblioteca de métodos para processamento de matrizes de inteiros
+	\item Nesta classe implemente todos os métodos que aparecem na classe da página seguinte (use esta classe como modelo)
+	\item Não se esqueça de definir os comentários JavaDoc para cada um dos métodos
+	\item Crie uma classe chamada \texttt{TestaMatriz.java}, para testar a classe \texttt{Matriz.java}
+\end{itemize}
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{Exercício 2}
-Considere matrizes quadradas de inteiros e implemente métodos para calcular:
-\begin{enumerate}[a)]
-	\item Somatório de todos os elementos da matriz
-	\item Somatório dos elementos da linha \texttt{i} da matriz
-	\item Somatório dos elementos da coluna \texttt{j} da matriz
-	\item Somatório dos elementos da diagonal principal da matriz
-	\item Somatório dos elementos acima da diagonal principal da matriz
-	\item Somatório dos elementos abaixo da diagonal principal da matriz
-	\item Somatório dos elementos da diagonal secundária da matriz
-	\item Somatório dos elementos acima da diagonal secundária da matriz
-	\item Somatório dos elementos abaixo da diagonal secundária da matriz
-\end{enumerate}
+\begin{frame}[fragile]\frametitle{Exercício (2/2)}
+\tiny{\inputminted[bgcolor=cyan!10]{java}{src/Matriz.java}}
 \end{frame}
 
 \begin{comment}
@@ -1937,10 +1848,10 @@ Usar \texttt{add} várias vezes.
 \end{comment}
 
 %=======================================================
-\section{Argumentos da Linha de Comando}
+\section{Argumentos da Linha de Comandos}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Argumentos da Linha de Comando}
+\begin{frame}[fragile]\frametitle{Argumentos da Linha de Comandos}
 \begin{itemize}
 	\item Pode-se parametrizar a execução de programas através de argumentos da linha de comandos
 	\item Por exemplo, opções, dados ou nomes de arquivos são frequentemente fornecidos após o nome do programa na linha de comandos (\emph{prompt}):
@@ -1973,6 +1884,66 @@ args[3] = "3 quatro 5"
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{\texttt{Argumentos.java}}
 \tiny{\inputminted[bgcolor=cyan!10]{java}{src/Argumentos.java}}
+\end{frame}
+
+%=======================================================
+\section{Exercícios}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Exercícios}
+\begin{enumerate}
+	\scriptsize
+	\item Escreva um método que recebe um vetor de inteiros e inverte este vetor (ou seja, troca o primeiro elemento pelo último, o segundo pelo penúltimo, e assim sucessivamente).\\\texttt{public static void inverte(int[] v);}
+	\item Escreva um método que recebe uma matriz de inteiros (regular) e retorna a matriz transposta.\\\texttt{public static int[][] transposta(int[][] m);}
+	\item Escreva um método que recebe um argumento do tipo \texttt{String} e retorna um vetor de inteiros com 26 itens com a contagem de cada uma das 26 letras que aparecerem nesse vetor. A posição 0 do vetor retornado contém o número de letras ``a'' (maiúsculas ou minúsculas), a posição 1 do vetor contém o número de letras ``b'' (maiúsculas ou minúsculas), etc.\\\texttt{public static int[] contaLetras(String s);}
+	\item Escreva um método que recebe dois vetores de inteiros e retorne \texttt{true} se o segundo vetor estiver dentro do primeiro, ou \texttt{false} em caso contrário\\\texttt{public static boolean contem(int[] v1, int[] v2);}
+	\item Escreva um método que recebe dois vetores de inteiros e retorne quantas vezes o segundo vetor aparece dentro do primeiro\\\texttt{public static int conta(int[] v1, int[] v2);}
+\end{enumerate}		
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Desafios}
+\begin{enumerate}
+	\scriptsize
+	\item Escreva um programa em Java que lê as dimensões (linhas x colunas) de uma matriz de \texttt{char} e aloca memória para ela. Depois o programa deve fazer o seguinte:
+	\begin{itemize}
+		\scriptsize
+		\item Inicialize todas as posições com espaços em branco
+		\item Escolha aleatoriamente 5 posições na matriz e preencha-as com o caractere \texttt{'.'} (ponto) -- estes chamamos de sementes
+		\item Para cada posição ainda vazia $m_{ij}$, encontre a distância até a semente mais próxima ($S_{kl}$). Para isto, você pode usar a fórmula da distância Euclidiana:
+\[ d(m_{ij},S_{kl}) = \sqrt{(i-k)^2 + (j-l)^2} \]
+		\item Agora armazene nesta célula o número da semente mais próxima (de '1' a '5' ou use outros símbolos, se quiser)
+		\item No final, exiba a matriz resultante na tela
+		\item A figura resultante é chamada de Diagrama de Voronoi. Descubra mais em: \url{http://en.wikipedia.org/wiki/Voronoi_diagram}
+	\end{itemize}
+	\item Pesquise por outras operações sobre \emph{arrays} e implemente-as em Java (sugestão: multiplicação de matrizes)
+	\item Dê uma olhada na descrição de \emph{Conway's Game of Life} disponível na Wikipedia (\url{https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life}) e tente implementar um autômato
+\end{enumerate}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Solução 1: \texttt{Inverte.java}}
+\tiny{\inputminted[bgcolor=cyan!10]{java}{src/Inverte.java}}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Solução 2: \texttt{Transposta.java}}
+\tiny{\inputminted[bgcolor=cyan!10]{java}{src/Transposta.java}}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Solução 3: \texttt{ContaLetras.java}}
+\tiny{\inputminted[bgcolor=cyan!10]{java}{src/ContaLetras.java}}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Solução 4: \texttt{ContemVetor.java}}
+\tiny{\inputminted[bgcolor=cyan!10]{java}{src/ContemVetor.java}}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Solução 5: \texttt{ContaVetor.java}}
+\tiny{\inputminted[bgcolor=cyan!10]{java}{src/ContaVetor.java}}
 \end{frame}
 
 %=======================================================
@@ -2032,17 +2003,75 @@ args[3] = "3 quatro 5"
 \end{comment}
 
 %=======================================================
-\section{Humor}
+\section{Tópicos Complementares}
 
 %-------------------------------------------------------
-\begin{frame}\frametitle{Vida de Programador {\tiny (NOEL, 2016, p. 37)}}
+\begin{frame}\frametitle{Usando Objetos Reais}
+\begin{itemize}
+	\item Considere o seguinte problema: você tem um \emph{array} cujo tamanho é par, e você deve trocar a primeira metade com a segunda metade
+	\item Por exemplo, para um \emph{array} de 8 posições
 \begin{figure}[h]
-	\includegraphics[height=0.7\paperheight,center]{pucrs-ep-fprog-unidade_06-arrays-laminas-vida_de_programador.jpg}
+	\includegraphics[height=0.15\paperheight,center]{pucrs-ep-fprog-unidade_06-arrays-laminas-troca_metades.png}
 \end{figure}
+	\item Uma técnica bastante útil para ajudar no desenvolvimento de algoritmos é usar objetos reais
+	\item Pode-se, por exemplo, usar uma linha de objetos (moedas, cartas, pequenos brinquedos, peças de um jogo, etc.) para representar um \emph{array} e assim estudar operações necessárias na implementação de um algoritmo
+\begin{figure}[h]
+	\includegraphics[height=0.1\paperheight,center]{pucrs-ep-fprog-unidade_06-arrays-laminas-moedas.png}
+\end{figure}
+\end{itemize}
 \end{frame}
 
-%=======================================================
-\section{Tópicos Complementares}
+%-------------------------------------------------------
+\begin{frame}\frametitle{Usando Objetos Reais: Manipulação}
+\begin{itemize}
+	\item Para resolver o problema proposto, os movimentos (operações) seriam::
+\begin{figure}[h]
+	\includegraphics[height=0.50\paperheight,center]{pucrs-ep-fprog-unidade_06-arrays-laminas-algoritmo_com_moedas.png}
+\end{figure}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Usando Objetos Reais: Criando o Algoritmo}
+\begin{itemize}
+	\item É importante identificar:
+	\begin{itemize}
+		\item Quantas trocas serão necessárias?
+		\item Quais os índices dos elementos que deverão ser trocados?
+	\end{itemize}
+	\item Estas informações devem estar relacionadas ao tamanho do \emph{array}
+	\item Algoritmo:
+\begin{figure}[h]
+	\includegraphics[height=0.3\paperheight,center]{pucrs-ep-fprog-unidade_06-arrays-laminas-algoritmo_final.png}
+\end{figure}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Usando Objetos Reais: Exercício}
+Escreva um método em Java que troque a primeira metade de um \emph{array} de inteiros pela sua segunda metade. Caso o tamanho do \emph{array} seja ímpar, o método não deve fazer nada com o \emph{array}.
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Usando Objetos Reais: Solução do Exercício}
+{\scriptsize
+\begin{javacode}
+public static void trocaMetades(int[] vetor) {
+   int tam = vetor.length;
+   if ( tam % 2 == 0 ) {
+      tam = tam / 2;
+      int j = tam;
+      for (int i=0; i < tam; ++i) {
+         int aux = vetor[i];
+         vetor[i] = vetor[j];
+         vetor[j] = aux;
+         j++;
+      }
+   }
+}
+\end{javacode}
+}
+\end{frame}
 
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{O Laço \texttt{for} Abreviado }
@@ -2088,6 +2117,16 @@ for (double element : values) {
 	\includegraphics[height=0.4\paperheight,center]{pucrs-ep-fprog-unidade_06-arrays-laminas-sintaxe_for_abreviado.png}
 \end{figure}
 \end{itemize}
+\end{frame}
+
+%=======================================================
+\section{Humor}
+
+%-------------------------------------------------------
+\begin{frame}\frametitle{Vida de Programador {\tiny (NOEL, 2016, p. 37)}}
+\begin{figure}[h]
+	\includegraphics[height=0.7\paperheight,center]{pucrs-ep-fprog-unidade_06-arrays-laminas-vida_de_programador.jpg}
+\end{figure}
 \end{frame}
 
 %=======================================================
