@@ -7,5 +7,5 @@ public class Contador {
   public void definevalor(int v) { valor = v; }
   public void zeraValor() { valor = 0; }
   public void incrementaValor() { valor++; }
-  public static String info() { return "Contador versão 1.0"; }
+  public static String info() { return "Contador - Versão 1.0"; }
 }

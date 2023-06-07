@@ -1,0 +1,682 @@
+\documentclass[onecolumn,a4paper,10pt]{report}
+%\documentclass[12pt,a4paper,twoside]{book} %twoside distingue página par de ímpar
+\usepackage[utf8]{inputenc}
+\usepackage[portuges]{babel} %para separar sílabas em Português, etc...
+\usepackage[usenames,dvipsnames]{color} % para letras e caixas coloridas
+\usepackage{latexsym} %para fazer $\Box$ no \LaTeX2$\epsilon$
+\usepackage{makeidx} % índice remissivo
+\usepackage{amstext} %texto em equações: $... \text{} ...$
+\usepackage{theorem}
+\usepackage{tabularx} %tabelas ocupando toda a página
+\usepackage[all]{xy}
+\usepackage{a4wide} %correta formatação da página em A4
+\usepackage{indentfirst} %adiciona espaços no primeiro parágrafo
+
+\usepackage{graphics,amssymb,amsfonts,amsmath}
+\usepackage{tikz}
+\usepackage{enumerate,hyperref}
+\usepackage{palatino}
+\usepackage{ragged2e}
+\usepackage{minted}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}                   
+\usepackage{xcolor}
+\usepackage{textcomp} % para usar \textdegree
+\usepackage{setspace}
+\usetikzlibrary{shadows}
+
+\newminted{java}{bgcolor=cyan!10,baselinestretch=1.2}
+
+\definecolor{cinza}{gray}{.8}
+\definecolor{branco}{gray}{1}
+\definecolor{preto}{gray}{0}
+\definecolor{verdemusgo}{rgb}{.3,.7,.5}
+\definecolor{vinho}{cmyk}{0,1,1,.5}
+%\setcounter{secnumdepth}{1}
+%\renewcommand{\thesection}{\textcolor{preto}{\arabic{section}}}
+%\renewcommand{\thepage}{\textcolor{preto}{\color{preto}{{\scriptsize}}}}
+{\theorembodyfont{\upshape}
+\newtheorem{Dem}{Demonstração}[chapter]}
+\newtheorem{Ex}{Exemplo}[chapter]
+\newtheorem{Exer}{Exercício}
+\newtheorem{Lista}{Lista de exercícios}
+\newtheorem{Def}{Definição}[chapter]
+
+\newtheorem{Pro}{Proposição}[chapter]
+\newtheorem{Ax}{Axioma}[chapter]
+\newtheorem{Teo}{Teorema}[chapter]
+\newtheorem{Cor}{Corolário}[chapter]
+\newtheorem{Cas}{Caso}[subsection]
+\newtheorem{lema}{Lema}[chapter]
+\newtheorem{que}{Questão}[chapter]
+\newcommand{\dem}{\noindent{\bf Demonstração:}}
+\newcommand{\sol}{\noindent{\it Solução.}}
+\newcommand{\nota}{\noindent{\bf Notação:}}
+\newcommand{\ex}{\noindent{\bf Exemplos}}
+\newcommand{\Obs}{\noindent{\bf Observação:}}
+\newcommand{\fim}{\hfill $\blacksquare$}
+\newcommand{\ig}{\,\, = \,\,}
+\newcommand{\+}{\, + \,}
+\newcommand{\m}{\, - \,}
+\newcommand{\I}{\mbox{$I\kern-0.40emI$}}
+\newcommand{\Z}{\mbox{Z$\kern-0.40em$Z}}
+\newcommand{\Q}{\mbox{I$\kern-0.60em$Q}}
+\newcommand{\C}{\mbox{I$\kern-0.60em$C}}
+\newcommand{\N}{\mbox{I$\kern-0.40em$N}}
+\newcommand{\R}{\mbox{I$\kern-0.40em$R}}
+\newcommand{\Ro}{\rm{I\!R\!}}
+\newcommand{\disp}{\displaystyle}
+\newcommand{\<}{\hspace*{-0.4cm}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ov}{\overline}
+\newcommand{\aj}{\vspace*{-0.2cm}}
+\newcommand{\pt}{\hspace{-1mm}\times\hspace{-1mm}}
+\newcommand{\cm}{\mbox{cm}}
+\newcommand{\np}{\mbox{$\in \kern-0.80em/$}}
+\newcommand{\tg} {\mbox{tg\,}}
+\newcommand{\ptm}{\hspace{-0.4mm}\cdot\hspace{-0.4mm}}
+\newcommand{\arc}{\stackrel{\;\;\frown}}
+\newcommand{\rad}{\;\mbox{rad}}
+\newcommand{\esp}{\;\;\;\;}
+\newcommand{\sen}{\mbox{sen\,}}
+\newcommand{\grau}{^{\mbox{{\scriptsize o}}}}
+\newcommand{\real} {\mbox{$I\kern-0.60emR$}}
+\newcommand{\vetor}{\stackrel{\color{vinho}\vector(1,0){15}}}
+\newcommand{\arctg}{\mbox{arctg\,}}
+\newcommand{\arcsen}{\mbox{arcsen\,}}
+\newcommand{\ordinal}{^{\underline{\scriptsize\mbox{\rmo}}}}
+\newcommand{\segundo}{$2^{\underline{o}}$ }
+\newcommand{\primeiro}{$1^{\underline{o}}$ }
+\newcommand{\nee}{\mbox{$\;=\kern-0.90em/\;$}}
+
+\setlength{\parskip}{0.0cm} %espaco entre parágrafos
+\setlength{\oddsidemargin}{-1cm} %margem esquerda das páginas
+%\setlength{\unitlength}{3cm} %tamanho da figura criada
+\linespread{1.5} %distância entre linhas
+\setlength{\textheight}{25cm} %distância entre a primeira e última linha do texto(comprimento do texto)
+\setlength{\textwidth}{18cm} %indica a largura do texto
+\topmargin=-2cm %margem superior entre topo da página e o cabeçalho
+%\headsep=0.5cm %distãncia entre o cabeçalho e o corpo do texto
+%\setlength{\footskip}{27pt} %distãncia da última linha ao número da página
+%\evensidemargin=-0.2in %margem esquerda das páginas pares
+%\marginparwidth=1.7in %tamanho das notas de margem
+%\marginparsep=0.2in %distância entre a margem direita e as notas de margem
+%\topmargin=0cm
+%\stackrel{\frown}{AB}
+
+\begin{document}
+\singlespacing
+
+\begin{center}
+Pontifícia Universidade Católica do Rio Grande do Sul (PUCRS)\\
+Escola Politécnica\\
+Disciplina: Fundamentos de Programação - Professor: Roland Teodorowitsch\\
+5 de junho de 2023
+\end{center}
+
+\begin{center}
+\textbf{Lista de Exercícios - Unidade 7: Objetos e Classes\\(GABARITO)}
+\end{center}
+
+\begin{enumerate}
+
+%1----------------------------------------------------------------------
+\item Implemente uma classe \texttt{Carro} com as propriedades descritas a seguir. Um carro apresenta certo consumo
+de combustível (medido em quilômetros por litro) e tem certa quantidade de combustível no seu tanque de gasolina.
+O consumo é especificado no construtor, e o nível inicial de combustível é 0. Forneça um método \texttt{dirigir()}
+que simula o uso do carro até determinada distância, reduzindo o nível de gasolina no tanque, e métodos
+\texttt{obterNivelCombustivel()}, para obter o nível atual de combustível, e \texttt{abastecer()} para adicionar combustível ao carro.
+Exemplo de uso:\\
+\begin{javacode}
+Carro meuCarro = new Carro(10.0);   // 10 km por litro
+meuCarro.abastecer(40.0);           // Abastece 40 litros
+meuCarro.dirigir(100);              // Dirige o carro por 100 km
+System.out.println(meuCarro.obterNivelCombustivel()); // Combustivel restante
+\end{javacode}
+{\tiny Adaptado de: Horstmann (2013, p. 406-407)}\\
+{\tiny \textcolor{red}{Resposta:}\\
+\begin{javacode}
+public class Carro {
+    private double consumo;     // km/l
+    private double nivelTanque; // l
+    
+    public Carro(double consumo) {
+        this.consumo = consumo;
+        this.nivelTanque = 0.0;
+    }
+    
+    public void abastecer(double litros) {
+        this.nivelTanque += litros;
+    }
+    
+    public void dirigir(double km) {
+        this.nivelTanque -= km/this.consumo;
+    }
+    
+    public double obterNivelCombustivel() {
+        return this.nivelTanque;
+    }
+    
+    public String toString() {
+        return this.consumo+":"+this.nivelTanque;
+    }
+
+    public void print() {
+        System.out.println(this.toString());
+    }
+}
+\end{javacode}
+}
+\newpage
+
+%2----------------------------------------------------------------------
+\item Implemente uma classe chamada \texttt{Estudante} que armazene o nome e controle a nota dos alunos em uma série de avaliações. Crie o construtor apropriado e os métodos \texttt{obtenhaNome()}, \texttt{definaNome()}, \texttt{adicioneNota()}, \texttt{obtenhaTotalNotas()}, \texttt{obtenhaNumNotas()} e \texttt{obtenhaMediaNotas()}. Os nomes dos métodos são autoexplicativos, portanto, declare variáveis paramétricas adequadas para cada método e também variáveis de instância suficientes para implementar o comportamento esperado em cada método. Não tente armazenar cada uma das notas adicionadas aos objetos desta classe. Sugestão: implemente também as classes \texttt{toString()} e \texttt{print()} para esta classe.\\
+{\tiny Adaptado de: Horstmann (2013, p. 407)}\\
+{\tiny \textcolor{red}{Resposta:}\\
+\begin{javacode}
+public class Estudante {
+    private String nome;
+    private double total;
+    private int numero;
+    private double media;
+    
+    public Estudante() {
+        this.nome = "";
+        this.total = 0.0;
+        this.numero = 0;
+        this.media = 0.0;
+    }
+    
+    public Estudante(String nome) {
+        this.nome = nome;
+        this.total = 0.0;
+        this.numero = 0;
+        this.media = 0.0;
+    }
+    
+    public String obtenhaNome() {
+        return this.nome;
+    }
+    
+    public void definaNome(String nome) {
+        this.nome = nome;
+    }
+    
+    public void adicioneNota(double nota) {
+        if (nota>=0.0 && nota<=10.0) {
+            this.total += nota;
+            this.numero++;
+            this.media = this.total / this.numero;
+        }
+    }
+    
+    public double obtenhaTotalNotas() {
+        return this.total;
+    }
+    
+    public double obtenhaNumNotas() {
+        return this.numero;
+    }
+    
+    public double obtenhaMediaNotas() {
+        return this.media;
+    }
+    
+    public String toString() {
+        return this.nome+":"+this.total+":"+this.numero+":"+this.media;
+    }
+    
+    public void print() {
+        System.out.println(this.toString());
+    }
+    
+}
+\end{javacode}
+}
+\newpage
+
+%3----------------------------------------------------------------------
+\item Implemente uma classe chamada \texttt{TestaEstudante} que faz a verificação (teste unitário) da classe \texttt{Estudante} implementada na questão anterior. Todos os construtores e métodos implementados devem ser invocados de forma que seja possível verificar o seu correto funcionamento.\\
+{\tiny Autor: Roland Teodorowitsch (11 nov. 2016)}\\
+{\tiny \textcolor{red}{Resposta:}\\
+\begin{javacode}
+public class TestaEstudante {
+    public static void main(String[] args) {
+        Estudante e = new Estudante();
+        e.definaNome("Israel");
+        e.print();
+        e.adicioneNota(10.0);
+        e.print();
+        e.adicioneNota(9.0);
+        e.print();
+        e.adicioneNota(8.0);
+        e.print();
+        
+        Estudante joaquim = new Estudante("Joaquim");
+        joaquim.adicioneNota(7.0);
+        joaquim.adicioneNota(8.0);
+        joaquim.adicioneNota(9.0);
+        joaquim.adicioneNota(10.0);
+        System.out.println("Nome        = "+joaquim.obtenhaNome());
+        System.out.println("Total Notas = "+joaquim.obtenhaTotalNotas());
+        System.out.println("Num. Notas  = "+joaquim.obtenhaNumNotas());
+        System.out.println("Media       = "+joaquim.obtenhaMediaNotas());
+    }
+}
+\end{javacode}
+}
+\newpage
+
+%4----------------------------------------------------------------------
+\item Ainda com a classe \texttt{Estudante}, implemente uma classe \texttt{TurmaDeEstudantes} que leia de um arquivo chamado \texttt{turma.dados} os dados de um conjunto de alunos e armazene-os em um vetor de objetos da classe \texttt{Estudante}. A primeira linha do arquivo \texttt{turma.dados} contém o número de estudantes e cada uma das linhas restantes do arquivo contém os dados dos estudantes, cada um em uma linha. As linhas com os dados dos estudantes contém o nome e as notas obtidas pelo estudante, usando ponto-e-vírgula como separador. Este arquivo poderia conter, por exemplo:\\
+\begin{javacode}
+5
+Claudio;9.0;8.0;7.0
+Janaina;8.0;9.0;10.0
+Augusto;10.0;9.0;8.0
+Fernanda;5.0;6.0;7.0
+Paulo;4.0;6.0;8.0
+\end{javacode}
+Depois de realizar a leitura e o processamento das notas dos alunos usando os métodos da classe \texttt{Estudante}, seu programa deverá:
+\begin{itemize}
+\item Calcular a média da turma;
+\item Encontrar a nota mais alta;
+\item Encontrar a nota mais baixa;
+\item Ordenar a turma pelo nome;
+\item Imprimir o vetor de estudantes ordenado, bem como os dados calculados e procurados nos itens anteriores.
+\end{itemize}
+{\tiny Autor: Roland Teodorowitsch (11 nov. 2016)}
+\newpage
+{\tiny \textcolor{red}{Resposta:}\\
+\begin{javacode}
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+
+public class TurmaDeEstudantes {
+    
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner fturma = new Scanner(new File("turma.dados"));
+        int numEstudantes = Integer.parseInt(fturma.nextLine());
+        Estudante[] turma = new Estudante[numEstudantes];
+        
+        // LEITURA
+        // Para cada estudante no arquivo...
+        for (int i=0;i<numEstudantes;++i) {
+            // Le cada uma das linhas com informacoes de cada aluno
+            String linha = fturma.nextLine();
+            // Separa a linha em campos
+            String[] campos = linha.split(";");
+            // Cria o objeto Estudante usando o construtor que receb o nome
+            turma[i] = new Estudante(campos[0]);
+            // As notas estao em campos[1], campos[2], campos[3], ...
+            for (int j=1;j<campos.length;++j) {
+                turma[i].adicioneNota(Double.parseDouble(campos[j]));
+            }
+        }
+        fturma.close();
+        
+        // PROCESSAMENTO
+        double maior = turma[0].obtenhaMediaNotas();
+        double menor = turma[0].obtenhaMediaNotas();
+        double media = turma[0].obtenhaMediaNotas();
+        for (int i=1;i<numEstudantes;++i) {
+            if (turma[i].obtenhaMediaNotas()>maior)
+                maior = turma[i].obtenhaMediaNotas();
+            if (turma[i].obtenhaMediaNotas()<menor)
+                menor = turma[i].obtenhaMediaNotas();
+            media = media + turma[i].obtenhaMediaNotas();
+        }
+        media = media / numEstudantes;
+        System.out.println("MEDIA = "+media);
+        System.out.println("MAIOR = "+maior);
+        System.out.println("MENOR = "+menor);
+        
+        // ORDENACAO
+        for (int i=0;i<numEstudantes-1;++i) {
+            int menorNome = i;
+            for (int j=i+1;j<numEstudantes;++j) {
+                if (turma[menorNome].obtenhaNome().compareTo(turma[j].obtenhaNome())>0)
+                    menorNome = j;
+            }
+            if (menorNome != i) {
+                Estudante aux = turma[menorNome];
+                turma[menorNome] = turma[i];
+                turma[i] = aux;
+            }
+        }
+        
+        // IMPRESSAO
+        for (int i=0;i<numEstudantes;++i)
+            turma[i].print();
+    }
+    
+}
+\end{javacode}
+}
+\newpage
+
+%5----------------------------------------------------------------------
+\item Implemente uma classe para armazenar o CPF (Cadastro de Pessoa Física) de uma pessoa. Esta classe deverá aceitar CPFs válidos nos formatos
+"DDD.DDD.DDD-DD" ou "DDDDDDDDDDD" (onde D é um dígito de zero a nove). Nenhum outro caractere ou formato deverá ser aceito. Sua classe deverá ser formada por:
+\begin{itemize}
+\item construtor que recebe um \emph{string} com o CPF, validando-o e armazenando-o;
+\item método \texttt{void define(String cpf)} que define o novo conteúdo para objetos da classe CPF, validando-o antes do armazenamento;
+\item método \texttt{String obtem(boolean format)} que retorna o CPF formatado (\texttt{format} igual a \texttt{true}) ou não (\texttt{format} igual a \texttt{false});
+\item método \texttt{boolean valida(String cpf)} que recebe um CPF em qualquer um dos dois formatos e verifica se trata-se de um CPF válido ou não (este método pode ser público e estático, não acessando nenhuma variável de instância, e podendo ser usado tanto pelos outros métodos quanto por outras aplicações).
+\end{itemize}
+O construtor e o método \texttt{void define(String cpf)}, depois de usarem o método \texttt{boolean valida(String cpf)}, devem lançar a exceção \texttt{IllegalArgumentException}, caso não se trate de um CPF válido.\\
+{\tiny Autor: Roland Teodorowitsch (11 nov. 2016)}\\
+\newpage
+{\tiny \textcolor{red}{Resposta:}\\
+\begin{javacode}
+public class CPF {
+    String cpf;
+    
+    public CPF(String cpf) throws IllegalArgumentException {
+        if (CPF.valida(cpf)) {
+            if (cpf.length()==11)
+                this.cpf = cpf;
+            else
+                this.cpf = cpf.substring(0,3)+cpf.substring(4,7)+cpf.substring(8,11)+cpf.substring(12);
+        }
+        else
+            throw  new IllegalArgumentException("CPF invalido!");
+    }
+    
+    public void define(String cpf) throws IllegalArgumentException {
+        if (CPF.valida(cpf)) {
+            if (cpf.length()==11)
+                this.cpf = cpf;
+            else
+                this.cpf = cpf.substring(0,3)+cpf.substring(4,7)+cpf.substring(8,11)+cpf.substring(12);
+        }
+        else
+            throw  new IllegalArgumentException("CPF invalido!");
+    }
+    
+    public String obtem(boolean format) {
+        if (format)
+            return this.cpf.substring(0,3)+"."+this.cpf.substring(3,6)+"."+this.cpf.substring(6,9)+"-"+this.cpf.substring(9);
+        else
+            return this.cpf;
+    }
+
+    public static boolean valida(String cpf) {
+        int[] digitos = new int[11];
+        switch (cpf.length()) {
+            case 11:
+                 for (int i=0;i<11;++i) {
+                     char c = cpf.charAt(i);
+                     if (!Character.isDigit(c))
+                        return false;
+                     digitos[i] = c-'0';
+                 }
+                 break;
+            case 14:
+                 int j = 0;
+                 for (int i=0;i<14;++i) {
+                     char c = cpf.charAt(i);
+                     switch (i) {
+                         case 3:
+                         case 7:
+                              if (c != '.')
+                                 return false;
+                              break;
+                         case 11:
+                              if (c != '-')
+                                 return false;
+                              break;
+                         default:
+                              if (!Character.isDigit(c))
+                                 return false;
+                              digitos[j++] = c-'0';
+                     }
+                 }
+                 break;
+            default:
+                 return false;
+        }
+        int mult1 = 10;
+        int dv1 = 0;
+        int mult2 = 11;
+        int dv2 = 0;
+        for (int i=0;i<9;++i) {
+            dv1 += digitos[i] * mult1--;
+            dv2 += digitos[i] * mult2--;
+        }
+        dv1 = ( dv1 * 10 ) % 11;
+        if (dv1 > 9)
+           dv1 = 0;
+        dv2 += dv1 * mult2;
+        dv2 = ( dv2 * 10 ) % 11;
+        if (dv2 > 9)
+           dv2 = 0;
+        if (dv1 != digitos[9] || dv2 != digitos[10])
+           return false;
+        return true;
+    }
+
+}
+\end{javacode}
+}
+\newpage
+
+%6----------------------------------------------------------------------
+\item Implemente uma classe em Java chamada ContaCorrente. Esta classe deverá ser capaz de controlar o saldo de diversas contas-correntes, armazenando: agência (String), número da conta-corrente (String), nome do titular (String), CPF do titula (em um objeto da classe CPF definida na questão anterior) e saldo (double). Para esta classe implemente os seguintes métodos:
+\begin{itemize}
+\item para construir objetos desta classe;
+\item para obter cada uma das variáveis de instância de objetos desta classe;
+\item para definir cada uma das variáveis de instância de objetos desta classe;
+\item \texttt{saque()} que debita determinado valor do saldo da conta-corrente;
+\item \texttt{deposito()} que credita determinado valor no saldo da conta-corrente;
+\item \texttt{toString()} que gera uma cadeia de caracteres com os dados da conta-corrente;
+\item \texttt{print()} que exibe todos os dados da conta-corrente.
+\end{itemize}
+{\tiny Autor: Roland Teodorowitsch (11 nov. 2016)}\\
+\newpage
+{\tiny \textcolor{red}{Resposta:}\\
+\begin{javacode}
+public class ContaCorrente {
+    private String agencia;
+    private String cc;
+    private String titular;
+    private CPF cpf;
+    private double saldo;
+    
+    public ContaCorrente() {
+        this.agencia = "";
+        this.cc = "";
+        this.titular = "";
+        this.cpf = null;
+        this.saldo = 0.0;
+    }
+
+    public ContaCorrente(String ag,String cc,String tit,CPF cpf,double saldo) {
+        this.agencia = ag;
+        this.cc = cc;
+        this.titular = tit;
+        this.cpf = cpf;
+        this.saldo = saldo;
+    }
+
+    public String obtemAgencia() {
+        return this.agencia;
+    }
+    
+    public String obtemCc() {
+        return this.cc;
+    }
+    public String obtemTitular() {
+        return this.titular;
+    }
+    public CPF obtemCpf() {
+        return this.cpf;
+    }
+    public double obtemSaldo() {
+        return this.saldo;
+    }
+
+    public void defineAgencia(String agencia) {
+        this.agencia = agencia;
+    }
+    
+    public void defineCc(String cc) {
+        this.cc = cc;
+    }
+    
+    public void defineTitular(String titular) {
+        this.titular = titular;
+    }
+    
+    public void defineCpf(CPF cpf) {
+        this.cpf = cpf;
+    }
+    
+    public void defineSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+    
+    public void saque(double valor) {
+        this.saldo -= valor;
+    }
+    
+    public void deposito(double valor) {
+        this.saldo += valor;
+    }
+    
+    public String toString() {
+        return "Ag="+this.agencia+";Cc="+this.cc+";Titular="+this.titular+";CPF="+this.cpf.obtem(true)+";Sado="+this.saldo;
+    }
+    
+    public void print() {
+        System.out.println(this.toString());
+    }
+    
+}
+\end{javacode}
+}
+\newpage
+
+%7----------------------------------------------------------------------
+\item Implemente uma classe chamada \texttt{TestaContaCorrente} que faz a verificação (teste unitário) da classe \texttt{ContaCorrente} implementada na questão anterior. Todos os construtores e métodos implementados devem ser invocados de forma que seja possível verificar o seu correto funcionamento.\\
+{\tiny Autor: Roland Teodorowitsch (11 nov. 2016)}\\
+{\tiny \textcolor{red}{Resposta:}\\
+\begin{javacode}
+public class TestaContaCorrente {
+    public static void main(String[] args) {
+        ContaCorrente cc1 = new ContaCorrente();
+        cc1.defineAgencia("1111-1");
+        cc1.defineCc("22222-2");
+        cc1.defineTitular("Carlos da Silveira");
+        cc1.defineCpf(new CPF("242.061.480-15"));
+        cc1.defineSaldo(0.00);
+        cc1.deposito(1000.00);
+        cc1.saque(200.00);
+        cc1.print();
+        
+        ContaCorrente cc2 = new ContaCorrente("3333-3","44444-4","Fulano de Tal",new CPF("663.254.220-40"),500.00);
+        System.out.println(cc2.toString());
+        cc2.deposito(100.00);
+        cc2.saque(400.00);
+        System.out.println("AGENCIA="+cc2.obtemAgencia());
+        System.out.println("CC     ="+cc2.obtemCc());
+        System.out.println("TITULAR="+cc2.obtemTitular());
+        System.out.println("CPF    ="+cc2.obtemCpf().obtem(true));
+        System.out.println("SALDO  ="+cc2.obtemSaldo());        
+    }
+}
+\end{javacode}
+}
+\newpage
+
+%8----------------------------------------------------------------------
+\item Escreva em Java a classe \texttt{NumeroComplexo} que represente um número complexo. A classe deverá ter os seguintes métodos:
+\begin{itemize}
+	\item \texttt{inicializaNumero}, que recebe dois valores como argumentos para inicializar os campos da classe (parte real e imaginária);
+	\item \texttt{imprimeNumero}, que deve imprimir o número complexo encapsulado usando a notação a + bi onde a é a parte real e b a imaginária;
+	\item \texttt{eIgual}, que recebe outra instância da classe \texttt{NumeroComplexo} e retorna \texttt{true} se os valores dos campos encapsulados forem iguais aos da instância passada como argumento;
+	\item \texttt{soma}, que recebe outra instância da classe \texttt{NumeroComplexo} e soma este número complexo com o encapsulado usando a fórmula $(a + bi) + (c + di) = (a + c) + (b + d)i$;
+	\item \texttt{subtrai}, que recebe outra instância da classe \texttt{NumeroComplexo} e subtrai o argumento do número complexo encapsulado usando a fórmula $(a + bi) - (c + di) = (a - c) + (b - d)i$;
+	\item \texttt{multiplica}, que recebe outra instância da classe \texttt{NumeroComplexo} e multiplica este número complexo com o encapsulado usando a fórmula $(a + bi) . (c + di) = (ac - bd) + (ad + bc)i$;
+	\item \texttt{divide}, que recebe outra instância da classe NumeroComplexo e divide o número encapsulado pelo passado como argumento usando a fórmula $\frac{(a+bi)}{(c+di)} = \frac{ac+bd}{c^2+d^2} + \frac{bc-ad}{c^2+d^2}i$.
+\end{itemize}
+{\tiny Fonte: Santos (2013)}\\
+{\tiny \textcolor{red}{Resposta:}\\
+\begin{javacode}
+public class NumeroComplexo {
+    private double real;
+    private double imag;
+    
+    public NumeroComplexo(double real, double imag) {
+        this.real = real;
+        this.imag = imag;
+    }
+    
+    public void inicializaNumero(double real, double imag) {
+        this.real = real;
+        this.imag = imag;
+    }
+    
+    public void imprimeNumero() {
+        System.out.printf("%f + %f . i\n",real,imag);
+    }
+    
+    public double parteReal() {
+        return real;
+    }
+    
+    public double parteImaginaria() {
+        return imag;
+    }
+    
+    public boolean eIgual(NumeroComplexo nc) {
+        if (real == nc.parteReal() && imag == nc.parteImaginaria())
+            return true;
+        return false;
+    }
+    
+    public void soma(NumeroComplexo nc) {
+        real += nc.parteReal();
+        imag += nc.parteImaginaria();
+    }
+    
+    public void subtrai(NumeroComplexo nc) {
+        real -= nc.parteReal();
+        imag -= nc.parteImaginaria();
+    }
+    
+    public void multiplica(NumeroComplexo nc) {
+        real = real * nc.parteReal() - imag * nc.parteImaginaria();
+        imag = real * nc.parteImaginaria() + imag * nc.parteReal();
+    }
+    
+    public void divide(NumeroComplexo nc) throws ArithmeticException {
+        double denominador = Math.pow(nc.parteReal(),2)+Math.pow(nc.parteImaginaria(),2);
+        if (denominador==0)
+            throw new ArithmeticException("Divisao por 0");
+        real = (real * nc.parteReal() + imag * nc.parteImaginaria()) / denominador;
+        imag = (imag * nc.parteReal() - real * nc.parteImaginaria()) / denominador;
+    }
+
+}
+\end{javacode}
+}
+
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\noindent{\textbf{REFERÊNCIAS}}
+
+%\noindent{FORBELLONE, André Luiz Villar; EBERSPÄCHER, Henri Frederico. \textbf{Lógica de programação}: a construção de algoritmos e estruturas de dados. 3. ed. São Paulo: Prentice Hall, 2005. 218 p.}
+
+\noindent{HORSTMANN, C. \textbf{Java for Everyone – Late Objects}. 2. ed. Hoboken: Wiley, 2013. xxxiv, 589 p.}
+
+\noindent{SANTOS, Rafael. \textbf{Introdução à Programação Orientada a Objetos usando Java}. 2. ed. 2013.}
+
+%\noindent{ORTH, Afonso Inácio. \textbf{Algoritmos e Programação com Resumo das Linguagens PASCAL e C}. Porto Alegre: AIO, 2001. 176 p.}
+
+\end{document}
+
