@@ -17,5 +17,9 @@ public class Peixe {
     if ( fome < COM_MUITA_FOME )
       fome++;
   }
+
+  public int obtemFome() {
+    return fome;
+  }
 }
 

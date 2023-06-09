@@ -38,7 +38,7 @@
 \title[\sc{Objetos e Classes}]{Objetos e Classes}
 \author[Roland Teodorowitsch]{Roland Teodorowitsch}
 \institute[FPROG - EP - PUCRS]{Fundamentos de Programação - Escola Politécnica - PUCRS}
-\date{8 de junho de 2023}
+\date{9 de junho de 2023}
 
 \begin{document}
 \justifying
@@ -716,7 +716,7 @@ void imprima(double valor)            { ... }
 \end{frame}
 
 %-------------------------------------------------------
-\begin{frame}[fragile]\frametitle{Exercício}
+\begin{frame}[fragile]\frametitle{Exercícios}
 \begin{enumerate}
 	\item Implemente uma classe chamada \texttt{ContaBancaria} que gerencie os dados de uma conta bancária, considerando as seguintes informações: número da conta (valor inteiro), nome do titular da conta (cadeia de caracteres) e saldo (valor real). Para gerenciar os objetos dessa classe implemente métodos para: construir objetos (considere um construtor que recebe todos os dados e outro que recebe o número da conta e o titular), realizar depósito, realizar saque (considere que o valor do saldo NÃO poderá ser negativo), obter os dados da conta, modificar os dados da conta e obter uma cadeia de caracteres com todos os dados da conta (chame este método de \texttt{toString()}).
 	\item Implemente uma classe com método \texttt{main()} para exemplificar o uso da classe \texttt{ContaBancaria}.
@@ -725,12 +725,12 @@ void imprima(double valor)            { ... }
 
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{Solução: \texttt{ContaBancaria.java}}
-{\tiny\inputminted[bgcolor=cyan!10]{java}{src/ContaBancaria.java}}
+{\tiny\inputminted[bgcolor=cyan!10]{java}{src/conta/ContaBancaria.java}}
 \end{frame}
 
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{Solução: \texttt{GerenciaContaBancaria.java}}
-{\tiny\inputminted[bgcolor=cyan!10]{java}{src/GerenciaContaBancaria.java}}
+{\tiny\inputminted[bgcolor=cyan!10]{java}{src/conta/GerenciaContaBancaria.java}}
 \end{frame}
 
 \begin{comment}
@@ -895,7 +895,7 @@ public class TestaContaBancaria {
 \end{itemize}
 	\end{column}
 	\begin{column}{0.5\linewidth}
-{\tiny\inputminted[bgcolor=cyan!10]{java}{src/CarrinhoDeCompras.java}}
+{\tiny\inputminted[bgcolor=cyan!10]{java}{src/carrinho/CarrinhoDeCompras.java}}
 	\end{column}
 \end{columns}
 \end{frame}
@@ -922,7 +922,7 @@ public class TestaContaBancaria {
 \end{itemize}
 	\end{column}
 	\begin{column}{0.5\linewidth}
-{\tiny\inputminted[bgcolor=cyan!10]{java}{src/Estudante.java}}
+{\tiny\inputminted[bgcolor=cyan!10]{java}{src/estudante/Estudante.java}}
 	\end{column}
 \end{columns}
 \end{frame}
@@ -937,16 +937,17 @@ public class TestaContaBancaria {
 	\begin{itemize}
 		\item Um peixe que pode estar nos seguintes estados: sem forme, com alguma fome, com muita fome
 	\end{itemize}
-	\item O peixe inicia sem fome (construtor)
-	\item Os métodos alteram o estado do objeto
+	\item O peixe inicia sem fome (construtor)	
+	\item A fome do peixe é alterada através de
 	\begin{itemize}
 		\item \texttt{come()}
 		\item \texttt{nada()}
 	\end{itemize}
+	\item Pode-se conferir a fome com \texttt{obtemFome()}
 \end{itemize}
 	\end{column}
 	\begin{column}{0.5\linewidth}
-{\tiny\inputminted[bgcolor=cyan!10]{java}{src/Peixe.java}}
+{\tiny\inputminted[bgcolor=cyan!10]{java}{src/peixe/Peixe.java}}
 	\end{column}
 \end{columns}
 \end{frame}
@@ -954,7 +955,7 @@ public class TestaContaBancaria {
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{Padrão: Descrever a Posição de um Objeto}
 \begin{columns}[T]
-	\begin{column}{0.5\linewidth}
+	\begin{column}{0.4\linewidth}
 \begin{itemize}
 	\item Exemplos
 	\begin{itemize}
@@ -974,14 +975,48 @@ public class TestaContaBancaria {
 	\end{itemize}
 \end{itemize}
 \begin{figure}[h]
-	\includegraphics[height=0.15\paperheight,center]{pucrs-ep-fprog-unidade_07-objetos_e_classes-laminas-inseto.jpg}
+	\includegraphics[height=0.16\paperheight,center]{pucrs-ep-fprog-unidade_07-objetos_e_classes-laminas-inseto.jpg}
 \end{figure}
 	\end{column}
-	\begin{column}{0.5\linewidth}
-{\tiny\inputminted[bgcolor=cyan!10]{java}{src/Inseto.java}}
+	\begin{column}{0.6\linewidth}
+{\tiny\inputminted[bgcolor=cyan!10]{java}{src/inseto1/Inseto.java}}
 	\end{column}
 \end{columns}
 \end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Exercícios}
+\begin{enumerate}
+	\item Implemente quatro classes (cada uma com seu método \texttt{main()}) para testar as classes \texttt{CarrinhoDeCompras}, \texttt{Estudante}, \texttt{Peixe} e \texttt{Inseto} (citadas nas 4 lâminas anteriores).\\Sugestão: na classe \texttt{Inseto}, substitua o método \texttt{toString()} por um método que mostre a grade com o inseto na sua posição e direção corretas (use os caracteres '>', 'v', '<' e '\textasciicircum' para indicar a direção do inseto).	
+\end{enumerate}
+\end{frame}
+
+\begin{comment}
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Solução: \texttt{SelecionaProdutos.java}}
+{\tiny\inputminted[bgcolor=cyan!10]{java}{src/carrinho/SelecionaProdutos.java}}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Solução: \texttt{GerenciaEstudante.java}}
+{\tiny\inputminted[bgcolor=cyan!10]{java}{src/estudante/GerenciaEstudante.java}}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Solução: \texttt{ControlaPeixe.java}}
+{\tiny\inputminted[bgcolor=cyan!10]{java}{src/peixe/ControlaPeixe.java}}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Solução: \texttt{Inseto.java}}
+{\tiny\inputminted[bgcolor=cyan!10]{java}{src/inseto2/Inseto.java}}
+\end{frame}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Solução: \texttt{ControlaInseto.java}}
+{\tiny\inputminted[bgcolor=cyan!10]{java}{src/inseto2/ControlaInseto.java}}
+\end{frame}
+\end{comment}
 
 %=======================================================
 \section{Referências a Objetos}

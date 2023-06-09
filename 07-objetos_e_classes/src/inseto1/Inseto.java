@@ -1,13 +1,11 @@
-/** Gerencia a movimentação de um inseto em uma grade */
+/** Gerencia a movimentação de um inseto em uma grade.
+    @version 1.0 */
 public class Inseto {
-  public static final int LESTE = 0, SUL = 1,
-                          OESTE = 2, NORTE = 3;
+  public static final int LESTE = 0, SUL = 1, OESTE = 2, NORTE = 3;
   public static final int LINHAS = 3, COLUNAS = 8;
   private int linha, coluna, direcao;
 
-  public Inseto() {
-    linha = coluna = direcao = 0;
-  }
+  public Inseto() { linha = coluna = direcao = 0; }
 
   public void anda() {
     switch (direcao) {
@@ -18,9 +16,9 @@ public class Inseto {
     }    
   }
 
-  public void gira() {
-    if (direcao == NORTE) direcao = LESTE;
-    else ++direcao;
+  public void gira() { direcao = (direcao + 1) % 4; }
+
+  public String toString() {
+    return "linha="+linha+"; coluna="+coluna+"; direcao="+direcao;
   }
 }
-
