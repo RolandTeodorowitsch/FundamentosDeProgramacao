@@ -5,7 +5,7 @@ public class CarrinhoDeCompras {
   private String[] itens;
   private int numItens;
 
-  public CarrinhoDeCompras() { // Constructor
+  public CarrinhoDeCompras() {
     itens = new String[MAX_ITENS];
     numItens = 0;
   }

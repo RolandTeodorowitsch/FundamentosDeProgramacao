@@ -1,8 +1,8 @@
 /** Classe que gerencia uma conta bancária. */
 public class ContaBancaria {
-  int numero;
-  String titular;
-  double saldo;
+  private int numero;
+  private String titular;
+  private double saldo;
 
   public ContaBancaria(int n, String t, double s) {
     numero = n;  titular = t;  saldo = s;

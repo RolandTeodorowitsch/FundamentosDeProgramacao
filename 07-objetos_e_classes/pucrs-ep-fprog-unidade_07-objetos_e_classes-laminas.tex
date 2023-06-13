@@ -1,4 +1,4 @@
-\documentclass[xcolor={dvipsnames,table},aspectratio=169]{beamer}
+	\documentclass[xcolor={dvipsnames,table},aspectratio=169]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[brazil]{babel}
@@ -38,7 +38,7 @@
 \title[\sc{Objetos e Classes}]{Objetos e Classes}
 \author[Roland Teodorowitsch]{Roland Teodorowitsch}
 \institute[FPROG - EP - PUCRS]{Fundamentos de Programação - Escola Politécnica - PUCRS}
-\date{9 de junho de 2023}
+\date{13 de junho de 2023}
 
 \begin{document}
 \justifying
@@ -880,10 +880,7 @@ public class TestaContaBancaria {
 		\item Placar de pontos
 		\item Opções de um menu
 	\end{itemize}
-	\item Valores armazenados
-	\begin{itemize}
-		\item \emph{Array} parcialmente preenchido ou \texttt{Arraylist}
-	\end{itemize}
+	\item Valores armazenados, por exemplo, usando um \emph{array} parcialmente preenchido
 	\item Construtor
 	\begin{itemize}
 		\item Inicializa ou cria a coleção vazia
@@ -987,7 +984,7 @@ public class TestaContaBancaria {
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{Exercícios}
 \begin{enumerate}
-	\item Implemente quatro classes (cada uma com seu método \texttt{main()}) para testar as classes \texttt{CarrinhoDeCompras}, \texttt{Estudante}, \texttt{Peixe} e \texttt{Inseto} (citadas nas 4 lâminas anteriores).\\Sugestão: na classe \texttt{Inseto}, substitua o método \texttt{toString()} por um método que mostre a grade com o inseto na sua posição e direção corretas (use os caracteres '>', 'v', '<' e '\textasciicircum' para indicar a direção do inseto).	
+	\item Implemente quatro classes (cada uma com seu método \texttt{main()}) para testar as classes \texttt{CarrinhoDeCompras}, \texttt{Estudante}, \texttt{Peixe} e \texttt{Inseto} (citadas nas 4 lâminas anteriores).\\\scriptsize{~\\Sugestão: na classe \texttt{Inseto}, substitua o método \texttt{toString()} por um método que mostre a grade com o inseto na sua posição e direção corretas (use os caracteres '>', 'v', '<' e '\textasciicircum' para indicar o inseto e sua direção -- use '.' para indicar uma posição vazia da grade).}
 \end{enumerate}
 \end{frame}
 
@@ -1026,26 +1023,40 @@ public class TestaContaBancaria {
 \begin{itemize}
 {\small
 	\item Uma referência a um objeto especifica a localização de memória do objeto
-	\item Objetos são parecidos com \emph{arrays} porque eles também são acessados por variáveis de referência
-	\begin{itemize}
-{\small
-		\item Referência a \emph{array}
+	\item Objetos são parecidos com \emph{arrays} porque eles também são acessados por referências
+\begin{columns}[T]
+	\begin{column}{0.6\linewidth}
+{\scriptsize
 \begin{javacode}
-double[] values = new double[5];
+// Referência a array
+double[] valores = new double[6];
 \end{javacode}
+}
+	\end{column}
+	\begin{column}{0.4\linewidth}
 \begin{figure}[h]
-	\includegraphics[height=0.14\paperheight,center]{pucrs-ep-fprog-unidade_07-objetos_e_classes-laminas-referencia_a_array.png}
+	\includegraphics[height=0.25\paperheight,center]{pucrs-ep-fprog-unidade_07-objetos_e_classes-laminas-referencia_a_array.png}
 \end{figure}
-		\item Referência a objeto
+	\end{column}
+\end{columns}
+~\\
+~\\
+\begin{columns}[T]
+	\begin{column}{0.6\linewidth}
+{\scriptsize	
 \begin{javacode}
-CashRegister reg1 = new CashRegister();
+// Referência a objeto
+CaixaRegistradora caixa = new CaixaRegistradora();
 \end{javacode}
+}
+	\end{column}
+	\begin{column}{0.4\linewidth}
 \begin{figure}[h]
-	\includegraphics[height=0.12\paperheight,center]{pucrs-ep-fprog-unidade_07-objetos_e_classes-laminas-referencia_a_objeto.png}
+	\includegraphics[height=0.15\paperheight,center]{pucrs-ep-fprog-unidade_07-objetos_e_classes-laminas-referencia_a_objeto.png}
 \end{figure}
-}
-	\end{itemize}
-}
+	\end{column}
+\end{columns}
+	}
 \end{itemize}
 \end{frame}
 
@@ -1058,14 +1069,14 @@ CashRegister reg1 = new CashRegister();
 {\small
 		\item Referência simples
 \begin{javacode}
-CashRegister reg1 = new CashRegister();
+CaixaRegistradora caixa = new CaixaRegistradora();
 \end{javacode}
 \begin{figure}[h]
-	\includegraphics[height=0.10\paperheight,center]{pucrs-ep-fprog-unidade_07-objetos_e_classes-laminas-referencia_a_objeto_1.png}
+	\includegraphics[height=0.10\paperheight,center]{pucrs-ep-fprog-unidade_07-objetos_e_classes-laminas-referencia_a_objeto.png}
 \end{figure}
 		\item Referências compartilhando o mesmo objeto
 \begin{javacode}
-CashRegister reg2 = reg1;
+CaixaRegistradora aux = caixa;
 \end{javacode}
 \begin{figure}[h]
 	\includegraphics[height=0.10\paperheight,center]{pucrs-ep-fprog-unidade_07-objetos_e_classes-laminas-referencia_a_objeto_2.png}
@@ -1085,40 +1096,40 @@ CashRegister reg2 = reg1;
 }
 \end{itemize}
 \begin{columns}[T]
-	\begin{column}{0.4\linewidth}
+	\begin{column}{0.35\linewidth}
 \begin{itemize}
-{\small
-	\item Cópia de dados primitivos: 2 localizações
+{\scriptsize
+	\item Cópia de dados primitivos:\\2 localizações
 {\scriptsize
 \begin{javacode}
-int num1 = 0;
+int num1 = 10;
 int num2 = num1;
 num2++;
 \end{javacode}
 }
 \begin{figure}[h]
-	\includegraphics[height=0.35\paperheight,center]{pucrs-ep-fprog-unidade_07-objetos_e_classes-laminas-copia_de_primitivos.png}
+	\includegraphics[height=0.11\paperheight,center]{pucrs-ep-fprog-unidade_07-objetos_e_classes-laminas-copia_de_primitivos.png}
 \end{figure}
 }
 \end{itemize}
 	\end{column}
-	\begin{column}{0.5\linewidth}
+	\begin{column}{0.65	\linewidth}
 \begin{itemize}
 {\scriptsize
-	\item Cópia de referências: 1 localização para as 2 referências
+	\item Cópia de referências:\\2 referências para a mesma localização
 {\scriptsize
 \begin{javacode}
-CashRegister reg1 = new CashRegister();
-CashRegister reg2 = reg1;
-reg2.addItem(2.95);
+CaixaRegistradora caixa = new CaixaRegistradora();
+CaixaRegistradora aux = caixa;
+aux.adicionaItem(1.25);
 \end{javacode}
 }
 \begin{figure}[h]
-	\includegraphics[height=0.12\paperheight,center]{pucrs-ep-fprog-unidade_07-objetos_e_classes-laminas-copia_de_referencias.png}
+	\includegraphics[height=0.14\paperheight,center]{pucrs-ep-fprog-unidade_07-objetos_e_classes-laminas-copia_de_referencias.png}
 \end{figure}
 	\item Objetos podem ocupar muito mais espaço, por isso Java realiza a cópia apenas da referência
 }
-\end{itemize}
+\end{itemize}	
 	\end{column}
 \end{columns}
 \end{frame}
@@ -1126,25 +1137,25 @@ reg2.addItem(2.95);
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{A Referência \texttt{null}}
 \begin{itemize}
-	\item Uma referência pode apontar para ``nenhum'' objeto \texttt{null}
-	\begin{itemize}
-		\item Não se pode invocar métodos de um objeto através de uma referência \texttt{null}, pois isto causará uma exceção
-\begin{javacode}
-CashRegister reg = null;
-System.out.println(reg.getTotal());   // Runtime Error!
-\end{javacode}
-		\item Para testar se uma referência é \texttt{null} antes de acessá-la, usa-se:
+	\item Uma referência pode apontar para ``nenhum'' objeto (\texttt{null})
+	\item Não se pode invocar métodos de um objeto através de uma referência \texttt{null}, pois isto causará uma exceção
 {\footnotesize
 \begin{javacode}
-String middleInitial = null; // No middle initial
-
-if (middleInitial == null)
-  System.out.println(firstName + " " + lastName);
-else
-  System.out.println(firstName + " " + middleInitial + ". " + lastName);
+CaixaRegistradora caixa = null;
+System.out.println( caixa.obtetmTotal() );   // Erro de execução
 \end{javacode}
 }
-	\end{itemize}
+	\item Deve-se testar todas as referência antes de tentar acessá-las:
+{\footnotesize
+\begin{javacode}
+String nomeDoMeio = null; // Nenhum nome do meio
+
+if (nomeDoMeio == null)
+  System.out.println( nome + " " + sobrenome );
+else
+  System.out.println( nome + " " + nomeDoMeio + " " + sobrenome );
+\end{javacode}
+}
 \end{itemize}
 \end{frame}
 
@@ -1152,39 +1163,34 @@ else
 \begin{frame}[fragile]\frametitle{A Referência \texttt{this}}
 \begin{itemize}
 	\item Métodos recebem um ``parâmetro implícito'' em uma variável de referência chamada \texttt{this}
-	\begin{itemize}
-		\item Trata-se de uma referência ao objeto sobre o qual o método foi invocado:
+	\item Trata-se de uma referência ao objeto sobre o qual o método foi invocado:
 \begin{figure}[h]
 	\includegraphics[height=0.2\paperheight,center]{pucrs-ep-fprog-unidade_07-objetos_e_classes-laminas-this.png}
 \end{figure}
-		\item Assim pode-se deixar mais claro quando será usada uma variável de instância
+	\item Assim pode-se deixar mais claro quando será usada uma variável de instância
 \begin{javacode}
 void adicionaItem(double preco) {
   this.numItens++;
   this.total = this.total + preco;
 }
 \end{javacode}
-	\end{itemize}
 \end{itemize}
 \end{frame}
 
 %-------------------------------------------------------
 \begin{frame}[fragile]\frametitle{Referências a \texttt{this} em Construtores}
 \begin{itemize}
-	\item A referência \texttt{this} é muito usada em construtores
-	\begin{itemize}
-		\item Ela torna mais claro que se está definindo variáveis de instância:
+	\item A referência \texttt{this} é muito usada em construtores e \emph{setters} (assim variáveis paramétricas e de instância podem ter o mesmo nome)
 \begin{javacode}
-public class Student {
-  private int id;
-  private String name;
-  public Student(int id, String name) {
-    this.id = id;
-    this.name = name;
+public class Estudante {
+  private int matricula;
+  private String nome;
+  public Student(int matricula, String nome) {
+    this.matricula = matricula;
+    this.nome = nome;
   }
 }
 \end{javacode}
-	\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -1227,7 +1233,7 @@ public class ContaBancaria {
 \begin{itemize}
 	\item Exemplo:
 	\begin{itemize}
-		\item Cada vez que uma nova conta for criada, a variável \texttt{lastAssignedNumber} será incrementada pelo construtor
+		\item Cada vez que uma nova conta for criada, a variável \texttt{proximoNumeroDeConta} será incrementada pelo construtor
 		\item Acessa-se a variável usando \texttt{NomeDaCasse.nomeDaVariavel}
 	\end{itemize}
 \end{itemize}
@@ -1245,11 +1251,11 @@ public class ContaBancaria {
 \begin{itemize}
 	\item A API de Java tem muitas classes que provêm métodos que podem ser usados sem que se necessite instanciar um objeto
 	\begin{itemize}
-		\item A classe \texttt{Math} é um exemplo que já apareceu em exemplos anteriores
-		\item \texttt{Math.sqrt(valor)} é um método estático que retorna a raiz quadrada de um valor
+		\item A classe \texttt{Math} é um bom exemplo disso
+		\item Por exemplo, \texttt{Math.sqrt(valor)} é um método estático que retorna a raiz quadrada de um valor
 		\item Não é necessário instanciar um objeto da classe \texttt{Math} antes de usá-lo
 	\end{itemize}
-	\item Acessa-se métodos \texttt{static} usando:
+	\item Métodos \texttt{static} são chamados usando:
 \begin{javacode}
 NomeDaClasse.nomeDoMetodo();
 \end{javacode}
@@ -1262,15 +1268,13 @@ NomeDaClasse.nomeDoMetodo();
 	\item Você pode definir seus próprios métodos estáticos
 {\scriptsize
 \begin{javacode}
-public class Financial {
-   /**
-      Computes a percentage of an amount.
-      @param percentage the percentage to apply
-      @param amount the amount to which the percentage is applied
-      @return the requested percentage of the amount
-   */
-   public static double percentOf(double percentage, double amount) {
-      return (percentage / 100) * amount;
+public class Financeiro {
+   /** Calcula a porcentagem de determinado valor.
+       @param porcentagem A porcentagem a ser aplicada.
+       @param quantia A quania sobre a qual a porcentagem será aplicada.
+       @return A porcentagem especificada da quantia. */
+   public static double percentualDe(double porcentagem, double quantia) {
+      return (porcentagem / 100.0) * quantia;
    }
 }
 \end{javacode}
@@ -1278,10 +1282,56 @@ public class Financial {
 	\item Invoca-se o método estático sobre a classe, e não sobre um objeto
 {\scriptsize
 \begin{javacode}
-double tax = Financial.percentOf(taxRate, total);
+double taxa = Financeiro.percentualDe(percentual, total);
 \end{javacode}
 }
 	\item Métodos estáticos geralmente retornam um valor. Eles apenas podem acessar variáveis estáticas e métodos estáticos
+\end{itemize}
+\end{frame}
+
+%=======================================================
+\section{Exercício}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Exercício: Forca}
+\begin{itemize}
+	\item Implemente uma classe para executar um jogo de Forca (\texttt{Forca.java}) e uma classe para instanciar um objeto desta classe permitindo que o usuário dispute interativamente uma partida de Forca contra o computador (\texttt{App.java}). Pense inicialmente nos métodos que deverão ser chamados para executar o jogo. Implemente um método \texttt{main()} na classe \texttt{App.java} para criar um objeto da classe \texttt{Forca} e executar os métodos desse objeto. A seguir pense nos dados que deverão ser armazenados para cada objeto da classe \texttt{Forca} e implemente-a.
+\end{itemize}
+\end{frame}
+
+\begin{comment}
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{Solução: \texttt{App.java}}
+{\tiny\inputminted[bgcolor=cyan!10]{java}{src/forca/App.java}}
+\end{frame}
+\end{comment}
+
+%=======================================================
+\section{\emph{Arrays} de Objetos}
+
+%-------------------------------------------------------
+\begin{frame}[fragile]\frametitle{\emph{Arrays} de Objetos}
+\begin{itemize}
+	\item Quando se cria um \emph{array} de algum tipo primitivo, Java preenche todas as posições com um valor nulo (\texttt{0}, \texttt{0.0}, \texttt{false}, etc.)
+{\footnotesize
+\begin{javacode}
+double[] vet = new double[100];
+\end{javacode}
+}
+	\item Quando se cria um \emph{array} de objetos, Java preenche todas as posições com \texttt{null}
+{\footnotesize
+\begin{javacode}
+Classe[] objeto = new Classe[100]; // Nenhum construtor será chamado	
+\end{javacode}
+}
+	\item Isto significa que apenas o \emph{array} foi criado, e NÃO os objetos...
+	\item É preciso executar o operador \texttt{new} também para cada um dos objetos
+{\footnotesize
+\begin{javacode}
+for (int i=0; i<objeto.length; ++i)
+    objeto[i] = new Classe(); // Agora sim o construtor será chamado
+\end{javacode}
+}
 \end{itemize}
 \end{frame}
 
